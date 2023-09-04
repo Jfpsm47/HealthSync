@@ -3,6 +3,7 @@ package main.model.paciente;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class PacienteModel implements Serializable {
 	private String telefone;
 	
 	@OneToMany(mappedBy = "paciente")
+	@JsonIgnore
 	private List<AtendimentoModel> atendimentos;
 	
 	public PacienteModel() {
@@ -87,6 +89,12 @@ public class PacienteModel implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
+
+	public List<AtendimentoModel> getAtendimentos() {
+		return atendimentos;
+	}
+
+	public void setAtendimentos(List<AtendimentoModel> atendimentos) {
+		this.atendimentos = atendimentos;
+	}
 }
