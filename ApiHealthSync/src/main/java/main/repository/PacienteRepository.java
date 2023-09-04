@@ -3,6 +3,10 @@ package main.repository;
 import main.model.paciente.PacienteModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PacienteRepository extends JpaRepository<PacienteModel, Long> {
+import java.util.List;
+import java.util.Optional;
 
+public interface PacienteRepository extends JpaRepository<PacienteModel, Long> {
+    List<PacienteModel> findByNome(String nome);
+    Optional<PacienteModel> findByCpf(String cpf);
 }

@@ -17,4 +17,25 @@ public class PacienteService {
     public void cadastrarPaciente(PacienteModel paciente){
         repository.save(paciente);
     }
+
+    public void editarPaciente(Long id, PacienteModel data){
+        PacienteModel paciente = repository.findById(id).get();
+
+        paciente.setCpf(data.getCpf());
+        paciente.setEmail(data.getEmail());
+        paciente.setNome(data.getNome());
+        paciente.setRg(data.getRg());
+        paciente.setTelefone(data.getTelefone());
+
+        repository.save(paciente);
+    }
+    public void deletarPaciente(Long id){
+        repository.deleteById(id);
+    }
+    public List<PacienteModel> ListarPorNom(String nome){
+        return repository.findByNome(nome);
+    }
+    public PacienteModel buscarPorCpf(String cpf){
+        return repository.findByCpf(cpf).get();
+    }
 }
