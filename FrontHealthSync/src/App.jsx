@@ -1,33 +1,92 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Paciente from './components/Paciente';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOpenDasboard, setIsOpenDashboard] = useState(true);
+  const [isOpenAtendimento, setIsOpenAtendimento] = useState(false);
+  const [isOpenPaciente, setIsOpenPaciente] = useState(false)
+  const [isOpenMedico, setIsOpenMedico] = useState(false)
 
+  const openDashboard = () => {
+    setIsOpenDashboard(true);
+    setIsOpenAtendimento(false);
+    setIsOpenPaciente(false)
+    setIsOpenMedico(false)
+
+  };
+
+const openAtendimento = () => {
+    setIsOpenAtendimento(true);
+    setIsOpenDashboard(false);  
+    setIsOpenPaciente(false)
+    setIsOpenMedico(false)
+  };
+  
+  const openPaciente = () => {
+    setIsOpenPaciente(true)
+    setIsOpenAtendimento(false);
+    setIsOpenDashboard(false);
+    setIsOpenMedico(false)
+  }
+
+  const openMedico = () => {
+    setIsOpenMedico(true)
+    setIsOpenPaciente(false)
+    setIsOpenAtendimento(false);
+    setIsOpenDashboard(false);
+  }
+ 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h1>Teste</h1>
+    <div>
+      <button onClick={openDashboard}>Dashboard</button>
+
+      {isOpenDasboard && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Dashboard</h2>
+            <p>Conteúdo do modal aqui.</p>
+          </div>
+        </div>
+      )}
+    </div>
+    <div>
+      <button onClick={openAtendimento}>Atendimento</button>
+
+      {isOpenAtendimento && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Atendimento</h2>
+            <p>Conteúdo do modal aqui.</p>
+          </div>
+        </div>
+      )}
+    </div>
+    <div>
+      <button onClick={openPaciente}>Paciente</button>
+
+      {isOpenPaciente && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Paciente</h2>
+            <Paciente/>
+          </div>
+        </div>
+      )}
+    </div>
+    <div>
+      <button onClick={openMedico}>Médico</button>
+
+      {isOpenMedico && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Médico</h2>
+            <p>Conteúdo do modal aqui.</p>
+          </div>
+        </div>
+      )}
+    </div>
     </>
   )
 }
