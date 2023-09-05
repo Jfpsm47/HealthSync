@@ -2,12 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import NovoPaciente from './NovoPaciente'
 import ReactModal from 'react-modal'
 
 const Paciente = () => {
     const [pacientes, setPacientes] = useState([])
     const [isOpenFicha, setOpenFicha] = useState(false)
     const [selectedPaciente, setSelectedPaciente] = useState([])
+    const [isOpenCadastro, setIsOpenCadastro] = useState(false)
 
     const openFicha = (paciente) => {
         setSelectedPaciente(paciente)
@@ -29,9 +31,32 @@ const Paciente = () => {
       
         fetchData();
       }, []);
-      
+
+      const handleExcluir = async (id) => {
+      var excluir = confirm("Tem certeza que deseja excluir o paciente?")
+       if(excluir){
+        try {
+          const response = await axios.post(`http://localhost:8081/api/paciente/deletar/${id}`);
+          console.log(response);
+
+          const secondResponse = await axios.get('http://localhost:8081/api/paciente/listar');
+          setPacientes(secondResponse.data);
+          console.log(pacientes);
+      } catch (error) {
+          console.log('Erro na requisição:', error);
+      }
+      setOpenFicha(false)
+       }
+    }
+
+    const handleCadastrarPaciente = async () =>{
+      setIsOpenCadastro(true)
+    }
+
   return (
     <div>
+      <button onClick={() => handleCadastrarPaciente}>+ Novo paciente</button>
+      <NovoPaciente isOpen={isOpenCadastro}></NovoPaciente>
        <ul className='lista-paciente'>
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card-paciente'>
@@ -50,6 +75,7 @@ const Paciente = () => {
                             <p>-CPF: {selectedPaciente.cpf}-</p>
                             <p>-Email: {selectedPaciente.email}-</p>
                             <p>-Telefone: {selectedPaciente.telefone}-</p>
+                            <button onClick={() => handleExcluir(selectedPaciente.id)}>Excluir</button>
                             <button onClick={closeFicha}>X</button>
                         </div>
                         </div>

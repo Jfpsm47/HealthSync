@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Paciente from './components/Paciente';
+import ReactModal from 'react-modal';
 
 function App() {
   const [isOpenDasboard, setIsOpenDashboard] = useState(true);
@@ -35,6 +36,8 @@ const openAtendimento = () => {
     setIsOpenAtendimento(false);
     setIsOpenDashboard(false);
   }
+
+
  
   return (
     <>
@@ -43,7 +46,7 @@ const openAtendimento = () => {
       <button onClick={openDashboard}>Dashboard</button>
 
       {isOpenDasboard && (
-        <div className="modal">
+        <div className='modal'>
           <div className="modal-content">
             <h2>Dashboard</h2>
             <p>Conteúdo do modal aqui.</p>
@@ -55,7 +58,7 @@ const openAtendimento = () => {
       <button onClick={openAtendimento}>Atendimento</button>
 
       {isOpenAtendimento && (
-        <div className="modal">
+        <div className='modal'>
           <div className="modal-content">
             <h2>Atendimento</h2>
             <p>Conteúdo do modal aqui.</p>
@@ -67,7 +70,7 @@ const openAtendimento = () => {
       <button onClick={openPaciente}>Paciente</button>
 
       {isOpenPaciente && (
-        <div className="modal">
+        <div className='modal'>
           <div className="modal-content">
             <h2>Paciente</h2>
             <Paciente/>
@@ -79,7 +82,7 @@ const openAtendimento = () => {
       <button onClick={openMedico}>Médico</button>
 
       {isOpenMedico && (
-        <div className="modal">
+        <div className='modal'>
           <div className="modal-content">
             <h2>Médico</h2>
             <p>Conteúdo do modal aqui.</p>
