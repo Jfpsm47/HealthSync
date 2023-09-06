@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import NovoPaciente from './NovoPaciente'
+import EditarPaciente from './EditarPaciente'
 import ReactModal from 'react-modal'
 
 const Paciente = () => {
@@ -10,6 +11,7 @@ const Paciente = () => {
     const [isOpenFicha, setOpenFicha] = useState(false)
     const [selectedPaciente, setSelectedPaciente] = useState([])
     const [isOpenCadastro, setIsOpenCadastro] = useState(false)
+    const [isOpenEditar,setIsOpenEditar] = useState(false)
 
     const openFicha = (paciente) => {
         setSelectedPaciente(paciente)
@@ -49,14 +51,37 @@ const Paciente = () => {
        }
     }
 
-    const handleCadastrarPaciente = async () =>{
+    const handleOpenCadastro = async () =>{
       setIsOpenCadastro(true)
+      try {
+        const response = await axios.get('http://localhost:8081/api/paciente/listar');
+        setPacientes(response.data)
+      } catch (error) {
+        console.log('Erro na requisiçaõ', error)
+      }
+    }
+    const handleCloseCadastro = async () => {
+      setIsOpenCadastro(false)
+      try {
+        const response = await axios.get('http://localhost:8081/api/paciente/listar');
+        setPacientes(response.data)
+      } catch (error) {
+        console.log("Erro na requiusição,",error)
+      }
+    }
+
+    const handleOpenEditar = () => {
+      setIsOpenEditar(true)
+    }
+    const handleCloseEditar = () => {
+      setIsOpenEditar(false)
     }
 
   return (
     <div>
-      <button onClick={() => handleCadastrarPaciente}>+ Novo paciente</button>
-      <NovoPaciente isOpen={isOpenCadastro}></NovoPaciente>
+      <button onClick={() => handleOpenCadastro()}>+ Novo paciente</button>
+      <NovoPaciente isOpen={isOpenCadastro} onClose={() => handleCloseCadastro()}></NovoPaciente>
+      
        <ul className='lista-paciente'>
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card-paciente'>
@@ -76,6 +101,8 @@ const Paciente = () => {
                             <p>-Email: {selectedPaciente.email}-</p>
                             <p>-Telefone: {selectedPaciente.telefone}-</p>
                             <button onClick={() => handleExcluir(selectedPaciente.id)}>Excluir</button>
+                            <button onClick={() => handleOpenEditar()}>Editar</button>
+                            <EditarPaciente isOpen={isOpenEditar} onClose={() => handleCloseEditar()} paciente={selectedPaciente}></EditarPaciente>
                             <button onClick={closeFicha}>X</button>
                         </div>
                         </div>

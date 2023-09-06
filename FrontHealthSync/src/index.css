@@ -108,3 +108,27 @@ button:focus-visible {
   background-color: #32236C;
   padding: 20px;
 }
+.cadastro-paciente{
+  width: 930px;
+  height: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+}
+input{
+  border-color: #32236C;
+  size: 100px;
+}
+.editar{
+  width: 930px;
+  height: 650px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #32236C;
+  padding: 20px;
+}
