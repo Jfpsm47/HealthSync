@@ -33,7 +33,7 @@ public class PacienteService {
         repository.deleteById(id);
     }
     public List<PacienteModel> ListarPorNom(String nome){
-        return repository.findByNome(nome);
+        return repository.findByNomeContaining(nome);
     }
     public PacienteModel buscarPorCpf(String cpf){
         return repository.findByCpf(cpf).get();

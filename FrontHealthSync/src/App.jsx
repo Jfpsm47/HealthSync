@@ -72,7 +72,6 @@ const openAtendimento = () => {
       {isOpenPaciente && (
         <div className='modal'>
           <div className="modal-content">
-            <h2>Paciente</h2>
             <Paciente/>
           </div>
         </div>

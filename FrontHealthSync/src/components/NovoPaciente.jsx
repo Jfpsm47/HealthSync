@@ -41,17 +41,17 @@ const NovoPaciente = ({isOpen, onClose}) => {
 
             <label>Nome</label>
             <input type='text' ref={nomeref}></input>
-
+            <br></br>
             <label>CPF</label>
             <input type='text' ref={cpfref}></input>
-
+            <br></br>
             <label>RG</label>
             <input type='text' ref={rgref}></input>
             <br></br>
 
             <label>Telefone</label>
             <input type='text' ref={telefoneref}></input>
-
+            <br></br>
             <label>Email</label>
             <input type='text' ref={emailref}></input>
             <br></br>

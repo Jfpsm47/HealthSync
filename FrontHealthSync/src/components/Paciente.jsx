@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import NovoPaciente from './NovoPaciente'
 import EditarPaciente from './EditarPaciente'
-import ReactModal from 'react-modal'
+import BuscarPaciente from './BuscarPaciente'
 
 const Paciente = () => {
     const [pacientes, setPacientes] = useState([])
@@ -12,6 +12,7 @@ const Paciente = () => {
     const [selectedPaciente, setSelectedPaciente] = useState([])
     const [isOpenCadastro, setIsOpenCadastro] = useState(false)
     const [isOpenEditar,setIsOpenEditar] = useState(false)
+
 
     const openFicha = (paciente) => {
         setSelectedPaciente(paciente)
@@ -73,15 +74,43 @@ const Paciente = () => {
     const handleOpenEditar = () => {
       setIsOpenEditar(true)
     }
-    const handleCloseEditar = () => {
+    const handleCloseEditar = async () => {
       setIsOpenEditar(false)
+      setOpenFicha(false)
+      try {
+        const response = await axios.get('http://localhost:8081/api/paciente/listar');
+        setPacientes(response.data)
+      } catch (error) {
+        console.log("Erro na requiusição,",error)
+      }
     }
-
+    const handleBuscarPaciente = async (e) => {
+      var nome = e.target.value
+      console.log(nome)
+      if(nome == ''){
+        try {
+          const response = await axios.get('http://localhost:8081/api/paciente/listar');
+          setPacientes(response.data)
+        } catch (error) {
+          console.log("Erro na requiusição,",error)
+        }
+      }else{
+        try {
+          const response = await axios.get(`http://localhost:8081/api/paciente/listar/nome/${nome}`);
+          setPacientes(response.data)
+        } catch (error) {
+          console.log("Erro na requiusição,",error)
+        }
+      }
+      
+  }
   return (
     <div>
-      <button onClick={() => handleOpenCadastro()}>+ Novo paciente</button>
+      <input type='text' onChange={handleBuscarPaciente} placeholder='Buscar por nome...' className='busca'></input>
+      <h1 className='titulo-modal'>Pacientes</h1>
+      <button onClick={() => handleOpenCadastro()} className='botao-cadastro'>+ Novo paciente</button>
       <NovoPaciente isOpen={isOpenCadastro} onClose={() => handleCloseCadastro()}></NovoPaciente>
-      
+      {pacientes.length === 0 && <h3>Sem pacientes para exibir.</h3>}
        <ul className='lista-paciente'>
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card-paciente'>

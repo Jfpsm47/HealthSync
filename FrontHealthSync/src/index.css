@@ -48,7 +48,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #AED6F1;
 }
 button:focus,
 button:focus-visible {
@@ -85,6 +85,7 @@ button:focus-visible {
 .lista-paciente li{
   display: inline-block;
   margin-right: 10px;
+  margin-left: 5px;
 }
 .card-paciente{
   width: 200px;
@@ -131,4 +132,31 @@ input{
   transform: translate(-50%, -50%);
   background-color: #32236C;
   padding: 20px;
+}
+.busca{
+  position: absolute;
+  width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  left: 70px;
+  bottom: 615px;
+  height: 20px;
+  display: flex;
+  border: 3px solid #32236C;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.titulo-modal{
+  position: relative;
+  top: 30px;
+  left: 45px;
+}
+.botao-cadastro{
+  background-color: #32236C;
+  color: #fff;
+  font-size: large;
+  position: absolute;
+  left: 770px;
+  bottom: 615px;
 }
