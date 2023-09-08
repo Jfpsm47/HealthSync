@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import NovoPaciente from './NovoPaciente'
 import EditarPaciente from './EditarPaciente'
-import BuscarPaciente from './BuscarPaciente'
 
 const Paciente = () => {
     const [pacientes, setPacientes] = useState([])
@@ -106,14 +105,14 @@ const Paciente = () => {
   }
   return (
     <div>
-      <input type='text' onChange={handleBuscarPaciente} placeholder='Buscar por nome...' className='busca'></input>
+      <input type='text' onChange={handleBuscarPaciente} placeholder='Digite o nome do paciente...' className='busca'></input>
       <h1 className='titulo-modal'>Pacientes</h1>
       <button onClick={() => handleOpenCadastro()} className='botao-cadastro'>+ Novo paciente</button>
       <NovoPaciente isOpen={isOpenCadastro} onClose={() => handleCloseCadastro()}></NovoPaciente>
       {pacientes.length === 0 && <h3>Sem pacientes para exibir.</h3>}
-       <ul className='lista-paciente'>
+       <ul className='lista'>
             {pacientes.map(paciente => (
-                <li key={paciente.id} className='card-paciente'>
+                <li key={paciente.id} className='card'>
                     {paciente.nome}
                     <br></br>
                     {paciente.cpf}
@@ -121,7 +120,7 @@ const Paciente = () => {
                     <span className='ver-mais' onClick={() => openFicha(paciente)}>Ver Mais</span>
                     <div>
                     {isOpenFicha && (
-                        <div className="ficha-paciente">
+                        <div className="ficha">
                         <div className="modal-content">
                             <h1>-Ficha do Paciente-</h1>
                             <p>-Nome: {selectedPaciente.nome}-</p>

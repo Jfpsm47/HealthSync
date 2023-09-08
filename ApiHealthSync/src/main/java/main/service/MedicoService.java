@@ -14,4 +14,8 @@ public class MedicoService {
     public List<MedicoModel> listarMedicos(){
         return repository.findAll();
     }
+
+    public List<MedicoModel> listarPorNome(String nome){
+        return repository.findByNomeContaining(nome);
+    }
 }

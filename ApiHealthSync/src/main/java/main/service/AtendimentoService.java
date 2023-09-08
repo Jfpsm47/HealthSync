@@ -38,7 +38,10 @@ public class AtendimentoService {
     public void cadastrarAtendimento(AtendimentoDTO data){
         MedicoModel medico = medicoRepository.findById(data.medicoID()).get();
         PacienteModel paciente = pacienteRepository.findById(data.pacienteID()).get();
-        AtendimentoModel atendimento = new AtendimentoModel(data.data(),data.hora(),data.status(),data.data_agendamento(),paciente,medico);
+        Date dataAtual = new Date();
+        String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
+        String status = "Agendada";
+        AtendimentoModel atendimento = new AtendimentoModel(data.data(),data.hora(),status,data_agendamento,paciente,medico);
 
         repository.save(atendimento);
     }
@@ -46,10 +49,12 @@ public class AtendimentoService {
         AtendimentoModel atendimento = repository.findById(id).get();
         MedicoModel medico = medicoRepository.findById(data.medicoID()).get();
         PacienteModel paciente = pacienteRepository.findById(data.pacienteID()).get();
+        Date dataAtual = new Date();
+        String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
 
         atendimento.setData(data.data());
         atendimento.setHora(data.hora());
-        atendimento.setData_agendamento(data.data_agendamento());
+        atendimento.setData_agendamento(data_agendamento);
         atendimento.setStatus(data.status());
         atendimento.setMedico(medico);
         atendimento.setPaciente(paciente);
@@ -59,4 +64,5 @@ public class AtendimentoService {
     public void deletarAtendimento(Long id){
         repository.deleteById(id);
     }
+
 }

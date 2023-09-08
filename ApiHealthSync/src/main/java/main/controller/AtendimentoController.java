@@ -38,4 +38,5 @@ public class AtendimentoController {
     public void deletarAtendimento(@PathVariable Long id){
         service.deletarAtendimento(id);
     }
+
 }

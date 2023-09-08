@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import Paciente from './components/Paciente';
-import ReactModal from 'react-modal';
+import Paciente from './components/Paciente/Paciente';
+import Medico from './components/Medico/Medico';
+import Atendimento from './components/Atendimento/Atendimento';
 
 function App() {
   const [isOpenDasboard, setIsOpenDashboard] = useState(true);
@@ -60,8 +61,7 @@ const openAtendimento = () => {
       {isOpenAtendimento && (
         <div className='modal'>
           <div className="modal-content">
-            <h2>Atendimento</h2>
-            <p>Conteúdo do modal aqui.</p>
+            <Atendimento></Atendimento>
           </div>
         </div>
       )}
@@ -83,8 +83,7 @@ const openAtendimento = () => {
       {isOpenMedico && (
         <div className='modal'>
           <div className="modal-content">
-            <h2>Médico</h2>
-            <p>Conteúdo do modal aqui.</p>
+            <Medico></Medico>
           </div>
         </div>
       )}

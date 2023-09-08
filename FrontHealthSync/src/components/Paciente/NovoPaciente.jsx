@@ -35,7 +35,7 @@ const NovoPaciente = ({isOpen, onClose}) => {
   }
   return (
     isOpen? (
-        <div className="cadastro-paciente">
+        <div className="cadastro">
           <div className="modal-content">
             <h1>Cadastrar Paciente</h1>
 
@@ -48,7 +48,6 @@ const NovoPaciente = ({isOpen, onClose}) => {
             <label>RG</label>
             <input type='text' ref={rgref}></input>
             <br></br>
-
             <label>Telefone</label>
             <input type='text' ref={telefoneref}></input>
             <br></br>

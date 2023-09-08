@@ -35,10 +35,8 @@ const EditarPaciente = ({isOpen,onClose,paciente}) => {
             console.log(response)
             onClose()
           } catch (error) {
-            console.log('erro na requisão',error)
-            
+            console.log('erro na requisão',error) 
           }
-
     }
   return ( 
     isOpen &&(

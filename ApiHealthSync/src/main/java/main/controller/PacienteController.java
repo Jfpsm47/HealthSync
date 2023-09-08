@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -41,5 +42,9 @@ public class PacienteController {
         }catch (NoSuchElementException e){
             return ResponseEntity.badRequest().body("Nenhum paciente encontrado");
         }
+    }
+    @GetMapping("/listaCPF")
+    public List<String> listaDeCPF(){
+        return service.listaCPFpaciente();
     }
 }
