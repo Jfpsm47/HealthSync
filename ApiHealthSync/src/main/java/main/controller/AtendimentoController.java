@@ -2,6 +2,8 @@ package main.controller;
 
 import main.model.atendimento.AtendimentoDTO;
 import main.model.atendimento.AtendimentoModel;
+import main.model.atendimento.RequisicaoHorario;
+import main.model.medico.MedicoModel;
 import main.model.paciente.PacienteModel;
 import main.service.AtendimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,9 @@ public class AtendimentoController {
     public void deletarAtendimento(@PathVariable Long id){
         service.deletarAtendimento(id);
     }
+    @GetMapping("/teste")
+    public List<String> buscarPorMedico(@RequestBody RequisicaoHorario requisicaoHorario){
+       return service.HorariosDisponiveisMedico(requisicaoHorario.data(),requisicaoHorario.nome());
 
+    }
 }

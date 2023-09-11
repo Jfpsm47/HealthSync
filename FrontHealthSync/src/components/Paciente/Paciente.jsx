@@ -14,6 +14,8 @@ const Paciente = () => {
 
 
     const openFicha = (paciente) => {
+
+      console.log(nomePedro)
         setSelectedPaciente(paciente)
         setOpenFicha(true)
     }

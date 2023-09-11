@@ -24,4 +24,9 @@ public class MedicoController {
         public List<MedicoModel> listarMedicoNome(@PathVariable String nome) {
             return service.listarPorNome(nome);
     }
+    @GetMapping("/listaNome")
+    public List<String> listaNomeMedico(){
+        return service.listaNomesMedico();
+    }
+
 }

@@ -41,12 +41,15 @@ const ListaAtendimento = () => {
       const handleOpenNovoAtendimento = () => {
         setIsOpenNovoAtendimeno(true)
       }
+      const handleCloseNovoAtendimento = () => {
+        setIsOpenNovoAtendimeno(false)
+      }
 
   return (
     <div>
         <h1 className='titulo-modal'>Atendimentos</h1>
         <button onClick={() => handleOpenNovoAtendimento()}>Novo Atendimento</button>
-        <NovoAtendimento isOpen={isOpenNovoAtendimento}></NovoAtendimento>
+        <NovoAtendimento isOpen={isOpenNovoAtendimento} onClose={()=> handleCloseNovoAtendimento()}></NovoAtendimento>
         <ul className='lista'>
             {atendimentos.map(atendimento =>(
                 <li key={atendimento.id} className='card'>

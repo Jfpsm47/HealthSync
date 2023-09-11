@@ -5,6 +5,7 @@ import main.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,5 +18,14 @@ public class MedicoService {
 
     public List<MedicoModel> listarPorNome(String nome){
         return repository.findByNomeContaining(nome);
+    }
+
+    public List<String> listaNomesMedico(){
+        List<MedicoModel> listaMedico = repository.findAll();
+        List<String> listaNome = new ArrayList<>();
+        for (MedicoModel medico: listaMedico) {
+            listaNome.add(medico.getNome());
+        }
+        return listaNome;
     }
 }

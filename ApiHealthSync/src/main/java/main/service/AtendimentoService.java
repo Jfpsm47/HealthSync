@@ -8,9 +8,11 @@ import main.repository.AtendimentoRepository;
 import main.repository.MedicoRepository;
 import main.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,4 +67,27 @@ public class AtendimentoService {
         repository.deleteById(id);
     }
 
+    public List<String> HorariosDisponiveisMedico(String data, String nome){
+        List<String> horarios = new ArrayList<>();
+        horarios.add("08:00");
+        horarios.add("09:00");
+        horarios.add("10:00");
+        horarios.add("11:00");
+        horarios.add("12:00");
+        horarios.add("13:00");
+        horarios.add("14:00");
+        horarios.add("15:00");
+        horarios.add("16:00");
+        horarios.add("17:00");
+        horarios.add("18:00");
+        MedicoModel medico = medicoRepository.findByNome(nome).get();
+       List<AtendimentoModel> atendimentos =  repository.encontrarAtendimento(data, medico.getId());
+
+        for (AtendimentoModel atendimento:atendimentos) {
+            if(horarios.contains(atendimento.getHora())){
+                horarios.remove(atendimento.getHora());
+            }
+        }
+        return horarios;
+    }
 }
