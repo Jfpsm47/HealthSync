@@ -40,7 +40,7 @@ public class AtendimentoController {
     public void deletarAtendimento(@PathVariable Long id){
         service.deletarAtendimento(id);
     }
-    @GetMapping("/teste")
+    @GetMapping("/horariosDisponiveis")
     public List<String> buscarPorMedico(@RequestBody RequisicaoHorario requisicaoHorario){
        return service.HorariosDisponiveisMedico(requisicaoHorario.data(),requisicaoHorario.nome());
 

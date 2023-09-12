@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import Select from 'react-select'
@@ -8,6 +8,9 @@ import "react-datepicker/dist/react-datepicker.css"
 const NovoAtendimento = ({isOpen,onClose}) => {
     const [pacientesCPF, setPacientesCPF] = useState([])
     const [medicosNome,setMedicosNome] = useState([])
+    const [selectedDate, setSelectedDate] = useState(null)
+    const[inputHoraOpen,setInputHoraOpen] = useState(false)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -56,6 +59,11 @@ const NovoAtendimento = ({isOpen,onClose}) => {
       const handleChangePaciente = (selectedOption) =>{
         console.log(selectedOption.value)
       }
+      const handleSelecionarData = async (date) => {
+        let dataFormatada = date.toLocaleDateString('pt-BR')
+        setSelectedDate(date)
+        setInputHoraOpen(true)
+      }
   return (
     isOpen && ( 
       <div className='cadastro'> 
@@ -65,12 +73,19 @@ const NovoAtendimento = ({isOpen,onClose}) => {
             <Select options={optPacientes} isSearchable={true} onChange={handleChangePaciente}></Select>
             <label>Nome do Médico</label>
             <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico}></Select>
-            <ReactDatePicker></ReactDatePicker>
-            <button onClick={onClose}>X</button>
+            <ReactDatePicker dateFormat={"dd/MM/yyyy"}
+            selected={selectedDate} 
+            placeholderText='Data da consulta...'
+            value={selectedDate}
+            onChange={handleSelecionarData}></ReactDatePicker>
+            {inputHoraOpen? (
+              <Select></Select>
+            ):(null)}
+            <button onClick={onClose} >X</button>
         </div>
       </div>
     )
   )
 }
-
+ 
 export default NovoAtendimento
