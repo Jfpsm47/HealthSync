@@ -1,4 +1,4 @@
 package main.model.atendimento;
 
-public record AtendimentoDTO(String data, String hora, String status,Long pacienteID, Long medicoID) {
+public record AtendimentoDTO(String data, String hora, String status,String pacienteCPF, String medicoNome) {
 }

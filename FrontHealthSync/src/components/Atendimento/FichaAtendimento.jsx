@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import EditarAtendimento from './EditarAtendimento'
 
 const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
     const handleExcluir = async () => {
@@ -36,6 +37,7 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
                         <p>Status: {atendimento.status}</p>
                         <p>Data do Agendamento: {atendimento.agendamento}</p>
                     </div>
+                    <EditarAtendimento isOpen={false}></EditarAtendimento>
                     <button onClick={() => onClose()}>X</button>
                     <button onClick={() => handleExcluir()}>Excluir</button>
                 </div>

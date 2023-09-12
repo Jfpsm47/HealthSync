@@ -41,8 +41,16 @@ const ListaAtendimento = () => {
       const handleOpenNovoAtendimento = () => {
         setIsOpenNovoAtendimeno(true)
       }
-      const handleCloseNovoAtendimento = () => {
+      const handleCloseNovoAtendimento = async () => {
         setIsOpenNovoAtendimeno(false)
+        
+        try {
+          const response = await axios.get('http://localhost:8081/api/atendimento/listar');
+          setAtendimentos(response.data)
+          console.log(response.data)
+        } catch (error) {
+          console.log('Erro na requisição:', error);
+        }
       }
 
   return (

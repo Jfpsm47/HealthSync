@@ -8,9 +8,15 @@ import "react-datepicker/dist/react-datepicker.css"
 const NovoAtendimento = ({isOpen,onClose}) => {
     const [pacientesCPF, setPacientesCPF] = useState([])
     const [medicosNome,setMedicosNome] = useState([])
-    const [selectedDate, setSelectedDate] = useState(null)
+    const [selectedDate, setSelectedDate] = useState("")
     const[inputHoraOpen,setInputHoraOpen] = useState(false)
-
+    const[medicoSelecionado,setMedicoSelecionado] = useState("")
+    const [pacienteSelecionado,setPacienteSelecionado] = useState("")
+    const [horariosDisponiveis,setHorariosDisponiveis] = useState([])
+    const[inputDataOpen,setInputDataOpen] = useState(false)
+    const [horarioSelecionado,setHorarioSelecionado] = useState("")
+    const [botaoCadastrarOpen,setBotaoCadastrarOpen] = useState(false)
+    const currentDate = new Date();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,32 +60,87 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         optMedicos.push(opcao2)
       }
       const handleChangeMedico = (selectedOption) => {
-        console.log(selectedOption.value)
-      }
+        var medico = selectedOption.value
+        setMedicoSelecionado(medico)
+        setInputDataOpen(true)
+        
+      } 
       const handleChangePaciente = (selectedOption) =>{
-        console.log(selectedOption.value)
+        var paciente = selectedOption.value
+        setPacienteSelecionado(paciente)
+        console.log(pacienteSelecionado)
       }
       const handleSelecionarData = async (date) => {
         let dataFormatada = date.toLocaleDateString('pt-BR')
         setSelectedDate(date)
         setInputHoraOpen(true)
+
+        const requisicaoHorario = {
+          data:(dataFormatada),
+          nome:(medicoSelecionado)
+        }
+        console.log(requisicaoHorario)
+        try {
+          const response = await axios.post('http://localhost:8081/api/atendimento/horariosDisponiveis',requisicaoHorario);
+          console.log(response.data)
+          setHorariosDisponiveis(response.data)
+        } catch (error) {
+          console.log('Erro na requisição:', error);
+        }
+      }
+      const optHorarios = []
+      for(let i = 0; i < horariosDisponiveis.length; i++){
+        const horario = {
+            value:horariosDisponiveis[i],label:horariosDisponiveis[i]
+        }
+      optHorarios.push(horario)
+      }
+      const handleChangeHorario = (selectedOption) => {
+        setHorarioSelecionado(selectedOption.value)
+        setBotaoCadastrarOpen(true)
+      }
+      const handleAgendarAtendimento = async () => {
+        var atendimento = { 
+          data:(selectedDate.toLocaleDateString('pt-BR')),
+          hora:(horarioSelecionado),
+          status:("Agendado"),
+          pacienteCPF:(pacienteSelecionado),
+          medicoNome:(medicoSelecionado)
+        }
+        console.log(atendimento)
+        try {
+          const response = await axios.post('http://localhost:8081/api/atendimento/cadastrar',atendimento);
+          console.log(response.data)
+        } catch (error) {
+          console.log('Erro na requisição:', error);
+        }
+        setInputHoraOpen(false)
+        setInputDataOpen(false)
+        setBotaoCadastrarOpen(false)
+        onClose()
       }
   return (
     isOpen && ( 
       <div className='cadastro'> 
         <div className='modal-content'>
-            <h1 className='titulo-cadastro'>Cadastrar Atendimento</h1>
+            <h1 className='titulo-cadastro'>Agendar Atendimento</h1>
             <label>CPF do Paciente</label>
             <Select options={optPacientes} isSearchable={true} onChange={handleChangePaciente}></Select>
             <label>Nome do Médico</label>
             <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico}></Select>
-            <ReactDatePicker dateFormat={"dd/MM/yyyy"}
-            selected={selectedDate} 
-            placeholderText='Data da consulta...'
-            value={selectedDate}
-            onChange={handleSelecionarData}></ReactDatePicker>
+            {inputDataOpen? (
+              <ReactDatePicker dateFormat={"dd/MM/yyyy"}
+              selected={selectedDate} 
+              placeholderText='Data da consulta...'
+              minDate={currentDate}
+              value={selectedDate}
+              onChange={handleSelecionarData}></ReactDatePicker>
+            ):(null)}
             {inputHoraOpen? (
-              <Select></Select>
+              <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario}></Select>
+            ):(null)}
+            {botaoCadastrarOpen? (
+              <button onClick={handleAgendarAtendimento}>Agendar</button>
             ):(null)}
             <button onClick={onClose} >X</button>
         </div>

@@ -20,12 +20,11 @@ import java.util.List;
 public class AtendimentoService {
     @Autowired
     AtendimentoRepository repository;
-
     @Autowired
     PacienteRepository pacienteRepository;
-
     @Autowired
     MedicoRepository medicoRepository;
+
     public List<AtendimentoModel> listarAtendimento(){
         return repository.findAll();
     }
@@ -38,8 +37,8 @@ public class AtendimentoService {
         return repository.findByData(data);
     }
     public void cadastrarAtendimento(AtendimentoDTO data){
-        MedicoModel medico = medicoRepository.findById(data.medicoID()).get();
-        PacienteModel paciente = pacienteRepository.findById(data.pacienteID()).get();
+        MedicoModel medico = medicoRepository.findByNome(data.medicoNome()).get();
+        PacienteModel paciente = pacienteRepository.findByCpf(data.pacienteCPF()).get();
         Date dataAtual = new Date();
         String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
         String status = "Agendada";
@@ -49,8 +48,8 @@ public class AtendimentoService {
     }
     public void editarAtendimento(Long id,AtendimentoDTO data){
         AtendimentoModel atendimento = repository.findById(id).get();
-        MedicoModel medico = medicoRepository.findById(data.medicoID()).get();
-        PacienteModel paciente = pacienteRepository.findById(data.pacienteID()).get();
+        MedicoModel medico = medicoRepository.findByNome(data.medicoNome()).get();
+        PacienteModel paciente = pacienteRepository.findByCpf(data.pacienteCPF()).get();
         Date dataAtual = new Date();
         String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
 
