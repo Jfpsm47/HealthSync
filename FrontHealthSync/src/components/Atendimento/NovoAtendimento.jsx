@@ -129,15 +129,21 @@ const NovoAtendimento = ({isOpen,onClose}) => {
             <label>Nome do Médico</label>
             <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico}></Select>
             {inputDataOpen? (
+              <>
               <ReactDatePicker dateFormat={"dd/MM/yyyy"}
               selected={selectedDate} 
               placeholderText='Data da consulta...'
               minDate={currentDate}
               value={selectedDate}
               onChange={handleSelecionarData}></ReactDatePicker>
+              <br />
+              </>
             ):(null)}
             {inputHoraOpen? (
+             <>
+             <label>Selecione a Hora</label>
               <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario}></Select>
+             </>
             ):(null)}
             {botaoCadastrarOpen? (
               <button onClick={handleAgendarAtendimento}>Agendar</button>

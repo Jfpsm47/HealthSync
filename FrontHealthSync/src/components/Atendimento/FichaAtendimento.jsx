@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import EditarAtendimento from './EditarAtendimento'
 
 const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
+    const [isOpenEditar,setIsOpenEditar] = useState(false)
+
     const handleExcluir = async () => {
         try {
             const response  = await axios.post(`http://localhost:8081/api/atendimento/deletar/${atendimento.id}`)
@@ -11,6 +13,12 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
           } catch (error) {
             console.log('erro na requisão',error)
         } 
+    }
+    const handleOpenEditar = () => {
+        setIsOpenEditar(true)
+    }
+    const handleCloseEditar = () => {
+        setIsOpenEditar(false)
     }
   return (
         isOpen &&(
@@ -37,7 +45,8 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
                         <p>Status: {atendimento.status}</p>
                         <p>Data do Agendamento: {atendimento.agendamento}</p>
                     </div>
-                    <EditarAtendimento isOpen={false}></EditarAtendimento>
+                    <EditarAtendimento isOpen={isOpenEditar} onClose={() => handleCloseEditar()} atendimento={atendimento}></EditarAtendimento>
+                    <button onClick={() => handleOpenEditar()}>Editar</button>
                     <button onClick={() => onClose()}>X</button>
                     <button onClick={() => handleExcluir()}>Excluir</button>
                 </div>

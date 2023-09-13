@@ -42,7 +42,7 @@ const EditarPaciente = ({isOpen,onClose,paciente}) => {
     isOpen &&(
         <div className='editar'>
             <div className='modal-content'>
-                <h1>-Editar Paciente-</h1>
+                <h1>Editar Paciente</h1>
                 <label>Nome</label>
                 <input type='text' value={nome} onChange={(e) => setNome(e.target.value)} ref={nomeref}></input>
                 <br></br>
