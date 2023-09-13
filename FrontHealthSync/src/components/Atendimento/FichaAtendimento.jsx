@@ -19,6 +19,7 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
     }
     const handleCloseEditar = () => {
         setIsOpenEditar(false)
+        onClose()
     }
   return (
         isOpen &&(

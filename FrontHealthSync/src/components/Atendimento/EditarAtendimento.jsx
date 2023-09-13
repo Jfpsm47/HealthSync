@@ -9,14 +9,22 @@ import { format } from 'date-fns';
 
 const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
   const currentDate = new Date();
-  const dataString = atendimento.data
+  const [atendimentoStatus,setAtendimentoStatus] = useState(atendimento.status)
+  const [atendimentoID,setAtendimentoID] = useState(atendimento.id)
   const [pacientesCPF, setPacientesCPF] = useState([])
   const [medicosNome,setMedicosNome] = useState([])
-  const [pacienteSelecionado,setPacienteSelecionado] = useState("")
-  const[medicoSelecionado,setMedicoSelecionado] = useState("")
+  const [pacienteSelecionado,setPacienteSelecionado] = useState(atendimento.paciente.cpf)
+  const[medicoSelecionado,setMedicoSelecionado] = useState(atendimento.medico.nome)
   const[inputDataOpen,setInputDataOpen] = useState(false)
   const[modifyData,setModifyData] = useState(true)
+  const [dataModified,setDataModified] = useState(false)
   const [selectedDate, setSelectedDate] = useState("")
+  const[inputHoraOpen,setInputHoraOpen] = useState(false)
+  const [horariosDisponiveis,setHorariosDisponiveis] = useState([])
+  const [horarioSelecionado,setHorarioSelecionado] = useState(atendimento.hora)
+  const [modifyHora,setModifyHora] = useState(false)
+  const [botaoCadastrarOpen,setBotaoCadastrarOpen] = useState(false)
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,11 +70,14 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
 
     var indexPaciente = optPacientes.findIndex((opcao) => {
       return opcao.value === atendimento.paciente.cpf && opcao.label === atendimento.paciente.cpf;
+      
     })
+
 
     var indexMedico = optMedicos.findIndex((opcao) => {
       return opcao.value === atendimento.medico.nome && opcao.label === atendimento.medico.nome;
     })
+
     const handleChangePaciente = (selectedOption) =>{
       setPacienteSelecionado(selectedOption.value)
       console.log(pacienteSelecionado)
@@ -78,15 +89,94 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
     const handleSelecionarData = async (date) => {
       let dataFormatada = date.toLocaleDateString('pt-BR')
       setSelectedDate(date)
+      setModifyHora(true)
+
+      const requisicaoHorario = {
+        data:(dataFormatada),
+        nome:(medicoSelecionado)
+      }
+      console.log(requisicaoHorario)
+      try {
+        const response = await axios.post('http://localhost:8081/api/atendimento/horariosDisponiveis',requisicaoHorario);
+        console.log(response.data)
+        setHorariosDisponiveis(response.data)
+      } catch (error) {
+        console.log('Erro na requisição:', error);
+      }
     }
+    const optHorarios = []
+      for(let i = 0; i < horariosDisponiveis.length; i++){
+        const horario = {
+            value:horariosDisponiveis[i],label:horariosDisponiveis[i]
+        }
+      optHorarios.push(horario)
+      }
     const handleModifyData = () => {
       setInputDataOpen(true)
       setModifyData(false)
+      setDataModified(true)
     }
-    const handleNotModifyData = () => {
+    const handleNotModifyData = async () => {
       setModifyData(false)
+      setModifyHora(true)
+
+      setSelectedDate(atendimento.data)
+      var dataSelecionada = atendimento.data
+
+      const requisicaoHorario = {
+        data:(dataSelecionada),
+        nome:(medicoSelecionado)
+      }
+      console.log(requisicaoHorario)
+      try {
+        const response = await axios.post('http://localhost:8081/api/atendimento/horariosDisponiveis',requisicaoHorario);
+        console.log(response.data)
+        setHorariosDisponiveis(response.data)
+      } catch (error) {
+        console.log('Erro na requisição:', error);
+      }
     }
-   return (
+    const handleChangeHorario = (selectedOption) => {
+      setHorarioSelecionado(selectedOption.value)
+      setBotaoCadastrarOpen(true)
+    }
+    const handleModifyHora = () =>{
+      setInputHoraOpen(true)
+      setModifyHora(false)
+    }
+    const handleNotmodifyHora = () => {
+      setModifyHora(false)
+      setBotaoCadastrarOpen(true)
+    }
+    const handleEditarAtendimento = async () => {
+      if(dataModified){
+        var atendimento = {
+          data:(selectedDate.toLocaleDateString('pt-BR')),
+          hora:(horarioSelecionado),
+          status:(atendimentoStatus),
+          pacienteCPF:(pacienteSelecionado),
+          medicoNome:(medicoSelecionado)
+
+        }
+      }else{
+        var atendimento = {
+          data:(selectedDate),
+          hora:(horarioSelecionado),
+          status:(atendimentoStatus),
+          pacienteCPF:(pacienteSelecionado),
+          medicoNome:(medicoSelecionado)
+        }
+      }
+      try {
+        const response = await axios.post(`http://localhost:8081/api/atendimento/editar/${atendimentoID}`,atendimento);
+        console.log(response.data)
+      } catch (error) {
+        console.log('Erro na requisição:', error);
+      }
+      console.log(atendimento)
+      onClose()
+    }
+    return (
     isOpen? (
         <div className='editar'>
             <div>
@@ -101,7 +191,6 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
                   <h3>Deseja alterar a data do atendimento? ({atendimento.data})</h3>
                   <button onClick={() => handleModifyData()}>Sim</button>
                   <button onClick={() => handleNotModifyData()}>Não</button>
-
                   </>
                 ):(null)}
                 {inputDataOpen? (
@@ -115,7 +204,22 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
                   <br />
                   </>
                 ):(null)}
-                {}
+                 {modifyHora? (
+                  <>
+                  <h3>Deseja alterar a hora do atendimento? ({atendimento.hora})</h3>
+                  <button onClick={() => handleModifyHora()}>Sim</button>
+                  <button onClick={() => handleNotmodifyHora()}>Não</button>
+                  </>
+                ):(null)}
+                {inputHoraOpen? (
+                  <>
+                  <label>Selecione a Hora</label>
+                    <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario}></Select>
+                  </>
+                  ):(null)}
+                  {botaoCadastrarOpen? (
+                    <button onClick={handleEditarAtendimento}>Agendar</button>
+                  ):(null)}
                 <button onClick={onClose}>X</button>
             </div>
         </div>

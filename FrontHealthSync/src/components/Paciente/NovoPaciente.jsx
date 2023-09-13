@@ -43,7 +43,7 @@ const NovoPaciente = ({isOpen, onClose}) => {
             <input type='text' ref={nomeref}></input>
             <br></br>
             <label>CPF</label>
-            <input type='text' maxLength={11} onKey ref={cpfref}></input>
+            <input type='text' ref={cpfref}></input>
             <br></br>
             <label>RG</label>
             <input type='text' ref={rgref}></input>

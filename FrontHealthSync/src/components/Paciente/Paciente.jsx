@@ -120,7 +120,7 @@ const Paciente = () => {
                     <span className='ver-mais' onClick={() => openFicha(paciente)}>Ver Mais</span>
                     <div>
                     {isOpenFicha && (
-                        <div className="ficha">
+                        <div className='ficha'>
                         <div className="modal-content">
                             <h1>-Ficha do Paciente-</h1>
                             <p>-Nome: {selectedPaciente.nome}-</p>

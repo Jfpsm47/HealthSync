@@ -14,7 +14,7 @@ import main.model.paciente.PacienteModel;
 
 @Entity
 @Table(name = "atendimento")
-public class AtendimentoModel {
+public class 		AtendimentoModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

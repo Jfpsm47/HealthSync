@@ -67,6 +67,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.listar-paciente{
+  list-style: none;
+  padding: 0;
+}
+.lista li{
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
 .modal {
   width: 930px;
   height: 650px;
@@ -77,37 +88,45 @@ button:focus-visible {
   background-color: #ffffff;
   color: #32236C;
   padding: 20px;
+  border-radius: 1.25rem;
 }
-.listar-paciente{
-  list-style: none;
-  padding: 0;
-}
-.lista li{
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 5px;
-}
-.card{
+
+.card {
   width: 200px;
-  height: 100px;
   background-color: #32236C;
   color: #ffffff;
   text-align: center;
   margin: 10px;
+  border-radius: 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  z-index: 0; /* Mantenha o z-index dos elementos .card em um valor menor */
 }
-.ver-mais{
+
+.ver-mais {
   cursor: pointer;
   text-decoration: underline;
+  margin-top: auto;
+  border-top: 1px solid #ffffff;
+  padding-top: 10px;
+  width: 100%;
 }
+
+
 .ficha{
-  width: 930px;
+  width: 600px;
   height: 650px;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 205%;
+  left: 85%;
   transform: translate(-50%, -50%);
   background-color: #32236C;
   padding: 20px;
+  border-radius: 1.25rem;
 }
 .cadastro{
   width: 930px;

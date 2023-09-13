@@ -56,7 +56,7 @@ const ListaAtendimento = () => {
   return (
     <div>
         <h1 className='titulo-modal'>Atendimentos</h1>
-        <button onClick={() => handleOpenNovoAtendimento()}>Novo Atendimento</button>
+        <button onClick={() => handleOpenNovoAtendimento()} className='botao-cadastro'>Novo Atendimento</button>
         <NovoAtendimento isOpen={isOpenNovoAtendimento} onClose={()=> handleCloseNovoAtendimento()}></NovoAtendimento>
         <ul className='lista'>
             {atendimentos.map(atendimento =>(
