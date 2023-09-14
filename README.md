@@ -4,3 +4,10 @@ Projeto final do curso Fic_Dev
 Back-End feito em Java Spring Boot
 
 Front-End feito em React
+
+TODO
+- arrumar a formatação das datas(não da pra pesquisar)
+- CRUD médicos
+- login e cadastro (tela e validação)
+- colocar a mensagem 'sem ... para exibir' em medicos e atendimentos
+- arrummar o CSS

@@ -16,7 +16,7 @@ const Paciente = () => {
     const openFicha = (paciente) => {
         setSelectedPaciente(paciente)
         setOpenFicha(true)
-    }
+    } 
     const closeFicha = () => {
         setOpenFicha(false)
     }
@@ -122,16 +122,18 @@ const Paciente = () => {
                     {isOpenFicha && (
                         <div className='ficha'>
                         <div className="modal-content">
-                            <h1>-Ficha do Paciente-</h1>
-                            <p>-Nome: {selectedPaciente.nome}-</p>
-                            <p>-RG: {selectedPaciente.rg}-</p>
-                            <p>-CPF: {selectedPaciente.cpf}-</p>
-                            <p>-Email: {selectedPaciente.email}-</p>
-                            <p>-Telefone: {selectedPaciente.telefone}-</p>
-                            <button onClick={() => handleExcluir(selectedPaciente.id)}>Excluir</button>
-                            <button onClick={() => handleOpenEditar()}>Editar</button>
-                            <EditarPaciente isOpen={isOpenEditar} onClose={() => handleCloseEditar()} paciente={selectedPaciente}></EditarPaciente>
-                            <button onClick={closeFicha}>X</button>
+                        <ul>
+                          <h1>-Ficha do Paciente-</h1>
+                          <li className='dado-2'>Nome: {selectedPaciente.nome}</li>
+                          <li className='dado-2'>RG: {selectedPaciente.rg}</li>
+                          <li className='dado-2'>CPF: {selectedPaciente.cpf}</li>
+                          <li className='dado-2'>Email: {selectedPaciente.email}</li>
+                          <li className='dado-2'>Telefone: {selectedPaciente.telefone}</li>
+                        </ul>
+                          <button onClick={() => handleExcluir(selectedPaciente.id)}>Excluir</button>
+                          <button onClick={() => handleOpenEditar()}>Editar</button>
+                          <EditarPaciente isOpen={isOpenEditar} onClose={() => handleCloseEditar()} paciente={selectedPaciente}></EditarPaciente>
+                          <button onClick={closeFicha}>X</button>
                         </div>
                         </div>
                     )}

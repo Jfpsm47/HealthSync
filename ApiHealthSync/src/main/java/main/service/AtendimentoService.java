@@ -34,7 +34,7 @@ public class AtendimentoService {
         return repository.findByData(data);
     }
     public List<AtendimentoModel> buscaPorData(String data){
-        return repository.findByData(data);
+        return repository.findByDataContaining(data);
     }
     public void cadastrarAtendimento(AtendimentoDTO data){
         MedicoModel medico = medicoRepository.findByNome(data.medicoNome()).get();

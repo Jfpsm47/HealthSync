@@ -15,4 +15,6 @@ public interface AtendimentoRepository extends JpaRepository<AtendimentoModel, L
 
     @Query("SELECT atend FROM AtendimentoModel atend WHERE atend.data = :data and medico.id = :id")
     List<AtendimentoModel> encontrarAtendimento(@Param("data")String data,@Param("id")Long id);
+
+    List<AtendimentoModel> findByDataContaining(String data);
 }

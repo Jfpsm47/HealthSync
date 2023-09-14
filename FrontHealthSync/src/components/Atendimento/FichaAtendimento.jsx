@@ -25,27 +25,36 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
         isOpen &&(
             <div className='ficha'>
                 <div className='modal-content' >
-                    <div className='dados-paciente'>
+                <ul className='ul-principal'>
+                    <li>
                         <h2>-Dados do Paciente-</h2>    
-                        <p>Nome: {atendimento.paciente.nome}</p>
-                        <p>RG: {atendimento.paciente.rg}</p>
-                        <p>CPF: {atendimento.paciente.cpf}</p>
-                        <p>Email: {atendimento.paciente.email}</p>
-                        <p>Telefone: {atendimento.paciente.telefone}</p>
-                    </div>
-                    <div>
+                        <ul>
+                            <li className='dado'>Nome: {atendimento.paciente.nome}</li>
+                            <li className='dado'>RG: {atendimento.paciente.rg}</li>
+                            <li className='dado'>CPF: {atendimento.paciente.cpf}</li>
+                            <li className='dado'>Email: {atendimento.paciente.email}</li>
+                            <li className='dado'>Telefone: {atendimento.paciente.telefone}</li>
+                        </ul>
+                    </li>
+                    <li>
                         <h2>-Dados do Médico-</h2>
-                        <p>Nome: {atendimento.medico.nome}</p>
-                        <p>Código: {atendimento.medico.codigo}</p>
-                        <p>Especialidade {atendimento.medico.especialidade}</p>
-                    </div>
-                    <div>
+                        <ul>
+                            <li className='dado'>Nome: {atendimento.medico.nome}</li>
+                            <li className='dado'>Código: {atendimento.medico.codigo}</li>
+                            <li className='dado'>Especialidade: {atendimento.medico.especialidade}</li>
+                        </ul>
+                    </li>
+                    <li>
                         <h2>-Dados do Atendimento-</h2>
-                        <p>Data: {atendimento.data}</p>
-                        <p>Hora: {atendimento.hora}</p>
-                        <p>Status: {atendimento.status}</p>
-                        <p>Data do Agendamento: {atendimento.agendamento}</p>
-                    </div>
+                        <ul>
+                            <li className='dado'>Data: {atendimento.data}</li>
+                            <li className='dado'>Hora: {atendimento.hora}</li>
+                            <li className='dado'>Status: {atendimento.status}</li>
+                            <li className='dado'>Data do Agendamento: {atendimento.agendamento}</li>
+                        </ul>
+                    </li>
+                </ul>
+
                     <EditarAtendimento isOpen={isOpenEditar} onClose={() => handleCloseEditar()} atendimento={atendimento}></EditarAtendimento>
                     <button onClick={() => handleOpenEditar()}>Editar</button>
                     <button onClick={() => onClose()}>X</button>

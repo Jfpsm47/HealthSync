@@ -67,17 +67,6 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-.listar-paciente{
-  list-style: none;
-  padding: 0;
-}
-.lista li{
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 5px;
-}
-
 .modal {
   width: 930px;
   height: 650px;
@@ -90,39 +79,42 @@ button:focus-visible {
   padding: 20px;
   border-radius: 1.25rem;
 }
-
+.listar-paciente{
+  list-style: none;
+  padding: 0;
+}
+.lista li{
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 5px;
+}
 .card {
-  width: 200px;
+  width: 260px;
   background-color: #32236C;
   color: #ffffff;
   text-align: center;
   margin: 10px;
   border-radius: 1.25rem;
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  position: relative;
-  z-index: 0; /* Mantenha o z-index dos elementos .card em um valor menor */
+  min-height: 70px;
 }
 
 .ver-mais {
   cursor: pointer;
   text-decoration: underline;
-  margin-top: auto;
-  border-top: 1px solid #ffffff;
-  padding-top: 10px;
+  margin-top: auto; /* Isso posicionará o "Ver Mais" na parte inferior do card */
   width: 100%;
 }
 
-
 .ficha{
-  width: 600px;
+  width: 930px;
   height: 650px;
   position: absolute;
-  top: 205%;
-  left: 85%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #32236C;
   padding: 20px;
@@ -179,6 +171,14 @@ input{
   left: 770px;
   bottom: 615px;
 }
+.botao-cadastro-2{
+  background-color: #32236C;
+  color: #fff;
+  font-size: large;
+  position: absolute;
+  left: 740px;
+  bottom: 615px;
+}
 .titulo-cadastro{
   color: #32236C;
 }
@@ -188,4 +188,38 @@ input{
   border-radius: 4px;
   padding: 8px;
   cursor: pointer;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  text-align: center; /* Centralizar o conteúdo horizontalmente */
+  margin-bottom: 20px; /* Adicione um espaçamento inferior para separar as LI centralizadas */
+}
+
+ul li h2 {
+  text-align: center; /* Centralizar o título */
+}
+
+ul li ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li ul li {
+  text-align: left; 
+}
+.dado{
+  border-bottom: 2px solid #ffffff;
+}
+.ul-principal{
+  top: 15%;
+  position: absolute;
+}
+.dado-2{
+  font-size: 20px;
+  padding: 20px;
+  text-decoration: underline;
 }

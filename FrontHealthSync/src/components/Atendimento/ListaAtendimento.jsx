@@ -52,11 +52,31 @@ const ListaAtendimento = () => {
           console.log('Erro na requisição:', error);
         }
       }
-
+      const handleBuscarAtendimento = async (e) => {
+        var data = e.target.value
+        console.log(data)
+        if(data == ''){
+          try {
+            const response = await axios.get('http://localhost:8081/api/atedimento/listar');
+            setAtendimentos(response.data)
+          } catch (error) {
+            console.log("Erro na requiusição,",error)
+          }
+        }else{
+          try {
+            const response = await axios.get(`http://localhost:8081/api/atendimento/listar/data/${data}`);
+            setAtendimentos(response.data)
+          } catch (error) {
+            console.log("Erro na requiusição,",error) 
+          }
+        }
+        
+    }
   return (
     <div>
+      <input type='text' className='busca' placeholder='Digite a data da consulta...' onChange={handleBuscarAtendimento}></input>
         <h1 className='titulo-modal'>Atendimentos</h1>
-        <button onClick={() => handleOpenNovoAtendimento()} className='botao-cadastro'>Novo Atendimento</button>
+        <button onClick={() => handleOpenNovoAtendimento()} className='botao-cadastro-2'>+Novo Atendimento</button>
         <NovoAtendimento isOpen={isOpenNovoAtendimento} onClose={()=> handleCloseNovoAtendimento()}></NovoAtendimento>
         <ul className='lista'>
             {atendimentos.map(atendimento =>(
