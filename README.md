@@ -11,3 +11,4 @@ TODO
 - login e cadastro (tela e validação)
 - colocar a mensagem 'sem ... para exibir' em medicos e atendimentos
 - arrummar o CSS
+- colocar confirmação de deletar no atendimento

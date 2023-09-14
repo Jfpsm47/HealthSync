@@ -19,7 +19,7 @@ public class MedicoModel {
 	private Long id;
 	
 	private String nome;
-	private Long codigo;
+	private String crm;
 	private String especialidade;
 	
 	@OneToMany(mappedBy = "medico")
@@ -30,10 +30,10 @@ public class MedicoModel {
 		super();
 	}
 
-	public MedicoModel(String nome, Long codigo, String especialidade) {
+	public MedicoModel(String nome, String crm, String especialidade) {
 		super();
 		this.nome = nome;
-		this.codigo = codigo;
+		this.crm = crm;
 		this.especialidade = especialidade;
 	}
 
@@ -53,14 +53,6 @@ public class MedicoModel {
 		this.nome = nome;
 	}
 
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
 	public String getEspecialidade() {
 		return especialidade;
 	}
@@ -68,6 +60,12 @@ public class MedicoModel {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
-	
-	
+
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
 }

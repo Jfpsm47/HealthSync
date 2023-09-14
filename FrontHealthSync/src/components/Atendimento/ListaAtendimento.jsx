@@ -70,8 +70,8 @@ const ListaAtendimento = () => {
             console.log("Erro na requiusição,",error) 
           }
         }
-        
     }
+    
   return (
     <div>
       <input type='text' className='busca' placeholder='Digite a data da consulta...' onChange={handleBuscarAtendimento}></input>

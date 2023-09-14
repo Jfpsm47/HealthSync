@@ -28,4 +28,10 @@ public class MedicoService {
         }
         return listaNome;
     }
+    public void cadastrarMedico(MedicoModel medico){
+        repository.save(medico);
+    }
+    public void deletarMedico(Long id){
+        repository.deleteById(id);
+    }
 }
