@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 import NovoMedico from './NovoMedico';
+import EditarMedico from './EditarMedico';
 
 const ListaMedico = () => {
   const [medicos, setMedicos] = useState([])
   const [isOpenNovoMedico, setIsOpenNovoMedico] = useState(false)
+  const [isOpenEditarMedico, setIsOpenEditarMedico] = useState(false)
+  const [selectedMedico, setSelectedMedico] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,11 +42,14 @@ const ListaMedico = () => {
       }
     }
   }
-  const handleOpenNovoMedico = () => {
-    setIsOpenNovoMedico(true)
-  }
-  const handleCloseNovoMedico= () => {
+  const handleCloseNovoMedico = async () => {
     setIsOpenNovoMedico(false)
+    try {
+      const response = await axios.get('http://localhost:8081/api/medico/listar');
+      setMedicos(response.data)
+    } catch (error) {
+      console.log('Erro na requisição:', error);
+    }
   }
   const handleExcluirMedico = async (id) => {
     var excluir = confirm("Deseja realmente excluir o médico?")
@@ -54,13 +60,25 @@ const ListaMedico = () => {
       } catch (error) {
         console.log('Erro na requisição:', error);
       }
+      try {
+        const response = await axios.get('http://localhost:8081/api/medico/listar');
+        setMedicos(response.data)
+      } catch (error) {
+        console.log('Erro na requisição:', error);
+      }
     }
+  }
+  const handleOpenEditar = (medico) => {
+    setIsOpenEditarMedico(true)
+    setSelectedMedico(medico)
+    console.log(medico)
   }
   return (
     <div>
       <input type='text' className='busca' onChange={handleBuscarMedico} placeholder='Digite o nome do médico...'></input>
-      <NovoMedico isOpen={isOpenNovoMedico} onClose={() => handleCloseNovoMedico}></NovoMedico>
-      <button onClick={() =>handleOpenNovoMedico()} className={`botao-cadastro ${isOpenNovoMedico ? 'hidden' : ''}`} >+ Novo Médico</button>
+      <NovoMedico isOpen={isOpenNovoMedico} onClose={() => handleCloseNovoMedico()}></NovoMedico>
+      <EditarMedico isOpen={isOpenEditarMedico} medico={selectedMedico}></EditarMedico>
+      <button onClick={() => setIsOpenNovoMedico(true)} className={`botao-cadastro ${isOpenNovoMedico || isOpenEditarMedico ? 'hidden' : ''}`} >+ Novo Médico</button>
       <h1 className='titulo-modal'>Médicos</h1>
       <ul className='lista'>
         {medicos.map(medico =>(
@@ -71,7 +89,7 @@ const ListaMedico = () => {
             <br></br>
             {medico.especialidade}
             <button onClick={() => handleExcluirMedico(medico.id)}>Excluir</button>
-            <button>Editar</button>
+            <button onClick={() => handleOpenEditar(medico)}>Editar</button>
           </li>
         ))}
       </ul>

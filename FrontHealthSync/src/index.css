@@ -34,6 +34,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+
 }
 
 button {
@@ -159,7 +160,6 @@ input{
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .titulo-modal{
   padding-top: 50px;
   top: 30px;
@@ -227,4 +227,7 @@ ul li ul li {
 }
 .hidden{
   visibility: hidden;
+}
+.titulo-editar{
+  color: #fff;
 }

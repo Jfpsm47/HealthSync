@@ -6,6 +6,7 @@ const NovoMedico = ({isOpen,onClose}) => {
     const nomeref = useRef(null)
     const crmref = useRef(null)
     const especref = useRef(null)
+
     const handleCadastrarMedico = async () => {
         var medico = {
             nome:(nomeref.current.value),
@@ -16,9 +17,11 @@ const NovoMedico = ({isOpen,onClose}) => {
         try {
             const response  = await axios.post('http://localhost:8081/api/medico/cadastrar',medico)
             console.log(response)
+            onClose()
           } catch (error) {
             console.log('erro na requisão',error)
           }
+          
     }
   return (
     isOpen && (
@@ -35,7 +38,7 @@ const NovoMedico = ({isOpen,onClose}) => {
                 <input type='text' ref={especref}></input>
                 <br />
                 <button onClick={() => handleCadastrarMedico()}>Cadastrar</button>
-                <button onClick={onClose()}>X</button>
+                <button onClick={() => onClose()}>X</button>
             </div>
         </div>
     )
