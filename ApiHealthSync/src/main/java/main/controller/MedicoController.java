@@ -34,4 +34,8 @@ public class MedicoController {
     public void deletarMedico(@PathVariable Long id){
         service.deletarMedico(id);
     }
+    @PostMapping("/editar/{id}")
+    public void editarMedico(@PathVariable Long id, @RequestBody MedicoModel medico){
+        service.editarMedico(id,medico);
+    }
 }

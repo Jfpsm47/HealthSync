@@ -34,4 +34,13 @@ public class MedicoService {
     public void deletarMedico(Long id){
         repository.deleteById(id);
     }
+    public void editarMedico(Long id, MedicoModel data){
+        MedicoModel medico = repository.findById(id).get();
+
+        medico.setCrm(data.getCrm());
+        medico.setEspecialidade(data.getEspecialidade());
+        medico.setNome(data.getNome());
+
+        repository.save(medico);
+    }
 }

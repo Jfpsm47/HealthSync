@@ -9,6 +9,8 @@ TODO
 - arrumar a formatação das datas(não da pra pesquisar)
 - CRUD médicos
 - login e cadastro (tela e validação)
-- colocar a mensagem 'sem ... para exibir' em medicos e atendimentos
 - arrummar o CSS
-- colocar confirmação de deletar no atendimento
+- colocar funçõ de modificar o status da consulta
+- horario só pode estar indisponivel se a cionsulta estiver agendada
+- validações (mascaras)
+- barra de rolagrem em cada lista
