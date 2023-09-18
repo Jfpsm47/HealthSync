@@ -10,7 +10,7 @@ TODO
 - CRUD médicos
 - login e cadastro (tela e validação)
 - arrummar o CSS
-- colocar funçõ de modificar o status da consulta
+- colocar função de modificar o status da consulta
 - horario só pode estar indisponivel se a cionsulta estiver agendada
-- validações (mascaras)
+- validações e mascaras
 - barra de rolagrem em cada lista

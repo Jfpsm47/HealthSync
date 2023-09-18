@@ -1,0 +1,8 @@
+.LoginBody {
+    /* Certifique-se de definir uma largura máxima ou largura relativa para o elemento, caso contrário, ele ocupará toda a largura disponível */
+    max-width: 80%; /* Exemplo de largura máxima */
+    max-height: 10%;
+    margin: 0 auto;
+    position: relative;
+  }
+  
