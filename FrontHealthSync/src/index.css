@@ -84,6 +84,16 @@ button:focus-visible {
 .listar-paciente{
   list-style: none;
   padding: 0;
+} 
+.listagem-paciente{
+  max-width: 930px;
+  max-height: 470px;
+  overflow-y: auto;
+}
+.lista-medico{
+  max-width:  930px;
+  max-height: 421.8px;
+  overflow-y: auto;
 }
 .lista li{
   display: inline-block;

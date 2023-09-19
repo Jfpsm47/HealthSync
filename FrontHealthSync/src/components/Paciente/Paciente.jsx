@@ -110,7 +110,8 @@ const Paciente = () => {
       <button onClick={() => handleOpenCadastro()} className='botao-cadastro'>+ Novo paciente</button>
       <NovoPaciente isOpen={isOpenCadastro} onClose={() => handleCloseCadastro()}></NovoPaciente>
       {pacientes.length === 0 && <h3>Sem pacientes para exibir.</h3>}
-       <ul className='lista'>
+      <div className='listagem-paciente'>
+      <ul className='lista'>
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card'>
                     {paciente.nome}
@@ -141,7 +142,7 @@ const Paciente = () => {
                 </li>
             ))}
        </ul>
-        
+      </div>
     </div>
   )
 }

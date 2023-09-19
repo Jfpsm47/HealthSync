@@ -54,8 +54,6 @@ const openAtendimento = () => {
     setIsOpenDashboard(false);
   }
 
-
- 
   return (
     <>
     <img src="src\assets\36361.png" className='logo'/>

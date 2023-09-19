@@ -23,9 +23,10 @@ private String chave;
 public String generateToken(Usuario user) {
 	try {
 		Algorithm algoritmo = Algorithm.HMAC256(chave);
+		System.out.println(user.getUsername());
 		return JWT.create()
 				.withIssuer("TokenGerenciador")
-				.withSubject(user.getLogin())
+				.withSubject(user.getUsername())
 				.withExpiresAt(ExpirationToken())
 				.sign(algoritmo);
 	}catch(JWTCreationException e) {
@@ -34,18 +35,19 @@ public String generateToken(Usuario user) {
 }
 
 public String validarToken(String token) {
-//	System.out.println("O token chegou em TokenService.validarToken()");
-//	if(token == null) {
-//		System.out.println("O token chegou nulo");
-//	}
 	try {
 		Algorithm algoritmo = Algorithm.HMAC256(chave);
-		//System.out.println("Token em TokenService.ValidarToken() : " +token);
+		System.out.println("SUBJECT DO TOKEN: " +JWT.require(algoritmo)
+				.withIssuer("TokenGerenciador")
+				.build()
+				.verify(token)
+				.getSubject());
 		return JWT.require(algoritmo)
 				.withIssuer("TokenGerenciador")
 				.build()
 				.verify(token)
 				.getSubject();
+
 	}catch (JWTVerificationException e) {
 		System.out.println("Ocorreu exception em validar o token");
 		return "";

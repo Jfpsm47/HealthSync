@@ -29,7 +29,6 @@ private UsuarioRepository usuarioRepository;
 protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
     var token = recoverToken(request);
-    System.out.println(token);
     if(token != null) {
         var login = tokenService.validarToken(token);
         UserDetails user = usuarioRepository.findByEmail(login);

@@ -57,7 +57,7 @@ const ListaAtendimento = () => {
         console.log(data)
         if(data == ''){
           try {
-            const response = await axios.get('http://localhost:8081/api/atedimento/listar');
+            const response = await axios.get('http://localhost:8081/api/atendimento/listar');
             setAtendimentos(response.data)
           } catch (error) {
             console.log("Erro na requiusição,",error)

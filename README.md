@@ -6,7 +6,7 @@ Back-End feito em Java Spring Boot
 Front-End feito em React
 
 TODO
-- arrumar a formatação das datas(não da pra pesquisar)
+- arrumar a formatação das datas(não da pra pesquisar)(a pesquisapode ser feita pelo data picker)
 - CRUD médicos
 - login e cadastro (tela e validação)
 - arrummar o CSS

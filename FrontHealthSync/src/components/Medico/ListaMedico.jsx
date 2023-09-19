@@ -13,10 +13,17 @@ const ListaMedico = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/api/medico/listar');
+        const token = sessionStorage.getItem("token");
+        const response = await axios.get('http://localhost:8081/api/medico/listar',{
+          headers : {
+            'Authorization' : `Bearer ${token}`
+          }
+        });
+
         setMedicos(response.data)
-      } catch (error) {
+      } catch (error) {x
         console.log('Erro na requisição:', error);
+      
       }
     };
   
@@ -90,19 +97,22 @@ const ListaMedico = () => {
       <button onClick={() => setIsOpenNovoMedico(true)} className={`botao-cadastro ${isOpenNovoMedico || isOpenEditarMedico ? 'hidden' : ''}`} >+ Novo Médico</button>
       <h1 className='titulo-modal'>Médicos</h1>
       {medicos.length === 0 && <h3>Sem médicos para exibir.</h3>}
-      <ul className='lista'>
-        {medicos.map(medico =>(
-          <li key={medico.id} className='card'>
-            <span>Dr(a) {medico.nome}</span>
-            <br></br>
-            {medico.crm}
-            <br></br>
-            {medico.especialidade}
-            <button onClick={() => handleExcluirMedico(medico.id)}>Excluir</button>
-            <button onClick={() => handleOpenEditar(medico)}>Editar</button>
-          </li>
-        ))}
-      </ul>
+      <div className='lista-medico'>
+        <ul className='lista'>
+          {medicos.map(medico =>(
+            <li key={medico.id} className='card'>
+              <span>Dr(a) {medico.nome}</span>
+              <br></br>
+              {medico.crm}
+              <br></br>
+              {medico.especialidade}
+              <button onClick={() => handleExcluirMedico(medico.id)}>Excluir</button>
+              <button onClick={() => handleOpenEditar(medico)}>Editar</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
     </div>
   )
 }
