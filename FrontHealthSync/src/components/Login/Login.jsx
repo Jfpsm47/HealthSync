@@ -2,33 +2,90 @@ import {  useState  } from "react";
 import * as Components from "./LoginEstilo";
 import "./login.css";
 import { useRef } from "react";
+import axios from "axios";
+import { render } from "react-dom";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [signIn, toggle] = useState(true);
   
-  const usernameRef = useRef(null)
+  const navigate = useNavigate()
 
-  
+  const usernameRef = useRef(null)
+  const emailRef = useRef(null)
+  const senha1Ref = useRef(null)
+  const senha2Ref = useRef(null)
+
+  const emailLoginRef = useRef(null)
+  const senhaLoginRef  =useRef(null)
+
+  const handleCadastrar = async () => {
+    console.log("Clique!");
+    if (senha1Ref.current.value === senha2Ref.current.value) {
+      const usuario = {
+        login:(usernameRef.current.value),
+        email:(emailRef.current.value),
+        senha:(senha1Ref.current.value)
+      }
+      console.log(usuario)
+
+      try {
+        const response  = await axios.post('http://localhost:8081/auth/register',usuario)
+        console.log(response)
+        toggle(true)
+      } catch (error) {
+        console.log('erro na requisão',error)
+        alert(error.response.data)
+      }
+    } else {
+      alert("As senhas não são as mesmas")
+      senha1Ref.current.value = null
+      senha2Ref.current.value = null
+    }
+  };
+  const handleEntrar = async () => {
+    const usuario = {
+      email:(emailLoginRef.current.value),
+      senha:(senhaLoginRef.current.value)
+    }
+    console.log(usuario)
+    try {
+      const response  = await axios.post('http://localhost:8081/auth/login',usuario)
+      console.log(response.data)
+      sessionStorage.setItem('token',response.data) 
+      if(sessionStorage.getItem("token") != null ){
+        console.log("Chegou aqui!!!");
+        navigate("/principal")
+        
+      }
+    } catch (error) {
+      console.log('erro na requisão',error)
+      alert(error.response.data)
+    }
+
+  }
+
   return (
     <div className="LoginBody">
     <Components.Container>
         <Components.SignUpContainer signingIn={signIn}>
-          <Components.Form>
+          <Components.Formulario>
             <Components.Title>Crie sua conta</Components.Title>
-            <Components.Input type="text" placeholder="UsuarioCadastro" id="NomeCadastro" required/>
-            <Components.Input type="email" placeholder="EmailCadastro" id="EmailCadastro" required/>
-            <Components.Input type="password" placeholder="SenhaCadastro" id="SenhaCadastro" required/>
-            <Components.Input type="password" placeholder="ConfirmarSenhaCadastro" id="SenhaConfirmarCadastro" required/>
-            <Components.Button>Cadastrar</Components.Button>
-          </Components.Form>
+            <Components.Input type="text" placeholder="UsuarioCadastro" id="NomeCadastro" ref={usernameRef} required/>
+            <Components.Input type="email" placeholder="EmailCadastro" id="EmailCadastro" ref={emailRef} required/>
+            <Components.Input type="password" placeholder="SenhaCadastro" id="SenhaCadastro" ref={senha1Ref} required/>
+            <Components.Input type="password" placeholder="ConfirmarSenhaCadastro" id="SenhaConfirmarCadastro" ref={senha2Ref} required/>
+            <Components.Button onClick={() => handleCadastrar()}>Cadastrar</Components.Button>
+          </Components.Formulario>
         </Components.SignUpContainer>
         <Components.SignInContainer signingIn={signIn}>
-          <Components.Form>
+          <Components.Formulario>
             <Components.Title>Entrar</Components.Title>
-            <Components.Input type="email" placeholder="EmailLogin"/>
-            <Components.Input type="password" placeholder="SenhaLogin" />
-            <Components.Button>Entrar</Components.Button>
-          </Components.Form>
+            <Components.Input type="email" placeholder="EmailLogin" ref={emailLoginRef}/>
+            <Components.Input type="password" placeholder="SenhaLogin" ref={senhaLoginRef} />
+            <Components.Button onClick={() => handleEntrar()}>Entrar</Components.Button>
+          </Components.Formulario>
         </Components.SignInContainer>
         <Components.OverlayContainer signingIn={signIn}>
           <Components.Overlay signingIn={signIn}>

@@ -1,6 +1,8 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
+
+
 export const data = [
     ["Element", "Density", { role: "style" }],
     ["Janeiro", 8.94, "color: #32236C"],

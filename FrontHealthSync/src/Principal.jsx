@@ -1,10 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Paciente from './components/Paciente/Paciente';
 import Medico from './components/Medico/Medico';
 import Atendimento from './components/Atendimento/Atendimento';
 import Dashboard from './components/Dashboard';
+import { useNavigate } from 'react-router-dom';
 
 function Principal() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(sessionStorage.getItem("token") === null){
+      console.log("Usuario não autenticado!!!")
+      navigate("/")
+    }
+  },[])
+
+  const handleLogout = () => {
+    sessionStorage.clear()
+    navigate("/")
+  }
+    
   const [isOpenDasboard, setIsOpenDashboard] = useState(true);
   const [isOpenAtendimento, setIsOpenAtendimento] = useState(false);
   const [isOpenPaciente, setIsOpenPaciente] = useState(false)
@@ -89,6 +104,7 @@ const openAtendimento = () => {
         </div>
       )}
     </div>
+    <button onClick={() => handleLogout()}>Logout</button>
     </>
   )
 }

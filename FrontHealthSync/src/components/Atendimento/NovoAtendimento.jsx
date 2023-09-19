@@ -124,7 +124,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
     isOpen && ( 
       <div className='cadastro'> 
         <div className='modal-content'>
-            <h1 className='titulo-cadastro'>Agendar Atendimento</h1>
+            <h1 className='titulo-cadastro'>Marcar Atendimento</h1>
             <label>CPF do Paciente</label>
             <Select options={optPacientes} isSearchable={true} onChange={handleChangePaciente}></Select>
             <label>Nome do Médico</label>

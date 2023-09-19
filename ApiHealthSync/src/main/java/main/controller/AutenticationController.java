@@ -24,8 +24,6 @@ public class AutenticationController {
 
 	@Autowired
 	private UsuarioRepository repository;
-
-	//É necessário que haja um bean (bean é de nível método) com essa interface abaixo
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
