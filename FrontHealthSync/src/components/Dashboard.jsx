@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   return (
     <div>
-        <h1>Teste</h1>
+        <h1>Dashboard</h1>
         <h2>Atendimentos por Mês</h2>
         <Chart chartType="ColumnChart" width="100%" height="400px" data={data}/>
     </div>

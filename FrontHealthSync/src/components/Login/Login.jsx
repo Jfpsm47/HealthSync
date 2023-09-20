@@ -3,8 +3,6 @@ import * as Components from "./LoginEstilo";
 import "./login.css";
 import { useRef } from "react";
 import axios from "axios";
-import { render } from "react-dom";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Login() {

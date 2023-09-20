@@ -5,8 +5,13 @@ import Atendimento from './components/Atendimento/Atendimento';
 import Dashboard from './components/Dashboard';
 import { useNavigate } from 'react-router-dom';
 
+
 function Principal() {
   const navigate = useNavigate()
+  const [retanguloAumentado1,setRetanguloAumentado1] = useState(false)
+  const [retanguloAumentado2,setRetanguloAumentado2] = useState(false)
+  const [retanguloAumentado3,setRetanguloAumentado3] = useState(false)
+  const [retanguloAumentado4,setRetanguloAumentado4] = useState(false)
 
   useEffect(() => {
     if(sessionStorage.getItem("token") === null){
@@ -31,6 +36,12 @@ function Principal() {
     setIsOpenPaciente(false)
     setIsOpenMedico(false)
 
+    setRetanguloAumentado1(true)
+
+    setRetanguloAumentado2(false)
+    setRetanguloAumentado3(false)
+    setRetanguloAumentado4(false)
+
   };
 
 const openAtendimento = () => {
@@ -38,6 +49,12 @@ const openAtendimento = () => {
     setIsOpenDashboard(false);  
     setIsOpenPaciente(false)
     setIsOpenMedico(false)
+
+    setRetanguloAumentado2(true)
+
+    setRetanguloAumentado1(false)
+    setRetanguloAumentado3(false)
+    setRetanguloAumentado4(false)
   };
   
   const openPaciente = () => {
@@ -45,6 +62,12 @@ const openAtendimento = () => {
     setIsOpenAtendimento(false);
     setIsOpenDashboard(false);
     setIsOpenMedico(false)
+
+    setRetanguloAumentado3(true)
+
+    setRetanguloAumentado1(false)
+    setRetanguloAumentado2(false)
+    setRetanguloAumentado4(false)
   }
 
   const openMedico = () => {
@@ -52,6 +75,12 @@ const openAtendimento = () => {
     setIsOpenPaciente(false)
     setIsOpenAtendimento(false);
     setIsOpenDashboard(false);
+
+    setRetanguloAumentado4(true)
+
+    setRetanguloAumentado1(false)
+    setRetanguloAumentado2(false)
+    setRetanguloAumentado3(false)
   }
 
   return (
@@ -63,10 +92,12 @@ const openAtendimento = () => {
     
     <div>
     <div className="container-botao">
+      <div className={`retangulo1 ${retanguloAumentado1 ? 'aumento1' : ''}`}>
+      </div>
       <button onClick={openDashboard} className='botao-menu'>
         <img src="src/assets/Dashboard.svg" className='botao-logo'/>
       </button>
-      <span>Dashboard</span>
+      <span className={`span-menu ${retanguloAumentado1 ? 'animado' : ''}`}>Dashboard</span>
     </div>
       {isOpenDasboard && (
         <div className='modal'>
@@ -78,10 +109,11 @@ const openAtendimento = () => {
     </div>
     <div>
       <div className="container-botao" >
+        <div className={`retangulo2 ${retanguloAumentado2 ? 'aumento2' : ''}`} ></div>
         <button onClick={openAtendimento} className='botao-menu'>
           <img src="src/assets/Atendimento.svg" alt="" className='botao-logo'/>
         </button>
-        <span>Atendimento</span>
+        <span className={`span-menu ${retanguloAumentado2 ? 'animado' : ''}`}>Atendimento</span>
       </div>
       {isOpenAtendimento && (
         <div className='modal'>
@@ -93,10 +125,11 @@ const openAtendimento = () => {
     </div>
     <div>
       <div className="container-botao">
+      <div className={`retangulo3 ${retanguloAumentado3 ? 'aumento3' : ''}`} ></div>
         <button onClick={openPaciente} className='botao-menu'>
         <img src="src/assets/Paciente.svg" alt="" className='botao-logo'/>
       </button>
-      <span>Paciente</span>
+      <span className={`span-menu ${retanguloAumentado3 ? 'animado' : ''}`}>Paciente</span>
       </div>
     
       {isOpenPaciente && (
@@ -109,10 +142,11 @@ const openAtendimento = () => {
     </div>
     <div>
       <div className="container-botao">
+      <div className={`retangulo4 ${retanguloAumentado4 ? 'aumento4' : ''}`} ></div>
         <button onClick={openMedico} className='botao-menu'>
         <img src="src/assets/Medico.svg" alt="" className='botao-logo'/>
       </button>
-      <span>Medico</span>
+      <span className={`span-menu ${retanguloAumentado4 ? 'animado' : ''}`}>Medico</span>
       </div>
       
 
@@ -125,6 +159,7 @@ const openAtendimento = () => {
       )}
     </div>
     <button onClick={() => handleLogout()}>Logout</button>
+    <div className='teste'></div>
     </>
   )
 }

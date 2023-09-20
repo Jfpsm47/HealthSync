@@ -287,8 +287,77 @@ flex-shrink: 0;
 }
 
 /* Estilo para o <span> */
-span {
+.span-menu {
   color: #32236C; /* Cor do texto do <span> */
   font-size: 24px; /* Tamanho da fonte do <span> */
   font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+.span-menu.animado {
+  color: #ffffff; /* Cor após a animação (vermelho, por exemplo) */
+}
+.retangulo1 {
+  width: 60px;
+  height: 60px;
+  background-color: #13005C;
+  position: absolute; /* Define a posição absoluta */
+  z-index: -1; /* Coloca o retângulo atrás de outros elementos */
+  top: 282px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+} 
+
+.aumento1 {
+  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+
+}
+.retangulo2 {
+  width: 60px;
+  height: 60px;
+  background-color: #13005C;
+  position: absolute; /* Define a posição absoluta */
+  z-index: -1; /* Coloca o retângulo atrás de outros elementos */
+  top: 382px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+} 
+
+.aumento2 {
+  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+
+}
+.retangulo3 {
+  width: 60px;
+  height: 60px;
+  background-color: #13005C;
+  position: absolute; /* Define a posição absoluta */
+  z-index: -1; /* Coloca o retângulo atrás de outros elementos */
+  top: 482px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+} 
+
+.aumento3 {
+  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+
+}
+
+.retangulo4 {
+  width: 60px;
+  height: 60px;
+  background-color: #13005C;
+  position: absolute; /* Define a posição absoluta */
+  z-index: -1; /* Coloca o retângulo atrás de outros elementos */
+  top: 582px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+} 
+
+.aumento4 {
+  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+
 }
