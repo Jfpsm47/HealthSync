@@ -11,10 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AtendimentoService {
@@ -30,7 +29,7 @@ public class AtendimentoService {
     }
     public List<AtendimentoModel> listaDeHoje(){
         Date dataAtual = new Date();
-        String data  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
+        String data  = new SimpleDateFormat("dd-MM-yyyy").format(dataAtual);
         return repository.findByData(data);
     }
     public List<AtendimentoModel> buscaPorData(String data){
@@ -40,8 +39,8 @@ public class AtendimentoService {
         MedicoModel medico = medicoRepository.findByNome(data.medicoNome()).get();
         PacienteModel paciente = pacienteRepository.findByCpf(data.pacienteCPF()).get();
         Date dataAtual = new Date();
-        String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
-        String status = "Agendada";
+        String data_agendamento  = new SimpleDateFormat("dd-MM-yyyy").format(dataAtual);
+        String status = "Agendado";
         AtendimentoModel atendimento = new AtendimentoModel(data.data(),data.hora(),status,data_agendamento,paciente,medico);
 
         repository.save(atendimento);
@@ -88,5 +87,103 @@ public class AtendimentoService {
             }
         }
         return horarios;
+    }
+    public void concluirAtendimento(Long id){
+        AtendimentoModel atendimento = repository.findById(id).get();
+
+        atendimento.setStatus("Concluido");
+        repository.save(atendimento);
+    }
+    public void cancelarConsulta(Long id){
+        AtendimentoModel atendimento = repository.findById(id).get();
+
+        atendimento.setStatus("Cancelado");
+
+        repository.save(atendimento);
+    }
+    public Map<String,Integer> atendimentoPorMes(){
+        List<AtendimentoModel> atendimentos = repository.findAll();
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat mesFormat = new SimpleDateFormat("MM");
+        List<String> meses = new ArrayList<>();
+
+        Map<String, Integer> atendimentosPorMes = new HashMap<>();
+        atendimentosPorMes.put("Janeiro", 0);
+        atendimentosPorMes.put("Fevereiro", 0);
+        atendimentosPorMes.put("Março", 0);
+        atendimentosPorMes.put("Abril", 0);
+        atendimentosPorMes.put("Maio", 0);
+        atendimentosPorMes.put("Junho", 0);
+        atendimentosPorMes.put("Julho", 0);
+        atendimentosPorMes.put("Agosto", 0);
+        atendimentosPorMes.put("Setembro", 0);
+        atendimentosPorMes.put("Outubro", 0);
+        atendimentosPorMes.put("Novembro", 0);
+        atendimentosPorMes.put("Dezembro", 0);
+
+        for (AtendimentoModel atendimento:atendimentos) {
+            if(!"Cancelado".equals(atendimento.getStatus())){
+                try {
+                    Date dataAtendimento = dataFormat.parse(atendimento.getData());
+                    String mes = mesFormat.format(dataAtendimento);
+                    switch (mes) {
+                        case "01":
+                            Integer valorJan = atendimentosPorMes.get("Janeiro");
+                            atendimentosPorMes.put("Janeiro", valorJan + 1);
+                            break;
+                        case "02":
+                            Integer valorFev = atendimentosPorMes.get("Fevereiro");
+                            atendimentosPorMes.put("Fevereiro", valorFev + 1);
+                            break;
+                        case "03":
+                            Integer valorMar = atendimentosPorMes.get("Março");
+                            atendimentosPorMes.put("Março", valorMar + 1);
+                            break;
+                        case "04":
+                            Integer valorAbr = atendimentosPorMes.get("Abril");
+                            atendimentosPorMes.put("Abril", valorAbr + 1);
+                            break;
+                        case "05":
+                            Integer valorMai = atendimentosPorMes.get("Maio");
+                            atendimentosPorMes.put("Maio", valorMai + 1);
+                            break;
+                        case "06":
+                            Integer valorJun = atendimentosPorMes.get("Junho");
+                            atendimentosPorMes.put("Junho", valorJun + 1);
+                            break;
+                        case "07":
+                            Integer valorJul = atendimentosPorMes.get("Julho");
+                            atendimentosPorMes.put("Julho", valorJul + 1);
+                            break;
+                        case "08":
+                            Integer valorAgo = atendimentosPorMes.get("Agosto");
+                            atendimentosPorMes.put("Agosto", valorAgo + 1);
+                            break;
+                        case "09":
+                            Integer valorSet = atendimentosPorMes.get("Setembro");
+                            atendimentosPorMes.put("Setembro", valorSet + 1);
+                            break;
+                        case "10":
+                            Integer valorOut = atendimentosPorMes.get("Outubro");
+                            atendimentosPorMes.put("Outubro", valorOut + 1);
+                            break;
+                        case "11":
+                            Integer valorNov = atendimentosPorMes.get("Novembro");
+                            atendimentosPorMes.put("Novembro", valorNov + 1);
+                            break;
+                        case "12":
+                            Integer valorDez = atendimentosPorMes.get("Dezembro");
+                            atendimentosPorMes.put("Dezembro", valorDez + 1);
+                            break;
+                        default:
+                            // Caso o mês não seja reconhecido
+                    }
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        return atendimentosPorMes;
     }
 }

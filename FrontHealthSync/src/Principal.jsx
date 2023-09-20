@@ -56,11 +56,18 @@ const openAtendimento = () => {
 
   return (
     <>
-    <img src="src\assets\36361.png" className='logo'/>
-    <h1 className='name'>HealthySYNC</h1>
+    <div className='logo'>
+      <img src="src\assets\Logo.svg" className='logo-img'/>
+      <h1 className='name'>HealthySYNC</h1>
+    </div>
+    
     <div>
-      <button onClick={openDashboard}>Dashboard</button>
-
+    <div className="container-botao">
+      <button onClick={openDashboard} className='botao-menu'>
+        <img src="src/assets/Dashboard.svg" className='botao-logo'/>
+      </button>
+      <span>Dashboard</span>
+    </div>
       {isOpenDasboard && (
         <div className='modal'>
           <div className="modal-content">
@@ -70,8 +77,12 @@ const openAtendimento = () => {
       )}
     </div>
     <div>
-      <button onClick={openAtendimento}>Atendimento</button>
-
+      <div className="container-botao" >
+        <button onClick={openAtendimento} className='botao-menu'>
+          <img src="src/assets/Atendimento.svg" alt="" className='botao-logo'/>
+        </button>
+        <span>Atendimento</span>
+      </div>
       {isOpenAtendimento && (
         <div className='modal'>
           <div className="modal-content">
@@ -81,8 +92,13 @@ const openAtendimento = () => {
       )}
     </div>
     <div>
-      <button onClick={openPaciente}>Paciente</button>
-
+      <div className="container-botao">
+        <button onClick={openPaciente} className='botao-menu'>
+        <img src="src/assets/Paciente.svg" alt="" className='botao-logo'/>
+      </button>
+      <span>Paciente</span>
+      </div>
+    
       {isOpenPaciente && (
         <div className='modal'>
           <div className="modal-content">
@@ -92,7 +108,13 @@ const openAtendimento = () => {
       )}
     </div>
     <div>
-      <button onClick={openMedico}>Médico</button>
+      <div className="container-botao">
+        <button onClick={openMedico} className='botao-menu'>
+        <img src="src/assets/Medico.svg" alt="" className='botao-logo'/>
+      </button>
+      <span>Medico</span>
+      </div>
+      
 
       {isOpenMedico && (
         <div className='modal'>

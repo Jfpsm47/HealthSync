@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
     @RequestMapping("/api/atendimento")
@@ -44,5 +45,17 @@ public class AtendimentoController {
     public List<String> horariosDisponiveis(@RequestBody RequisicaoHorario requisicaoHorario){
        return service.HorariosDisponiveisMedico(requisicaoHorario.data(),requisicaoHorario.nome());
 
+    }
+    @PostMapping("/concluir/{id}")
+    public void concluirAtendimento(@PathVariable Long id){
+        service.concluirAtendimento(id);
+    }
+    @PostMapping("/cancelar/{id}")
+    public void cancelarAtendimento(@PathVariable Long id){
+        service.cancelarConsulta(id);
+    }
+        @GetMapping("/AtendimentoPorMes")
+    public Map<String, Integer> teste(){
+        return service.atendimentoPorMes();
     }
 }

@@ -6,11 +6,10 @@ Back-End feito em Java Spring Boot
 Front-End feito em React
 
 TODO
-- arrumar a formatação das datas(não da pra pesquisar)(a pesquisapode ser feita pelo data picker)
-- CRUD médicos
-- login e cadastro (tela e validação)
+- modificar as outras listagens de acordo com oque a pessoa escolheu
+- modificar a cor dos cards de acordo com o status da consulta
+- a pesquisa pode ser feita pelo data picker
 - arrummar o CSS
-- colocar função de modificar o status da consulta
-- horario só pode estar indisponivel se a cionsulta estiver agendada
+- colocar função modificar status da consulta de acordo com o status atual
 - validações e mascaras
-- barra de rolagrem em cada lista
+- validar atendimento por mes por ano

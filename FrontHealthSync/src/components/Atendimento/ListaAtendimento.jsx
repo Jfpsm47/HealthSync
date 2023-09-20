@@ -13,7 +13,7 @@ const ListaAtendimento = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:8081/api/atendimento/listar');
+            const response = await axios.get('http://localhost:8081/api/atendimento/listarHoje');
             setAtendimentos(response.data)
             console.log(response.data)
           } catch (error) {
@@ -71,14 +71,24 @@ const ListaAtendimento = () => {
           }
         }
     }
+    const listarAtendimentosHoje = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8081/api/atendimento/listar`)
+        console.log(response.data)
+        setAtendimentos(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     
   return (
     <div>
-      <input type='text' className='busca' placeholder='Digite a data da consulta...' onChange={handleBuscarAtendimento}></input>
+      <input type='text' className='busca' placeholder='Digite a data da consulta (dd-mm-yyy)' onChange={handleBuscarAtendimento}></input>
         <h1 className='titulo-modal'>Atendimentos</h1>
         <button onClick={() => handleOpenNovoAtendimento()} className='botao-cadastro-2'>+Novo Atendimento</button>
         <NovoAtendimento isOpen={isOpenNovoAtendimento} onClose={()=> handleCloseNovoAtendimento()}></NovoAtendimento>
         {atendimentos.length === 0 && <h3>Sem atendimentos para exibir.</h3>}
+        <div className='lista-atendimento'>
         <ul className='lista'>
             {atendimentos.map(atendimento =>(
                 <li key={atendimento.id} className='card'>
@@ -93,6 +103,8 @@ const ListaAtendimento = () => {
                 </li>
             ))}
         </ul>
+        </div>
+        <button onClick={() => listarAtendimentosHoje()}>listar todos</button>
     </div>
   )
 }

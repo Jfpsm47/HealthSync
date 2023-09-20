@@ -87,7 +87,7 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       console.log(medicoSelecionado)
     }
     const handleSelecionarData = async (date) => {
-      let dataFormatada = date.toLocaleDateString('pt-BR')
+      let dataFormatada = format(date, 'dd-MM-yyyy')
       setSelectedDate(date)
       setModifyHora(true)
 
@@ -150,8 +150,9 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
     }
     const handleEditarAtendimento = async () => {
       if(dataModified){
+        const dataFormatada = format(selectedDate, 'dd-MM-yyyy')
         var atendimento = {
-          data:(selectedDate.toLocaleDateString('pt-BR')),
+          data:(dataFormatada),
           hora:(horarioSelecionado),
           status:(atendimentoStatus),
           pacienteCPF:(pacienteSelecionado),
@@ -195,7 +196,7 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
                 ):(null)}
                 {inputDataOpen? (
                   <>
-                  <ReactDatePicker dateFormat={"dd/MM/yyyy"}
+                  <ReactDatePicker dateFormat={"dd-MM-yyyy"}
                   selected={selectedDate} 
                   placeholderText='Data da consulta...'
                   minDate={currentDate}

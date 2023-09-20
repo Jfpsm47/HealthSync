@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Select from 'react-select'
 import ReactDatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
+import format from 'date-fns/format'
 
 const NovoAtendimento = ({isOpen,onClose}) => {
     const [pacientesCPF, setPacientesCPF] = useState([])
@@ -71,7 +72,8 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         console.log(pacienteSelecionado)
       }
       const handleSelecionarData = async (date) => {
-        let dataFormatada = date.toLocaleDateString('pt-BR')
+        const dataFormatada = format(date, 'dd-MM-yyy')
+        console.log(dataFormatada)
         setSelectedDate(date)
         setInputHoraOpen(true)
 
@@ -100,8 +102,10 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         setBotaoCadastrarOpen(true)
       }
       const handleAgendarAtendimento = async () => {
+        const dataFormatada = format(selectedDate, 'dd-MM-yyyy')
+        console.log(dataFormatada)
         var atendimento = { 
-          data:(selectedDate.toLocaleDateString('pt-BR')),
+          data:(dataFormatada),
           hora:(horarioSelecionado),
           status:("Agendado"),
           pacienteCPF:(pacienteSelecionado),
@@ -131,7 +135,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
             <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico}></Select>
             {inputDataOpen? (
               <>
-              <ReactDatePicker dateFormat={"dd/MM/yyyy"}
+              <ReactDatePicker dateFormat={"dd-MM-yyyy"}
               selected={selectedDate} 
               placeholderText='Data da consulta...'
               minDate={currentDate}

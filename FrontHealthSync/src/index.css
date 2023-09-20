@@ -85,6 +85,11 @@ button:focus-visible {
   list-style: none;
   padding: 0;
 } 
+.lista-atendimento{
+  max-width: 930px;
+  max-height: 420px;
+  overflow-y: auto;
+}
 .listagem-paciente{
   max-width: 930px;
   max-height: 470px;
@@ -245,12 +250,45 @@ ul li ul li {
 .label-editar{
   color: #fff;
 }
-.logo{
-width: 9.375rem;
-height: 9.375rem;
+.logo-img{
+width: 150px;
+height: 150px;
 flex-shrink: 0;
+}
+.logo{
+  margin-top: 20px;
+  margin-left: 155px;
+  margin-bottom: 50px;
 }
 .name{
   color: #32236C;
   font-size: 1.5rem;
+}
+.container-botao {
+  display: flex;
+  align-items: center; /* Alinha verticalmente ao centro */
+  margin-bottom: 40px;
+}
+
+.botao-menu {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #32236C;
+  margin-right: 10px;
+  margin-left: 150px; 
+}
+
+.botao-logo {
+  width: 50px;
+  height: 50px;
+}
+
+/* Estilo para o <span> */
+span {
+  color: #32236C; /* Cor do texto do <span> */
+  font-size: 24px; /* Tamanho da fonte do <span> */
+  font-weight: bold;
 }
