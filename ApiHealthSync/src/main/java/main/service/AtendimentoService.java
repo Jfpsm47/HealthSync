@@ -1,19 +1,19 @@
 package main.service;
 
-import main.model.atendimento.AtendimentoDTO;
-import main.model.atendimento.AtendimentoModel;
-import main.model.medico.MedicoModel;
-import main.model.paciente.PacienteModel;
-import main.repository.AtendimentoRepository;
-import main.repository.MedicoRepository;
-import main.repository.PacienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Service;
+        import main.model.atendimento.AtendimentoDTO;
+        import main.model.atendimento.AtendimentoModel;
+        import main.model.medico.MedicoModel;
+        import main.model.paciente.PacienteModel;
+        import main.repository.AtendimentoRepository;
+        import main.repository.MedicoRepository;
+        import main.repository.PacienteRepository;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.jpa.repository.Query;
+        import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+        import java.text.ParseException;
+        import java.text.SimpleDateFormat;
+        import java.util.*;
 
 @Service
 public class AtendimentoService {
@@ -79,7 +79,7 @@ public class AtendimentoService {
         horarios.add("17:00");
         horarios.add("18:00");
         MedicoModel medico = medicoRepository.findByNome(nome).get();
-       List<AtendimentoModel> atendimentos =  repository.encontrarAtendimento(data, medico.getId());
+        List<AtendimentoModel> atendimentos =  repository.encontrarAtendimento(data, medico.getId());
 
         for (AtendimentoModel atendimento:atendimentos) {
             if(horarios.contains(atendimento.getHora())){
@@ -181,9 +181,41 @@ public class AtendimentoService {
                 }catch (ParseException e){
                     e.printStackTrace();
                 }
-
             }
         }
         return atendimentosPorMes;
+    }
+    public double indiceDeCancelamento(){
+        Date dataAtual = new Date();
+        SimpleDateFormat mesFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String mesAtual = mesFormat.format(dataAtual);
+        int countCancelado = 0;
+        int total = 0;
+        List<AtendimentoModel> atendimentos = repository.findAll();
+
+        for (AtendimentoModel atendimento : atendimentos) {
+            try {
+                Date dataAtendimento = dataFormat.parse(atendimento.getData());
+                String mesAtendimento = mesFormat.format(dataAtendimento);
+                if(mesAtendimento.equals(mesAtual)){
+                    total++;
+                    if (atendimento.getStatus().equals("Cancelado")){
+                        countCancelado++;
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return ((double) countCancelado /total)*100;
+    }
+    public Long atendimentosAgendadosHoje(){
+        Date data = new Date();
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dataAtual = dataFormat.format(data);
+
+        return repository.countAtendimentosByData(dataAtual);
     }
 }

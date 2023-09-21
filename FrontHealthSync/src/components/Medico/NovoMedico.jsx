@@ -7,12 +7,45 @@ const NovoMedico = ({isOpen,onClose}) => {
     const crmref = useRef(null)
     const especref = useRef(null)
 
-    const Input = (props) => (
-      <InputMask mask="99999-999" value={props.value} onChange={props.onChange} />
-    );
+    function isValidInput(value, pattern) {
+      return new RegExp(pattern).test(value);
+    }
 
     const handleCadastrarMedico = async () => {
-        var medico = {
+      var nome = nomeref.current.value
+      var crm = crmref.current.value
+      var especialidade = especref.current.value
+
+      const errors = [];
+      
+
+      if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)){
+        if(nome === ''){
+          errors.push("- Por favor preencha o campo nome")
+        }else{
+          errors.push("- Digite um nome válido")
+        }
+      }
+      if(!/^\d{8}-[1-9]$/.test(crm)){
+        if(crm === ''){
+          errors.push("- Por favor preencha o campo CRM")
+        }else{
+          errors.push("- Digite um valor válido para seu CRM no padrão (XXXXXXXX-X)")
+        }
+      }
+      if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(especialidade)){
+        if(especialidade === ''){
+          errors.push('- Por favor preencha o campo especialidade')
+        }else{
+          errors.push("- Digite uma especialidade válida")
+        }
+        
+      }
+      if(errors.length > 0){
+        const messageErros =  errors.join("\n")
+        alert(messageErros)
+      }else{
+          var medico = {
             nome:(nomeref.current.value),
             crm:(crmref.current.value),
             especialidade:(especref.current.value)
@@ -25,6 +58,7 @@ const NovoMedico = ({isOpen,onClose}) => {
           } catch (error) {
             console.log('erro na requisão',error)
           }
+      }
     }
   return (
     isOpen && (
@@ -33,13 +67,13 @@ const NovoMedico = ({isOpen,onClose}) => {
               <div className='cadastro-medico'>
               <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
                   <label>Nome</label>
-                  <input type='text' ref={nomeref} className='input-cadastrar'></input>
+                  <input type='text' ref={nomeref} className='input-cadastrar' required></input>
                   <br />
                   <label>CRM</label>
-                  <input type='text' ref={crmref} className='input-cadastrar'></input>
+                  <input type='text' ref={crmref} className='input-cadastrar' required></input>
                   <br />
                   <label>Especialidade</label>
-                  <input type='text' ref={especref} className='input-cadastrar'></input>
+                  <input type='text' ref={especref} className='input-cadastrar' required></input>
                   <br />
                   <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
               </div>

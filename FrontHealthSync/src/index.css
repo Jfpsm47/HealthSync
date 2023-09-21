@@ -285,7 +285,7 @@ flex-shrink: 0;
 .botao-logo {
   width: 50px;
   height: 50px;
-}
+} 
 
 /* Estilo para o <span> */
 .span-menu {
@@ -303,7 +303,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 286px; /* Ajuste a posição vertical conforme necessário */
+  top: 278px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -319,7 +319,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 386px; /* Ajuste a posição vertical conforme necessário */
+  top: 378px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -335,7 +335,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 486px; /* Ajuste a posição vertical conforme necessário */
+  top: 478px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -352,7 +352,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 586px; /* Ajuste a posição vertical conforme necessário */
+  top: 578px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -382,3 +382,48 @@ flex-shrink: 0;
   color: #fff;
 
 }
+.grafico{
+  margin: 0 10%;
+  height: 350px;
+}
+.indice{
+  font-size: 30px;
+}
+.cards-dashboard{
+  margin-left: 35px;
+  display: flex;
+  align-items: normal;
+}
+.card-dashboard{
+  width: 260px;
+  background-color: #32236C;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  min-height: 70px;
+  margin-left: 100px;
+}
+.titulo-grafico{
+  margin-left: 375px;
+  margin-bottom: -5px;
+}
+.logo-logout{
+  width: 30px;
+  height: 30px;
+
+}
+.botao-logout{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  background-color: #32236C;
+  width: 60px;
+  height: 60px;
+}
+

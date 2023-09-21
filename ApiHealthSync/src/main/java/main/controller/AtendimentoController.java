@@ -55,7 +55,15 @@ public class AtendimentoController {
         service.cancelarConsulta(id);
     }
     @GetMapping("/AtendimentoPorMes")
-    public Map<String, Integer> teste(){
+    public Map<String, Integer> atedimentoPorMes(){
         return service.atendimentoPorMes();
+    }
+    @GetMapping("/indiceCancelamento")
+    public double indiceDeCancelamento(){
+        return service.indiceDeCancelamento();
+    }
+    @GetMapping("/atendimentosAgendadosHoje")
+    public Long atendimentosMarcadosHoje(){
+        return service.atendimentosAgendadosHoje();
     }
 }

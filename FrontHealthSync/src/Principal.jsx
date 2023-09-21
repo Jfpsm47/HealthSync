@@ -158,7 +158,9 @@ const openAtendimento = () => {
         </div>
       )}
     </div>
-    <button onClick={() => handleLogout()}>Logout</button>
+    <button onClick={() => handleLogout()} className='botao-logout'>
+      <img src="src/assets/Logout.svg" alt="" className='logo-logout' />
+    </button>
     <div className='teste'></div>
     </>
   )
