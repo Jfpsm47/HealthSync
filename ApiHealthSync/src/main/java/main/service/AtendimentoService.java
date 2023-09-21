@@ -2,6 +2,7 @@ package main.service;
 
         import main.model.atendimento.AtendimentoDTO;
         import main.model.atendimento.AtendimentoModel;
+        import main.model.atendimento.PieChartData;
         import main.model.medico.MedicoModel;
         import main.model.paciente.PacienteModel;
         import main.repository.AtendimentoRepository;
@@ -185,7 +186,8 @@ public class AtendimentoService {
         }
         return atendimentosPorMes;
     }
-    public double indiceDeCancelamento(){
+    public PieChartData indiceDeCancelamento(){
+        PieChartData data = new PieChartData();
         Date dataAtual = new Date();
         SimpleDateFormat mesFormat = new SimpleDateFormat("MM");
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -209,7 +211,9 @@ public class AtendimentoService {
                 e.printStackTrace();
             }
         }
-        return ((double) countCancelado /total)*100;
+        data.setIndicecancelamento(((double) countCancelado /total)*100);
+        data.setIndiceTotal(100 - data.getIndicecancelamento());
+        return data;
     }
     public Long atendimentosAgendadosHoje(){
         Date data = new Date();

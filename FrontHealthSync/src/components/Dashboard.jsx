@@ -19,14 +19,15 @@ export const data = [
 ];
 export const data2 = [
   ["Status do atendimento", "Porcentagem"],
-  ["Cancelados", 5],
-  ["Agendados",5]
+  ["Cancelados", 0],
+  ["Agendados",0]
 ];
 
 
 const Dashboard = () => {
   const [mapa, setMapa] = useState({})
-  const [indice,setIndice] = useState(0.0)
+  const [indiceCancelamento,setIndiceCancelamento] = useState(0.0)
+  const [indiceTotal,setIndiceTotal] = useState(0.0)
   const [agendados,setAgendados] = useState(0)
 
   const [showAlert, setShowAlert] = useState(true);
@@ -51,12 +52,13 @@ const Dashboard = () => {
       try {
         const response = await axios.get("http://localhost:8081/api/atendimento/indiceCancelamento")
         console.log(response.data)
-        if(isNaN(response.data)){
-          setIndice(0)
+        if(isNaN(response.data.indiceTotal)){
+          setIndiceCancelamento(0.0)
+          setIndiceTotal(0.0)
         }else{
-          setIndice(response.data)
+          setIndiceTotal(response.data.indiceTotal)
+          setIndiceCancelamento(response.data.indicecancelamento)
         }
-        
       } catch (error) {
         console.log(error)
       }
@@ -84,10 +86,9 @@ const Dashboard = () => {
     data[11]= ["Novembro", mapa.Novembro, "color: #32236C"]
     data[12]= ["Dezembro", mapa.Dezembro, "color: #32236C"]
 
-    data2[1] = ["Cancelados", indice]
-    
-    data2[2] = ["Agendados", 100-indice]
-
+    data2[1] = ["Cancelados", indiceCancelamento],
+    data2[2] = ["Agendados",indiceTotal]
+    console.log(data2)
   return (
     <div>
       <div className="info-dashboard">

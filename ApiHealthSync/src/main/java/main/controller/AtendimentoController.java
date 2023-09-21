@@ -2,6 +2,7 @@ package main.controller;
 
 import main.model.atendimento.AtendimentoDTO;
 import main.model.atendimento.AtendimentoModel;
+import main.model.atendimento.PieChartData;
 import main.model.atendimento.RequisicaoHorario;
 import main.model.medico.MedicoModel;
 import main.model.paciente.PacienteModel;
@@ -59,7 +60,7 @@ public class AtendimentoController {
         return service.atendimentoPorMes();
     }
     @GetMapping("/indiceCancelamento")
-    public double indiceDeCancelamento(){
+    public PieChartData indiceDeCancelamento(){
         return service.indiceDeCancelamento();
     }
     @GetMapping("/atendimentosAgendadosHoje")
