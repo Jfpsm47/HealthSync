@@ -2,7 +2,6 @@ import axios from "axios";
 import { set } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-
 export const data = [
   ["Element", "Density", { role: "style" }],
   ["Janeiro", 8.94, "color: #32236C"],
@@ -18,12 +17,20 @@ export const data = [
   ["Novembro", 21.45, "color: #32236C"],
   ["Dezembro", 7.45, "color: #32236C"]
 ];
+export const data2 = [
+  ["Status do atendimento", "Porcentagem"],
+  ["Cancelados", 5],
+  ["Agendados",5]
+];
 
 
 const Dashboard = () => {
   const [mapa, setMapa] = useState({})
   const [indice,setIndice] = useState(0.0)
   const [agendados,setAgendados] = useState(0)
+
+  const [showAlert, setShowAlert] = useState(true);
+
   const chartOption = {
       title: 'Atendimentos por mês',
       titleTextStyle: {
@@ -44,7 +51,12 @@ const Dashboard = () => {
       try {
         const response = await axios.get("http://localhost:8081/api/atendimento/indiceCancelamento")
         console.log(response.data)
-        setIndice(response.data)
+        if(isNaN(response.data)){
+          setIndice(0)
+        }else{
+          setIndice(response.data)
+        }
+        
       } catch (error) {
         console.log(error)
       }
@@ -72,24 +84,29 @@ const Dashboard = () => {
     data[11]= ["Novembro", mapa.Novembro, "color: #32236C"]
     data[12]= ["Dezembro", mapa.Dezembro, "color: #32236C"]
 
+    data2[1] = ["Cancelados", indice]
+    
+    data2[2] = ["Agendados", 100-indice]
+
   return (
     <div>
-        <h1>Dashboard</h1>
+      <div className="info-dashboard">
+        <div className="pieChart">
+          <h1 className="titulo-dashboard">Dashboard</h1>
+        </div>
+         
         <div className="cards-dashboard">
+          <Chart chartType="PieChart" data={data2} width={"70%"} height={"210px"}/>
           <div className="card-dashboard">
-            <span>Atendimentos marcados hoje</span>
+            <span>Atendimentos marcados hoje</span> 
             <span className="indice">{agendados}</span>
           </div>
-          <div className="card-dashboard">  
-            <span>Indice de cancelamento esse mês</span>
-            <span className="indice">{indice}%</span>
-          </div>
         </div>
-        
+      </div>
+
         <div className="grafico">
           <Chart chartType="ColumnChart" width="100%" height="100%" data={data} options={chartOption} />
         </div>
-
     </div>
   )
 }

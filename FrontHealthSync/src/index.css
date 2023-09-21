@@ -147,6 +147,7 @@ button:focus-visible {
   background-color: #ffffff;
   padding: 20px;
   z-index: auto;
+  border-radius: 1.25rem;
 }
 input{
   border-color: #32236C;
@@ -161,6 +162,7 @@ input{
   transform: translate(-50%, -50%);
   background-color: #32236C;
   padding: 20px;
+  border-radius: 1.25rem;
 }
 .busca{
   position: absolute;
@@ -303,7 +305,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 278px; /* Ajuste a posição vertical conforme necessário */
+  top: 268  px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -319,7 +321,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 378px; /* Ajuste a posição vertical conforme necessário */
+  top: 368px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -335,7 +337,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 478px; /* Ajuste a posição vertical conforme necessário */
+  top: 468px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -352,7 +354,7 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 578px; /* Ajuste a posição vertical conforme necessário */
+  top: 568px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -385,28 +387,27 @@ flex-shrink: 0;
 .grafico{
   margin: 0 10%;
   height: 350px;
+  margin-top: -30px;
 }
-.indice{
-  font-size: 30px;
-}
+
 .cards-dashboard{
-  margin-left: 35px;
   display: flex;
-  align-items: normal;
 }
 .card-dashboard{
-  width: 260px;
+  width: 150px;
+  height: 80px;
   background-color: #32236C;
   color: #ffffff;
   text-align: center;
   margin: 10px;
   border-radius: 1.25rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: center;
   padding: 10px;
-  min-height: 70px;
-  margin-left: 100px;
+  min-height: 10px;
+  margin-left: 1px;
+  margin-top: 43px;
 }
 .titulo-grafico{
   margin-left: 375px;
@@ -426,4 +427,6 @@ flex-shrink: 0;
   width: 60px;
   height: 60px;
 }
-
+.titulo-dashboard{
+  margin-right: 290px;
+}

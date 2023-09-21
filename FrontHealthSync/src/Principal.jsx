@@ -4,6 +4,7 @@ import Medico from './components/Medico/Medico';
 import Atendimento from './components/Atendimento/Atendimento';
 import Dashboard from './components/Dashboard';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
 
 
 function Principal() {
@@ -89,7 +90,7 @@ const openAtendimento = () => {
       <img src="src\assets\Logo.svg" className='logo-img'/>
       <h1 className='name'>HealthySYNC</h1>
     </div>
-    
+
     <div>
     <div className="container-botao">
       <div className={`retangulo1 ${retanguloAumentado1 ? 'aumento1' : ''}`}>
@@ -158,9 +159,14 @@ const openAtendimento = () => {
         </div>
       )}
     </div>
-    <button onClick={() => handleLogout()} className='botao-logout'>
+    
+    <div className='container-botao'>
+      <button onClick={() => handleLogout()} className='botao-menu'>
       <img src="src/assets/Logout.svg" alt="" className='logo-logout' />
     </button>
+    <span className='span-menu'>Logout</span>
+    </div>
+    
     <div className='teste'></div>
     </>
   )

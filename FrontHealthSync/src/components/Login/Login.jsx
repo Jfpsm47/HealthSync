@@ -19,7 +19,6 @@ function Login() {
   const senhaLoginRef  =useRef(null)
 
   const handleCadastrar = async () => {
-    console.log("Clique!");
     if (senha1Ref.current.value === senha2Ref.current.value) {
       const usuario = {
         login:(usernameRef.current.value),
