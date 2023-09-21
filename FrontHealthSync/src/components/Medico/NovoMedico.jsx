@@ -30,17 +30,20 @@ const NovoMedico = ({isOpen,onClose}) => {
     isOpen && (
         <div className='cadastro'>
             <div className='modal-content'>
-                <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
-                <label>Nome</label>
-                <input type='text' ref={nomeref}></input>
-                <br />
-                <label>CRM</label>
-                <input type='text' ref={crmref}></input>
-                <br />
-                <label>Especialidade</label>
-                <input type='text' ref={especref}></input>
-                <br />
-                <button onClick={() => handleCadastrarMedico()}>Cadastrar</button>
+              <div className='cadastro-medico'>
+              <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
+                  <label>Nome</label>
+                  <input type='text' ref={nomeref} className='input-cadastrar'></input>
+                  <br />
+                  <label>CRM</label>
+                  <input type='text' ref={crmref} className='input-cadastrar'></input>
+                  <br />
+                  <label>Especialidade</label>
+                  <input type='text' ref={especref} className='input-cadastrar'></input>
+                  <br />
+                  <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
+              </div>
+                
                 <button onClick={() => onClose()}>X</button>
             </div>
         </div>

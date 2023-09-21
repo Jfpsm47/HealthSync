@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Principal() {
   const navigate = useNavigate()
-  const [retanguloAumentado1,setRetanguloAumentado1] = useState(false)
+  const [retanguloAumentado1,setRetanguloAumentado1] = useState(true)
   const [retanguloAumentado2,setRetanguloAumentado2] = useState(false)
   const [retanguloAumentado3,setRetanguloAumentado3] = useState(false)
   const [retanguloAumentado4,setRetanguloAumentado4] = useState(false)

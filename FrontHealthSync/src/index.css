@@ -199,6 +199,7 @@ input{
 }
 .titulo-cadastro{
   color: #32236C;
+  margin-bottom: 100px;
 }
 .dropdown{
   font-size: 16px;
@@ -302,14 +303,14 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 282px; /* Ajuste a posição vertical conforme necessário */
-  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  top: 286px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 } 
 
 .aumento1 {
-  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+  width: 225px !important; 
 
 }
 .retangulo2 {
@@ -318,14 +319,14 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 382px; /* Ajuste a posição vertical conforme necessário */
-  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  top: 386px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 } 
 
 .aumento2 {
-  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+  width: 225px !important; 
 
 }
 .retangulo3 {
@@ -334,14 +335,14 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 482px; /* Ajuste a posição vertical conforme necessário */
-  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  top: 486px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 } 
 
 .aumento3 {
-  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+  width: 225px !important; 
 
 }
 
@@ -351,13 +352,33 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 582px; /* Ajuste a posição vertical conforme necessário */
-  left: 150px; /* Ajuste a posição horizontal conforme necessário */
+  top: 586px; /* Ajuste a posição vertical conforme necessário */
+  left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
 } 
 
 .aumento4 {
-  width: 225px !important; /* Largura final (importante para anular a largura definida no .retangulo) */
+  width: 225px !important; 
+
+}
+.input-cadastrar{
+  border: 3px solid #32236C;
+  border-radius: 4px;
+  width: 220px;
+  height: 30px;
+  font-size: 20px;
+}
+.input-cadastrar:focus{
+  border-color: #32236C;
+}
+.cadastro-medico{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.botao-cadastrar{
+  background-color: #32236C;
+  color: #fff;
 
 }

@@ -54,7 +54,7 @@ public class AtendimentoController {
     public void cancelarAtendimento(@PathVariable Long id){
         service.cancelarConsulta(id);
     }
-        @GetMapping("/AtendimentoPorMes")
+    @GetMapping("/AtendimentoPorMes")
     public Map<String, Integer> teste(){
         return service.atendimentoPorMes();
     }
