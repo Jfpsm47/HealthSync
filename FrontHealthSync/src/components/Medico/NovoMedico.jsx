@@ -65,13 +65,13 @@ const NovoMedico = ({isOpen,onClose}) => {
             <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
             <div className='inputs'>
                 <label>Nome</label>
-                <input type='text' ref={nomeref} className='input-cadastrar' required></input>
+                <input type='text' ref={nomeref} className='input-cadastrar' placeholder='Nome...'></input>
                 <br />
                 <label>CRM</label>
-                <input type='text' ref={crmref} className='input-cadastrar' maxLength={10}></input>
+                <input type='text' ref={crmref} className='input-cadastrar' maxLength={10} placeholder='CRM...'></input>
                 <br />
                 <label>Especialidade</label>
-                <input type='text' ref={especref} className='input-cadastrar' required></input>
+                <input type='text' ref={especref} className='input-cadastrar' placeholder='Especialidade...'></input>
                 <br />
                 <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
             </div>

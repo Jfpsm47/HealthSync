@@ -86,8 +86,8 @@ const Dashboard = () => {
     data[11]= ["Novembro", mapa.Novembro, "color: #32236C"]
     data[12]= ["Dezembro", mapa.Dezembro, "color: #32236C"]
 
-    data2[1] = ["Cancelados", indiceCancelamento],
-    data2[2] = ["Agendados",indiceTotal]
+    data2[2] = ["Cancelados", indiceCancelamento],
+    data2[1] = ["Agendados",indiceTotal]
     console.log(data2)
   return (
     <div>

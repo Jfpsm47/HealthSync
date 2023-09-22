@@ -102,9 +102,31 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         setBotaoCadastrarOpen(true)
       }
       const handleAgendarAtendimento = async () => {
-        
+
+        console.log(pacienteSelecionado)
+        const erros = [];
+
         const dataFormatada = format(selectedDate, 'dd-MM-yyyy')
-        console.log(dataFormatada)
+
+        if(dataFormatada === ''){
+          erros.push("- Por favor selecione uma data")
+        }
+
+        if (pacienteSelecionado === ''){
+          erros.push("- Por favor selecione um paciente")
+        }
+
+        if (medicoSelecionado === ''){
+          erros.push("- Por favor selecione um medico")
+        }
+        if (horarioSelecionado === ''){
+          erros.push("- Por favor selecione um horario")
+        }
+        if (erros.length > 0) {
+          const messageErros = erros.join('\n');
+          alert(messageErros);
+        }else{
+          console.log(dataFormatada)
         var atendimento = { 
           data:(dataFormatada),
           hora:(horarioSelecionado),
@@ -124,36 +146,43 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         setBotaoCadastrarOpen(false)
         setSelectedDate(null)
         onClose()
+        }
+        
       }
   return (
     isOpen && ( 
       <div className='cadastro'> 
         <div className='modal-content'>
-            <h1 className='titulo-cadastro'>Marcar Atendimento</h1>
-            <label>CPF do Paciente</label>
-            <Select options={optPacientes} isSearchable={true} onChange={handleChangePaciente}></Select>
-            <label>Nome do Médico</label>
-            <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico}></Select>
+            <h1 className='titulo-cadastro-atendimento'>Marcar Atendimento</h1>
+            <div className='cadastro-atendimento'>
+              <label className='dropdown-label'>CPF do Paciente</label>
+            <Select options={optPacientes} isSearchable={true} onChange={handleChangePaciente} className='dropdown'></Select>
+            <label className='dropdown-label'>Nome do Médico</label>
+            <Select options={optMedicos} isSearchable={true} onChange={handleChangeMedico} className='dropdown'></Select>
             {inputDataOpen? (
               <>
+              <label htmlFor="" className='dropdown-label'>Data</label>
+              <br />
               <ReactDatePicker dateFormat={"dd-MM-yyyy"}
               selected={selectedDate} 
               placeholderText='Data da consulta...'
               minDate={currentDate}
               value={selectedDate}
-              onChange={handleSelecionarData}></ReactDatePicker>
+              onChange={handleSelecionarData}
+              className='dataPicker'></ReactDatePicker>
               <br />
               </>
             ):(null)}
             {inputHoraOpen? (
              <>
-             <label>Selecione a Hora</label>
-              <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario}></Select>
+             <label className='dropdown-label'>Horario</label>
+              <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario} className='dropdown'></Select>
              </>
             ):(null)}
             {botaoCadastrarOpen? (
-              <button onClick={handleAgendarAtendimento}>Agendar</button>
+              <button onClick={handleAgendarAtendimento} className='marcar-atendimento'>Marcar</button>
             ):(null)}
+            </div>
             <button onClick={onClose} >X</button>
         </div>
       </div>

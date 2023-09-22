@@ -93,6 +93,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             type="text"
             ref={nomeref}
             className="input-cadastrar-paciente"
+            placeholder='Nome...'
           />
         </div>
 
@@ -103,6 +104,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             ref={cpfref}
             maxLength={14}
             className="input-cadastrar-paciente"
+            placeholder='CPF...'
           />
         </div>
 
@@ -113,6 +115,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             ref={rgref}
             maxLength={9}
             className="input-cadastrar-paciente"
+            placeholder='RG...'
           />
         </div>
       </div>
@@ -125,6 +128,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             ref={telefoneref}
             maxLength={11}
             className="input-cadastrar-paciente"
+            placeholder='Telefone...'
           />
         </div>
 
@@ -134,6 +138,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             type="text"
             ref={emailref}
             className="input-cadastrar-paciente"
+            placeholder='Email...'
           />
         </div>
         

@@ -203,13 +203,6 @@ input{
   color: #32236C;
   margin-bottom: 100px;
 }
-.dropdown{
-  font-size: 16px;
-  border: 3px solid #32236C;
-  border-radius: 4px;
-  padding: 8px;
-  cursor: pointer;
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -384,6 +377,11 @@ flex-shrink: 0;
   margin: 0 10%;
   height: 350px;
   margin-top: -30px;
+
+
+
+
+
 }
 
 .cards-dashboard{
@@ -436,13 +434,6 @@ flex-shrink: 0;
   padding-right: 110px;
   margin-top: -30px;
 }
-.teste-modal{
-  width: 500px;
-  height: 500px;
-  background-color: red
-  
-
-}
 .cadastro-paciente{
   display: inline;
   padding: 100px;
@@ -487,4 +478,42 @@ flex-shrink: 0;
   margin-left: 390px;
   background-color: #32236C;
   color: #fff;
+}
+.dataPicker{
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+  width: 220px;
+  height: 30px; 
+  font-size: 13px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+.cadastro-atendimento{
+  border: 3px solid #32236C;
+  max-width: 300px;
+  padding: 50px;
+  margin-left: 280px;
+  margin-top: -80px;
+}
+.dropdown{
+  border: #13005C;
+  color: #32236C;
+  width: 220px;
+  height: 30px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+.dropdown-label{
+  margin-left: 40px;
+}
+.marcar-atendimento{
+  margin-top: 20px;
+  margin-left: 100px;
+  background-color: #32236C;
+  color: #fff;
+}
+.titulo-cadastro-atendimento{
+  color: #32236C;
+  margin-bottom: 100px;
+  margin-left: 240px;
 }
