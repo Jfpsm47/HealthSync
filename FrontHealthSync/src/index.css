@@ -270,7 +270,7 @@ flex-shrink: 0;
 .container-botao {
   display: flex;
   align-items: center; /* Alinha verticalmente ao centro */
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .botao-menu {
@@ -305,7 +305,6 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 268  px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -321,7 +320,6 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 368px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -337,7 +335,6 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 468px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -354,7 +351,6 @@ flex-shrink: 0;
   background-color: #13005C;
   position: absolute; /* Define a posição absoluta */
   z-index: -1; /* Coloca o retângulo atrás de outros elementos */
-  top: 568px; /* Ajuste a posição vertical conforme necessário */
   left: 150px; 
   border-radius: 10px;
   transition: width 0.3s ease-in-out;
@@ -429,4 +425,66 @@ flex-shrink: 0;
 }
 .titulo-dashboard{
   margin-right: 290px;
+}
+.inputs{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 3px solid #32236C;
+  padding: 50px;
+  padding-left: 110px;
+  padding-right: 110px;
+  margin-top: -30px;
+}
+.teste-modal{
+  width: 500px;
+  height: 500px;
+  background-color: red
+  
+
+}
+.cadastro-paciente{
+  display: inline;
+  padding: 100px;
+  
+}
+
+.input-cadastrar-paciente{
+  border: 3px solid #32236C;
+  border-radius: 4px;
+  width: 220px;
+  height: 30px;
+  font-size: 20px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+}
+.label-cadastrar {
+  display: block ; /* Exibir os rótulos como blocos */
+  margin-left: 30px;
+}
+.inputs-paciente-1{
+  margin-left: 20px;
+  display: flex;
+}
+.inputs-paciente-2{
+  display: flex;
+  margin-left: 170px;
+
+}
+.all-inputs-paciente{
+  margin-left: 35px;
+  margin-right: 35px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border: 3px solid #32236C;
+}
+.titulo-cadastro-paciente{
+  margin-top: -10px;
+  margin-bottom: 85px;
+  margin-left: 260px;
+}
+.botao-cadastrar-paciente{
+  margin-left: 390px;
+  background-color: #32236C;
+  color: #fff;
 }

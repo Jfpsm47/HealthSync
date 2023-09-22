@@ -11,5 +11,6 @@ TODO
 - a pesquisa pode ser feita pelo data picker
 - arrummar o CSS
 - colocar função modificar status da consulta de acordo com o status atual
-- validações e mascaras
+- validações
 - validar atendimento por mes por ano
+- colocar os @Unique

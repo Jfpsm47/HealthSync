@@ -102,6 +102,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         setBotaoCadastrarOpen(true)
       }
       const handleAgendarAtendimento = async () => {
+        
         const dataFormatada = format(selectedDate, 'dd-MM-yyyy')
         console.log(dataFormatada)
         var atendimento = { 

@@ -2,15 +2,12 @@ import React from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
 import ReactInputMask from 'react-input-mask'
+import { Modal } from 'react-bootstrap'
 const NovoMedico = ({isOpen,onClose}) => {
     const nomeref = useRef(null)
     const crmref = useRef(null)
     const especref = useRef(null)
-
-    function isValidInput(value, pattern) {
-      return new RegExp(pattern).test(value);
-    }
-
+    
     const handleCadastrarMedico = async () => {
       var nome = nomeref.current.value
       var crm = crmref.current.value
@@ -60,28 +57,31 @@ const NovoMedico = ({isOpen,onClose}) => {
           }
       }
     }
-  return (
+  return (  
     isOpen && (
-        <div className='cadastro'>
-            <div className='modal-content'>
-              <div className='cadastro-medico'>
-              <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
-                  <label>Nome</label>
-                  <input type='text' ref={nomeref} className='input-cadastrar' required></input>
-                  <br />
-                  <label>CRM</label>
-                  <input type='text' ref={crmref} className='input-cadastrar' required></input>
-                  <br />
-                  <label>Especialidade</label>
-                  <input type='text' ref={especref} className='input-cadastrar' required></input>
-                  <br />
-                  <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
-              </div>
-                
-                <button onClick={() => onClose()}>X</button>
+      <div className='cadastro'>
+          <div className='modal-content'>
+            <div className='cadastro-medico'>
+            <h1 className='titulo-cadastro'>Cadastrar Médico</h1>
+            <div className='inputs'>
+                <label>Nome</label>
+                <input type='text' ref={nomeref} className='input-cadastrar' required></input>
+                <br />
+                <label>CRM</label>
+                <input type='text' ref={crmref} className='input-cadastrar' maxLength={10}></input>
+                <br />
+                <label>Especialidade</label>
+                <input type='text' ref={especref} className='input-cadastrar' required></input>
+                <br />
+                <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
             </div>
-        </div>
-    )
+                
+            </div>
+              
+              <button onClick={() => onClose()}>X</button>
+          </div>
+      </div>
+  )
   )
 }
 

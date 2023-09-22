@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import NovoMedico from './NovoMedico';
 import EditarMedico from './EditarMedico';
+import { Modal } from 'react-bootstrap';
 
 const ListaMedico = () => {
   const [medicos, setMedicos] = useState([])
