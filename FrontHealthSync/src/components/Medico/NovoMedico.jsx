@@ -27,7 +27,7 @@ const NovoMedico = ({isOpen,onClose}) => {
         if(crm === ''){
           errors.push("- Por favor preencha o campo CRM")
         }else{
-          errors.push("- Digite um valor válido para seu CRM no padrão (XXXXXXXX-X)")
+          errors.push("- Digite um CRM válido (XXXXXXXX-X)")
         }
       }
       if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(especialidade)){

@@ -4,16 +4,19 @@ import axios from 'axios';
 import { useState } from 'react';
 import FichaAtendimento from './FichaAtendimento';
 import NovoAtendimento from './NovoAtendimento';
+import { useAccordionButton } from 'react-bootstrap';
 const ListaAtendimento = () => {
     const [atendimentos, setAtendimentos] = useState([])
     const [isOpenFichaAt,setIsOpenFichaAt] = useState(false)
     const [selectedAtendimento, setSelectedAtendimento] = useState([])
     const [isOpenNovoAtendimento, setIsOpenNovoAtendimeno] = useState(false)
+    const [botaoListarTodos,setBotaoListarTodos] = useState(true)
+    const [hojeTodos,setHojeTodos] = useState("Hoje")
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:8081/api/atendimento/listarHoje');
+            const response = await axios.get('http://localhost:8081/api/atendimento/listar');
             setAtendimentos(response.data)
             console.log(response.data)
           } catch (error) {
@@ -71,14 +74,32 @@ const ListaAtendimento = () => {
           }
         }
     }
-    const listarAtendimentosHoje = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8081/api/atendimento/listar`)
-        console.log(response.data)
-        setAtendimentos(response.data)
-      } catch (error) {
-        console.log(error)
+    const tipoListagem = async () => {
+      setBotaoListarTodos((prevBotaoListarTodos) => !prevBotaoListarTodos);
+
+      sessionStorage.setItem("hoje",botaoListarTodos)
+      
+      if(botaoListarTodos){
+        setHojeTodos("Todos")
+        try {
+          const response = await axios.get(`http://localhost:8081/api/atendimento/listarHoje`)
+          console.log(response.data)
+          setAtendimentos(response.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }else{
+        setHojeTodos("Hoje")
+        try {
+          const response = await axios.get(`http://localhost:8081/api/atendimento/listar`)
+          console.log(response.data)
+          setAtendimentos(response.data)
+        } catch (error) {
+          console.log(error)
+        }
       }
+
+      
     }
     
   return (
@@ -104,7 +125,7 @@ const ListaAtendimento = () => {
             ))}
         </ul>
         </div>
-        <button onClick={() => listarAtendimentosHoje()}>listar todos</button>
+        <button onClick={() => tipoListagem()}>Lista {hojeTodos}</button>
     </div>
   )
 }

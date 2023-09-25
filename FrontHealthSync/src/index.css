@@ -517,3 +517,99 @@ flex-shrink: 0;
   margin-bottom: 100px;
   margin-left: 240px;
 }
+.inputs-editar-paciente-1{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 15px;
+  display: flex;
+}
+.inputs-editar-paciente-2{
+  margin-left: 150px;
+  display: flex;
+}
+.all-inputs-editar-paciente{
+  border: 3px solid #fff;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 70px;
+}
+.input-editar{
+  border: 3px solid #fff;
+  width: 220px;
+  height: 30px;
+  background-color: #32236C;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 20px;
+}
+.input-container-editar{
+  margin: 15px;
+}
+.botao-editar-paciente{
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: #32236C;
+}
+.label-editar-paciente{
+  margin-left: -180px;
+}
+.label-editar-medico{
+  color: #fff;
+  margin-left: 90px;
+}
+.label-editar-medico-espc{
+  color: #fff;
+  margin-left: 70px;
+}
+.all-inputs-editar-medico{
+  border: 3px solid #fff;
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 50px;
+
+}
+.input-container-editar-medico{
+  margin: 40px;
+  padding-left: 50px;
+}
+.botao-editar-medico{
+  margin-left: 170px;
+  margin-bottom: 50px;
+  margin-top: -10px;
+  color: #32236C;
+}
+.all-inputs-editar-atendimendo{
+  border: 3px solid #fff;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-top: 30px;
+
+}
+.titulo-editar-medico{
+  color: #ffffff;
+  margin-left: 290px;
+}
+.dropdown-editar{
+  border: #13005C;
+  color: #32236C;
+  width: 220px;
+  height: 30px;
+  margin-left: 150px;
+  margin-bottom: 30px;
+}
+.dataPicker-editar{
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+  width: 220px;
+  height: 30px; 
+  font-size: 13px;
+  margin-bottom: 30px;
+  margin-left: 3px;
+}
+.botao-sim-nao{
+  margin: 15px;
+}
+.botao-agendar-atendimento{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}

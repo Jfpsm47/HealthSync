@@ -22,7 +22,7 @@ const ListaMedico = () => {
         });
 
         setMedicos(response.data)
-      } catch (error) {x
+      } catch (error) {
         console.log('Erro na requisição:', error);
       
       }
@@ -113,7 +113,6 @@ const ListaMedico = () => {
           ))}
         </ul>
       </div>
-      
     </div>
   )
 }

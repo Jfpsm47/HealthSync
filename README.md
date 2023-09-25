@@ -8,10 +8,8 @@ Front-End feito em React
 TODO
 - modificar as outras listagens de acordo com oque a pessoa escolheu
 - modificar a cor dos cards de acordo com o status da consulta
-- a pesquisa pode ser feita pelo data picker
 - arrummar o CSS
 - colocar função modificar status da consulta de acordo com o status atual
-- validações para edição
 - validar atendimento por mes por ano
 - colocar os @Unique
 - mudar os atendimentos marcados hoje

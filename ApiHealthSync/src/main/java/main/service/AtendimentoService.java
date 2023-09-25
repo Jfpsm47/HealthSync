@@ -51,7 +51,7 @@ public class AtendimentoService {
         MedicoModel medico = medicoRepository.findByNome(data.medicoNome()).get();
         PacienteModel paciente = pacienteRepository.findByCpf(data.pacienteCPF()).get();
         Date dataAtual = new Date();
-        String data_agendamento  = new SimpleDateFormat("dd/MM/yyyy").format(dataAtual);
+        String data_agendamento  = new SimpleDateFormat("dd-MM-yyyy").format(dataAtual);
 
         atendimento.setData(data.data());
         atendimento.setHora(data.hora());

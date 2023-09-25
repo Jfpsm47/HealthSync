@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import { format } from 'date-fns';
+import { format, set } from 'date-fns';
 
 const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
   const currentDate = new Date();
@@ -89,7 +89,6 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
     const handleSelecionarData = async (date) => {
       let dataFormatada = format(date, 'dd-MM-yyyy')
       setSelectedDate(date)
-      setModifyHora(true)
 
       const requisicaoHorario = {
         data:(dataFormatada),
@@ -99,10 +98,19 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       try {
         const response = await axios.post('http://localhost:8081/api/atendimento/horariosDisponiveis',requisicaoHorario);
         console.log(response.data)
+        if(response.data.includes(atendimento.hora)){
+          console.log("Inclui!")
+          setModifyHora(true)
+        }else{
+          setInputHoraOpen(true)
+        }
+
         setHorariosDisponiveis(response.data)
+
       } catch (error) {
         console.log('Erro na requisição:', error);
       }
+      
     }
     const optHorarios = []
       for(let i = 0; i < horariosDisponiveis.length; i++){
@@ -117,9 +125,7 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       setDataModified(true)
     }
     const handleNotModifyData = async () => {
-      setModifyData(false)
-      setModifyHora(true)
-
+      
       setSelectedDate(atendimento.data)
       var dataSelecionada = atendimento.data
 
@@ -135,6 +141,15 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       } catch (error) {
         console.log('Erro na requisição:', error);
       }
+
+      if(horariosDisponiveis.includes(atendimento.hora)){
+        setModifyData(false)
+        setModifyHora(true)  
+      }else{
+        setModifyData(false)
+        setInputHoraOpen(true)
+      }
+      
     }
     const handleChangeHorario = (selectedOption) => {
       setHorarioSelecionado(selectedOption.value)
@@ -149,6 +164,8 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       setBotaoCadastrarOpen(true)
     }
     const handleEditarAtendimento = async () => {
+      console.log(selectedDate)
+
       if(dataModified){
         const dataFormatada = format(selectedDate, 'dd-MM-yyyy')
         var atendimento = {
@@ -180,49 +197,55 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
     return (
     isOpen? (
         <div className='editar'>
-            <div>
-                <h1>Editar Paciente</h1>
+          <h1>Editar Atendimento</h1>
+            <div className='all-inputs-editar-atendimendo'>
+                
                 <label>CPF do Paciente</label>
-                <Select defaultValue={optPacientes[indexPaciente]} options={optPacientes} onChange={handleChangePaciente}></Select>
+                <Select defaultValue={optPacientes[indexPaciente]} options={optPacientes} onChange={handleChangePaciente} className='dropdown-editar'></Select>
                 <label>Nome do Médico</label>
-                <Select defaultValue={optMedicos[indexMedico]} options={optMedicos} onChange={handleChangeMedico}></Select>
+                <Select defaultValue={optMedicos[indexMedico]} options={optMedicos} onChange={handleChangeMedico} className='dropdown-editar'></Select>
                 
                 {modifyData? (
                   <>
                   <h3>Deseja alterar a data do atendimento? ({atendimento.data})</h3>
-                  <button onClick={() => handleModifyData()}>Sim</button>
-                  <button onClick={() => handleNotModifyData()}>Não</button>
+                  <button onClick={() => handleModifyData()} className='botao-sim-nao'>Sim</button>
+                  <button onClick={() => handleNotModifyData()} className='botao-sim-nao'>Não</button>
                   </>
                 ):(null)}
                 {inputDataOpen? (
                   <>
+                  <label htmlFor="" className='dropdown-label-editar'>Data</label>
+                  <br />
                   <ReactDatePicker dateFormat={"dd-MM-yyyy"}
                   selected={selectedDate} 
                   placeholderText='Data da consulta...'
                   minDate={currentDate}
                   value={selectedDate}
-                  onChange={handleSelecionarData}><div style={{ color: "red" }}>DATA ANTERIOR: {atendimento.data}</div></ReactDatePicker>
+                  onChange={handleSelecionarData}
+                  className='dataPicker-editar'
+                  ><div style={{ color: "red" }}>DATA ANTERIOR: {atendimento.data}</div></ReactDatePicker>
                   <br />
                   </>
                 ):(null)}
                  {modifyHora? (
                   <>
                   <h3>Deseja alterar a hora do atendimento? ({atendimento.hora})</h3>
-                  <button onClick={() => handleModifyHora()}>Sim</button>
-                  <button onClick={() => handleNotmodifyHora()}>Não</button>
+                  <button onClick={() => handleModifyHora()} className='botao-sim-nao'>Sim</button>
+                  <button onClick={() => handleNotmodifyHora()} className='botao-sim-nao'>Não</button>
                   </>
                 ):(null)}
                 {inputHoraOpen? (
-                  <>
+                  <>  
                   <label>Selecione a Hora</label>
-                    <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario}></Select>
+                    <Select options={optHorarios} isSearchable={true}onChange={handleChangeHorario} className='dropdown-editar'></Select>
                   </>
                   ):(null)}
                   {botaoCadastrarOpen? (
-                    <button onClick={handleEditarAtendimento}>Agendar</button>
+                    <button onClick={handleEditarAtendimento}className='botao-agendar-atendimento'>Agendar</button>
                   ):(null)}
-                <button onClick={onClose}>X</button>
+                
             </div>
+            <button onClick={onClose}>X</button>
         </div>
     ):(null)
   )
