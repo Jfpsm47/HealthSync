@@ -613,3 +613,69 @@ flex-shrink: 0;
   margin-top: 30px;
   margin-bottom: 20px;
 }
+.botao-excluir-medico{
+  width: 35px;
+  height: 35px;
+  background-color: #32236C;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-excluir{
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -10px;
+}
+.button-editar-medico{
+  margin-top: 20px;
+  margin: 10px;
+  width: 35px;
+  height: 35px;
+  background-color: #32236C;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-editar{
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -10px;
+}
+.button-excluir-paciente{
+  width: 50px;
+  height: 50px;
+  background-color: #32236C;
+  position: absolute;
+  left: 20px;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-excluir-paciente{
+  width: 35px;
+  height: 35px;
+  margin-left: -14px;
+  margin-top: -5px;
+}
+.button-editar-paciente{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 100px;
+  background-color: #32236C;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-editar-paciente{
+  margin-left: -14px;
+  margin-top: -5px;
+  width: 35px;
+  height: 35px;
+}
+.close-paciente{
+  position: absolute;
+  top: 10px;
+  left: 905px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}

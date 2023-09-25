@@ -115,6 +115,7 @@ const Paciente = () => {
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card'>
                     {paciente.nome}
+                    
                     <br></br>
                     {paciente.cpf}
                     <br></br>
@@ -124,6 +125,12 @@ const Paciente = () => {
                         <div className='ficha'>
                         <div className="modal-content">
                         <ul>
+                          <button onClick={() => handleExcluir(selectedPaciente.id)} className='button-excluir-paciente'>
+                            <img src="src/assets/trash.svg" alt="" className='logo-excluir-paciente' />
+                          </button>
+                          <button onClick={() => handleOpenEditar()} className='button-editar-paciente'>
+                            <img src="src/assets/editar.svg" alt="" className='logo-editar-paciente'/>
+                          </button>
                           <h1>-Ficha do Paciente-</h1>
                           <li className='dado-2'>Nome: {selectedPaciente.nome}</li>
                           <li className='dado-2'>RG: {selectedPaciente.rg}</li>
@@ -131,10 +138,10 @@ const Paciente = () => {
                           <li className='dado-2'>Email: {selectedPaciente.email}</li>
                           <li className='dado-2'>Telefone: {selectedPaciente.telefone}</li>
                         </ul>
-                          <button onClick={() => handleExcluir(selectedPaciente.id)}>Excluir</button>
-                          <button onClick={() => handleOpenEditar()}>Editar</button>
+
                           <EditarPaciente isOpen={isOpenEditar} onClose={() => handleCloseEditar()} paciente={selectedPaciente}></EditarPaciente>
                           <button onClick={closeFicha}>X</button>
+                          <img src="src/assets/Close-white.svg" alt="" className='close-paciente' onClick={closeFicha}/>
                         </div>
                         </div>
                     )}

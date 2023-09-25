@@ -10,8 +10,6 @@ const ListaAtendimento = () => {
     const [isOpenFichaAt,setIsOpenFichaAt] = useState(false)
     const [selectedAtendimento, setSelectedAtendimento] = useState([])
     const [isOpenNovoAtendimento, setIsOpenNovoAtendimeno] = useState(false)
-    const [botaoListarTodos,setBotaoListarTodos] = useState(true)
-    const [hojeTodos,setHojeTodos] = useState("Hoje")
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,13 +31,12 @@ const ListaAtendimento = () => {
       }
       const handleCloseFicha = async () =>{
         setIsOpenFichaAt(false)
-
-        try {
-          const response  = await axios.get(`http://localhost:8081/api/atendimento/listar`)
-          setAtendimentos(response.data)
-        } catch (error) {
-          console.log('erro na requisão',error) 
-        }
+          try {
+            const response  = await axios.get(`http://localhost:8081/api/atendimento/listar`)
+            setAtendimentos(response.data)
+          } catch (error) {
+            console.log('erro na requisão',error) 
+          }
       }
       const handleOpenNovoAtendimento = () => {
         setIsOpenNovoAtendimeno(true)
@@ -74,33 +71,8 @@ const ListaAtendimento = () => {
           }
         }
     }
-    const tipoListagem = async () => {
-      setBotaoListarTodos((prevBotaoListarTodos) => !prevBotaoListarTodos);
-
-      sessionStorage.setItem("hoje",botaoListarTodos)
-      
-      if(botaoListarTodos){
-        setHojeTodos("Todos")
-        try {
-          const response = await axios.get(`http://localhost:8081/api/atendimento/listarHoje`)
-          console.log(response.data)
-          setAtendimentos(response.data)
-        } catch (error) {
-          console.log(error)
-        }
-      }else{
-        setHojeTodos("Hoje")
-        try {
-          const response = await axios.get(`http://localhost:8081/api/atendimento/listar`)
-          console.log(response.data)
-          setAtendimentos(response.data)
-        } catch (error) {
-          console.log(error)
-        }
-      }
 
       
-    }
     
   return (
     <div>
@@ -125,7 +97,6 @@ const ListaAtendimento = () => {
             ))}
         </ul>
         </div>
-        <button onClick={() => tipoListagem()}>Lista {hojeTodos}</button>
     </div>
   )
 }

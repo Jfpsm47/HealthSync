@@ -102,13 +102,18 @@ const ListaMedico = () => {
         <ul className='lista'>
           {medicos.map(medico =>(
             <li key={medico.id} className='card'>
-              <span>Dr(a) {medico.nome}</span>
+              <span className='nome-medico'>Dr(a) {medico.nome}</span>
               <br></br>
               {medico.crm}
               <br></br>
               {medico.especialidade}
-              <button onClick={() => handleExcluirMedico(medico.id)}>Excluir</button>
-              <button onClick={() => handleOpenEditar(medico)}>Editar</button>
+              <br />
+              <button onClick={() => handleExcluirMedico(medico.id)} className='botao-excluir-medico'>
+                <img src="src/assets/Trash.svg" alt="" className='logo-excluir'/>
+              </button>
+              <button onClick={() => handleOpenEditar(medico)} className='button-editar-medico'>
+                <img src="src/assets/Editar.svg" alt="" className='logo-editar'/>
+              </button>
             </li>
           ))}
         </ul>
