@@ -19,6 +19,7 @@ const Paciente = () => {
     } 
     const closeFicha = () => {
         setOpenFicha(false)
+        setIsOpenEditar(false)
     }
 
     useEffect(() => {
@@ -140,7 +141,6 @@ const Paciente = () => {
                         </ul>
 
                           <EditarPaciente isOpen={isOpenEditar} onClose={() => handleCloseEditar()} paciente={selectedPaciente}></EditarPaciente>
-                          <button onClick={closeFicha}>X</button>
                           <img src="src/assets/Close-white.svg" alt="" className='close-paciente' onClick={closeFicha}/>
                         </div>
                         </div>
@@ -149,7 +149,7 @@ const Paciente = () => {
                 </li>
             ))}
        </ul>
-      </div>
+      </div>  
     </div>
   )
 }

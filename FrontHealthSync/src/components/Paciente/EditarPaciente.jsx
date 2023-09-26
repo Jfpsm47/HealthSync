@@ -129,10 +129,7 @@ const EditarPaciente = ({isOpen,onClose,paciente}) => {
               </div>
               <button onClick={() => handleEditarPaciente()} className='botao-editar-paciente'>Salvar</button>
             </div>
-              
-                <button onClick={() => onClose()}>X</button>
-                
-            </div>
+          </div>
         </div>
     )
   )

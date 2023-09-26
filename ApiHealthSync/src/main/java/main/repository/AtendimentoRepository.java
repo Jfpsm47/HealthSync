@@ -18,7 +18,7 @@ public interface AtendimentoRepository extends JpaRepository<AtendimentoModel, L
 
     List<AtendimentoModel> findByDataContaining(String data);
 
-    @Query("SELECT COUNT(atend) FROM AtendimentoModel atend WHERE atend.data_agendamento = :data")
+    @Query("SELECT COUNT(atend) FROM AtendimentoModel atend WHERE atend.data = :data")
     Long countAtendimentosByData(@Param("data") String data);
 
 }

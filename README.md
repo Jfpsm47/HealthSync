@@ -12,5 +12,4 @@ TODO
 - colocar função modificar status da consulta de acordo com o status atual
 - validar atendimento por mes por ano
 - colocar os @Unique
-- mudar os atendimentos marcados hoje
 - sistema de permisões

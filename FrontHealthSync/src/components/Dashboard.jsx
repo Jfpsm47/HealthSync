@@ -99,7 +99,7 @@ const Dashboard = () => {
         <div className="cards-dashboard">
           <Chart chartType="PieChart" data={data2} width={"70%"} height={"210px"}/>
           <div className="card-dashboard">
-            <span>Atendimentos marcados hoje</span> 
+            <span>Atendimentos marcados para hoje</span> 
             <span className="indice">{agendados}</span>
           </div>
         </div>

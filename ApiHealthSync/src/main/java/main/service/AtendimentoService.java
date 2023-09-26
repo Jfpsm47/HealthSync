@@ -102,6 +102,13 @@ public class AtendimentoService {
 
         repository.save(atendimento);
     }
+    public void agendarAtendimento(Long id){
+        AtendimentoModel atendimento = repository.findById(id).get();
+
+        atendimento.setStatus("Agendado");
+
+        repository.save(atendimento);
+    }
     public Map<String,Integer> atendimentoPorMes(){
         List<AtendimentoModel> atendimentos = repository.findAll();
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");

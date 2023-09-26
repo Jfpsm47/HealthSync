@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import EditarAtendimento from './EditarAtendimento'
 
 const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
+    var atendimendoStatus = atendimento.status
     const [isOpenEditar,setIsOpenEditar] = useState(false)
+    const [agendado, setAgendado] = useState(false)
+    const [cancelado, setCanceleado] = useState(false)
+    const [concluido, setConcluido] = useState(false)
 
     const handleExcluir = async () => {
         var excluir = confirm("Deseja realmente excluir o atendimento selecionado?")
@@ -43,12 +47,22 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
             console.log(error)
         }
     }
+    const handleAgendarAtendimento = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8081/api/atendimento/agendar/${atendimento.id}`)
+            console.log(response)
+            onClose()
+        } catch (error) {
+            console.log(error)
+        }
+    }
   return (
         isOpen &&(
-            <div className='ficha'>
+            <div className='ficha'>  
                 <div className='modal-content' >
                 <ul className='ul-principal'>
                     <li>
+                        <h1></h1>
                         <h2>-Dados do Paciente-</h2>    
                         <ul>
                             <li className='dado'>Nome: {atendimento.paciente.nome}</li>
@@ -80,11 +94,47 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
                 </ul>
 
                     <EditarAtendimento isOpen={isOpenEditar} onClose={() => handleCloseEditar()} atendimento={atendimento}></EditarAtendimento>
-                    <button onClick={() => handleOpenEditar()}>Editar</button>
-                    <button onClick={() => onClose()}>X</button>
-                    <button onClick={() => handleExcluir()}>Excluir</button>
-                    <button onClick={() => handleConcluirAtendimento()} >Concluir</button>
-                    <button onClick={() => handleCancelarAtendimento()}>Cancelar</button>
+                    <button onClick={() => handleOpenEditar()} className='button-editar-paciente'>
+                        <img src="src/assets/editar.svg" alt="" className='logo-editar-paciente'/>
+                    </button>
+
+                    <button onClick={() => handleExcluir()} className='button-excluir-paciente'>
+                        <img src="src/assets/trash.svg" alt="" className='logo-excluir-paciente'/>
+                    </button>
+                    {atendimento.status === "Agendado"? (
+                        <div>
+                            <button onClick={() => handleConcluirAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/Check.svg" alt="" className='logo-concluir'/>
+                            </button>
+                            <button onClick={() => handleCancelarAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/Cancelar.svg" alt="" className='logo-cancelar'/>
+                            </button>    
+                        </div>
+                    ):(null)}
+                    {atendimento.status === "Cancelado"? (
+                        <div>
+                            <button onClick={() => handleConcluirAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/Check.svg" alt="" className='logo-concluir'/>
+                            </button>
+
+                            <button onClick={() => handleAgendarAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/agendar.svg" alt="" className='logo-agendar' />
+                            </button>
+                        </div>
+                    ):(null)}
+                    {atendimento.status === "Concluido"? (
+                        <div>
+                            <button onClick={() => handleCancelarAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/Cancelar.svg" alt="" className='logo-cancelar'/>
+                            </button>
+                            <button onClick={() => handleAgendarAtendimento()} className='botao-cancelar-atendimento'>
+                                <img src="src/assets/agendar.svg" alt="" className='logo-agendar' />
+                            </button>
+                        </div>
+                    ):(null)}
+
+                    
+                    <img src="src/assets/close-white.svg" alt="" className='close-atendimento' onClick={() => onClose()}/>
                 </div>
             </div>
     )

@@ -21,7 +21,6 @@ public class MedicoController {
     public List<MedicoModel> listarMedicos(){
         return service.listarMedicos();
     }
-
     @GetMapping("/listar/nome/{nome}")
     public List<MedicoModel> listarMedicoNome(@PathVariable String nome) {
         return service.listarPorNome(nome);

@@ -55,6 +55,10 @@ public class AtendimentoController {
     public void cancelarAtendimento(@PathVariable Long id){
         service.cancelarConsulta(id);
     }
+    @PostMapping("agendar/{id}")
+    public void agendarAtendimento(@PathVariable Long id){
+        service.agendarAtendimento(id);
+    }
     @GetMapping("/AtendimentoPorMes")
     public Map<String, Integer> atedimentoPorMes(){
         return service.atendimentoPorMes();

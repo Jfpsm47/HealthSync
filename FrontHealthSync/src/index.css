@@ -679,3 +679,66 @@ flex-shrink: 0;
   width: 50px;
   height: 50px;
 }
+.button-excluir-atendimento{
+  width: 50px;
+  height: 50px;
+  background-color: #32236C;
+  position: absolute;
+  left: 20px;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.close-atendimento{
+  margin-left: 880px;
+  margin-top: -150px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+.botao-concluir-atendimento{
+  background-color: #000000;
+  color: #fff;
+  left: 770px;
+  bottom: 615px;
+}
+.botao-agendar-atendimento{
+  background-color: #000000;
+  color: #fff;
+  left: 770px;
+  bottom: 615px;
+}
+.botao-cancelar-atendimento{
+  margin: 15px;
+  width: 50px;
+  height: 50px;
+  background-color: #32236C;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-cancelar{
+  margin-left: -14px;
+  margin-top: -5px;
+  width: 35px;
+  height: 35px;
+}
+.botao-agendar-atendimento{
+  margin-bottom: 5000px;
+  width: 50px;
+  height: 50px;
+  background-color: #32236C;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+.logo-agendar{
+  margin-left: -14px;
+  margin-top: -5px;
+  width: 35px;
+  height: 35px;
+}
+.logo-concluir{
+  margin-left: -14px;
+  margin-top: -5px;
+  width: 35px;
+  height: 35px; 
+}
