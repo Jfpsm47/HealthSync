@@ -149,6 +149,13 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         }
         
       }
+      const closeCadastrarAtendimento = () => {
+        setInputDataOpen(false)
+        setInputHoraOpen(false)
+        setBotaoCadastrarOpen(false)
+        setSelectedDate('')
+        onClose()
+      }
   return (
     isOpen && ( 
       <div className='cadastro'> 
@@ -183,7 +190,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
               <button onClick={handleAgendarAtendimento} className='marcar-atendimento'>Marcar</button>
             ):(null)}
             </div>
-            <button onClick={onClose} >X</button>
+            <img src="src/assets/Close-blue.svg" alt="" className='close-cadastrar-atendimento' onClick={() => closeCadastrarAtendimento()}/>
         </div>
       </div>
     )

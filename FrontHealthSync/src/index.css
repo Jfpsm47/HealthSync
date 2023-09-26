@@ -440,15 +440,6 @@ flex-shrink: 0;
   
 }
 
-.input-cadastrar-paciente{
-  border: 3px solid #32236C;
-  border-radius: 4px;
-  width: 220px;
-  height: 30px;
-  font-size: 20px;
-  margin-bottom: 50px;
-  margin-left: 30px;
-}
 .label-cadastrar {
   display: block ; /* Exibir os rótulos como blocos */
   margin-left: 30px;
@@ -702,7 +693,7 @@ flex-shrink: 0;
   left: 770px;
   bottom: 615px;
 }
-.botao-agendar-atendimento{
+.botao-salvar-atendimento{
   background-color: #000000;
   color: #fff;
   left: 770px;
@@ -741,4 +732,27 @@ flex-shrink: 0;
   margin-top: -5px;
   width: 35px;
   height: 35px; 
+}
+.close-cadastrar-atendimento{
+  top: 15px;
+  left: 900px;
+  position: absolute;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+.span-error{
+  color: red;
+}
+.input-cadastrar-paciente{
+  border: 3px solid #32236C;
+  border-radius: 4px;
+  width: 220px;
+  height: 30px;
+  font-size: 20px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+}
+.span-error-paciente{
+  margin-top: -100px;
 }

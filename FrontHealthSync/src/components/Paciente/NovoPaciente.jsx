@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRef } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 const NovoPaciente = ({ isOpen, onClose }) => {
   const nomeref = useRef(null);
@@ -8,6 +9,12 @@ const NovoPaciente = ({ isOpen, onClose }) => {
   const rgref = useRef(null);
   const telefoneref = useRef(null);
   const emailref = useRef(null);
+
+  const [erroNome, setErroNome] = useState('');
+  const [erroCpf, setErroCpf] = useState('');
+  const [erroRg, setErroRg] = useState('');
+  const [erroEmail, setErroEmail] = useState('');
+  const [erroTelefone, setErroTelefone] = useState('');
 
   const handleCadastrarPaciente = async () => {
     var nome = nomeref.current.value;
@@ -20,38 +27,51 @@ const NovoPaciente = ({ isOpen, onClose }) => {
 
     if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)) {
       if (nome === '') {
-        errors.push('- Por favor preencha o campo nome');
+        errors[0] = 'Por favor preencha o campo nome';
+        setErroNome('Por favor preencha o campo nome');
       } else {
-        errors.push('- Digite um nome válido');
+        errors[0] = 'Digite um nome válido';
+        setErroNome('Digite um nome válido');
       }
     }
-
+    
     if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
       if (cpf === '') {
-        errors.push('- Por favor preencha o campo CPF');
+        errors[1] = 'Por favor preencha o campo CPF';
+        setErroCpf('Por favor preencha o campo CPF');
       } else {
-        errors.push('- Digite um CPF válido (xxx.xxx.xxx-xx)');
+        errors[1] = 'Digite um CPF válido (xxx.xxx.xxx-xx)';
+        setErroCpf('Digite um CPF válido (xxx.xxx.xxx-xx)');
       }
     }
+    
     if (!/^\d{7}-\d{1}$/.test(rg)) {
       if (rg === '') {
-        errors.push('- Por favor preencha o campo RG');
+        errors[2] = 'Por favor preencha o campo RG';
+        setErroRg('Por favor preencha o campo RG');
       } else {
-        errors.push('- Digite um RG válido (xxxxxxx-x)');
+        errors[2] = 'Digite um RG válido (xxxxxxx-x)';
+        setErroRg('Digite um RG válido (xxxxxxx-x)');
       }
     }
+    
     if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
       if (email === '') {
-        errors.push('- Por favor preencha o campo email');
+        errors[3] = 'Por favor preencha o campo email';
+        setErroEmail('Por favor preencha o campo email');
       } else {
-        errors.push('- Digite um email válido');
+        errors[3] = 'Digite um email válido';
+        setErroEmail('Digite um email válido');
       }
     }
+    
     if (!/^(\d{2})9\d{8}$/.test(telefone)) {
       if (telefone === '') {
-        errors.push('- Por favor preencha o campo telefone');
+        errors[4] = 'Por favor preencha o campo telefone';
+        setErroEmail('Digite um email válido');
       } else {
-        errors.push('- Digite um telefone válido (xx9xxxxxxxx)');
+        errors[4] = 'Digite um telefone válido (xx9xxxxxxxx)';
+        setErroTelefone('Digite um telefone válido (xx9xxxxxxxx)');
       }
     }
 
@@ -88,6 +108,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
       <div className='all-inputs-paciente'>
         <div className="inputs-paciente-1">
         <div className="input-container">
+          
           <label className="label-cadastrar">Nome</label>
           <input
             type="text"
@@ -95,7 +116,10 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             className="input-cadastrar-paciente"
             placeholder='Nome...'
           />
+          <br />
+          <span>{erroNome}</span>
         </div>
+        
 
         <div className="input-container">
           <label className="label-cadastrar">CPF</label>
@@ -146,8 +170,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
       <button onClick={() => handleCadastrarPaciente()} className='botao-cadastrar-paciente'>Cadastrar</button>
       </div>
     </div>
-    
-    <button onClick={() => onClose()}>X</button>
+    <img src="src/assets/Close-blue.svg" alt="" className='close-cadastrar-atendimento' onClick={() => onClose()} />
   </div>
 </div>
 

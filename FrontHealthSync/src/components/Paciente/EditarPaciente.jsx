@@ -32,7 +32,7 @@ const EditarPaciente = ({isOpen,onClose,paciente}) => {
 
         if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)) {
           if (nome === '') {
-            errors.push('- Por favor preencha o campo nome');
+            errors.push('Por favor preencha o campo nome');
           } else {
             errors.push('- Digite um nome válido');
           }

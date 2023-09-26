@@ -137,18 +137,19 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       try {
         const response = await axios.post('http://localhost:8081/api/atendimento/horariosDisponiveis',requisicaoHorario);
         console.log(response.data)
+        if(response.data.includes(atendimento.hora)){
+          setModifyData(false)
+          setModifyHora(true)  
+        }else{
+          setModifyData(false)
+          setInputHoraOpen(true)
+        }
         setHorariosDisponiveis(response.data)
       } catch (error) {
         console.log('Erro na requisição:', error);
       }
 
-      if(horariosDisponiveis.includes(atendimento.hora)){
-        setModifyData(false)
-        setModifyHora(true)  
-      }else{
-        setModifyData(false)
-        setInputHoraOpen(true)
-      }
+      
       
     }
     const handleChangeHorario = (selectedOption) => {
@@ -241,11 +242,12 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
                   </>
                   ):(null)}
                   {botaoCadastrarOpen? (
-                    <button onClick={handleEditarAtendimento}className='botao-agendar-atendimento'>Agendar</button>
+                    <button onClick={handleEditarAtendimento}className='botao-salvar-atendimento'>Agendar</button>
                   ):(null)}
                 
             </div>
             <button onClick={onClose}>X</button>
+            <img src="src/assets/Close-white.svg" alt="" className='close-paciente' onClick={onClose}/>
         </div>
     ):(null)
   )

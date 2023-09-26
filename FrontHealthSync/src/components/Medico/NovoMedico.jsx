@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
 import ReactInputMask from 'react-input-mask'
 import { Modal } from 'react-bootstrap'
 const NovoMedico = ({isOpen,onClose}) => {
+
     const nomeref = useRef(null)
     const crmref = useRef(null)
     const especref = useRef(null)
+
+    const [erroNome,setErroNome] = useState()
+    const [erroCRM,setErroCRM] = useState()
+    const [erroEspec,setErroEspec] = useState()
     
+    
+
     const handleCadastrarMedico = async () => {
       var nome = nomeref.current.value
       var crm = crmref.current.value
@@ -15,33 +22,36 @@ const NovoMedico = ({isOpen,onClose}) => {
 
       const errors = [];
       
-
       if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)){
         if(nome === ''){
-          errors.push("- Por favor preencha o campo nome")
+          errors[0] = ("Por favor preencha o campo nome!")
+
         }else{
-          errors.push("- Digite um nome válido")
+          errors[0] = ("Digite um nome válido!")
         }
       }
       if(!/^\d{8}-[1-9]$/.test(crm)){
         if(crm === ''){
-          errors.push("- Por favor preencha o campo CRM")
+          errors[1] = ("Por favor preencha o campo CRM!")
         }else{
-          errors.push("- Digite um CRM válido (XXXXXXXX-X)")
+          errors[1] = ("Digite um CRM válido (XXXXXXXX-X)!")
         }
       }
       if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(especialidade)){
         if(especialidade === ''){
-          errors.push('- Por favor preencha o campo especialidade')
+          errors[2] = ('Por favor preencha o campo especialidade!')
         }else{
-          errors.push("- Digite uma especialidade válida")
+          errors[2] = ("Digite uma especialidade válida!")
         }
         
       }
       if(errors.length > 0){
+        setErroNome(errors[0])
+        setErroCRM(errors[1])
+        setErroEspec(errors[2])
         const messageErros =  errors.join("\n")
-        alert(messageErros)
-      }else{
+        console.log(messageErros)
+      }else{  
           var medico = {
             nome:(nomeref.current.value),
             crm:(crmref.current.value),
@@ -57,6 +67,12 @@ const NovoMedico = ({isOpen,onClose}) => {
           }
       }
     }
+    const closeNovoMedico = () => {
+      setErroNome('')
+      setErroCRM('')
+      setErroEspec('')
+      onClose()
+    }
   return (  
     isOpen && (
       <div className='cadastro'>
@@ -66,19 +82,21 @@ const NovoMedico = ({isOpen,onClose}) => {
             <div className='inputs'>
                 <label>Nome</label>
                 <input type='text' ref={nomeref} className='input-cadastrar' placeholder='Nome...'></input>
+                <span className='span-error'>{erroNome}</span>
                 <br />
                 <label>CRM</label>
                 <input type='text' ref={crmref} className='input-cadastrar' maxLength={10} placeholder='CRM...'></input>
+                <span className='span-error'>{erroCRM}</span>
                 <br />
                 <label>Especialidade</label>
                 <input type='text' ref={especref} className='input-cadastrar' placeholder='Especialidade...'></input>
+                <span className='span-error'>{erroEspec}</span>
                 <br />
                 <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
             </div>
                 
             </div>
-              
-              <button onClick={() => onClose()}>X</button>
+              <img src="src/assets/Close-blue.svg" alt="" className='close-cadastrar-atendimento' onClick={() => closeNovoMedico()}/>
           </div>
       </div>
   )
