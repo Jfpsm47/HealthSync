@@ -18,7 +18,14 @@ function Login() {
   const emailLoginRef = useRef(null)
   const senhaLoginRef  =useRef(null)
 
+  const errors = [];
+
   const handleCadastrar = async () => {
+    var username = usernameRef.current.value
+    var email = emailRef.current.value
+    var senha1 = senha1Ref.current.value
+    var senha2 = senha2Ref.current.value
+
     if (senha1Ref.current.value === senha2Ref.current.value) {
       const usuario = {
         login:(usernameRef.current.value),

@@ -24,33 +24,30 @@ const NovoMedico = ({isOpen,onClose}) => {
       
       if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)){
         if(nome === ''){
-          errors[0] = ("Por favor preencha o campo nome!")
+          errors.push("- Por favor preencha o campo nome!")
 
         }else{
-          errors[0] = ("Digite um nome válido!")
+          errors.push("- Digite um nome válido!")
         }
       }
       if(!/^\d{8}-[1-9]$/.test(crm)){
         if(crm === ''){
-          errors[1] = ("Por favor preencha o campo CRM!")
+          errors.push("- Por favor preencha o campo CRM!")
         }else{
-          errors[1] = ("Digite um CRM válido (XXXXXXXX-X)!")
+          errors.push("- Digite um CRM válido (XXXXXXXX-X)!")
         }
       }
       if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(especialidade)){
         if(especialidade === ''){
-          errors[2] = ('Por favor preencha o campo especialidade!')
+          errors.push('- Por favor preencha o campo especialidade!')
         }else{
-          errors[2] = ("Digite uma especialidade válida!")
+          errors.push("- Digite uma especialidade válida!")
         }
         
       }
       if(errors.length > 0){
-        setErroNome(errors[0])
-        setErroCRM(errors[1])
-        setErroEspec(errors[2])
         const messageErros =  errors.join("\n")
-        console.log(messageErros)
+        alert(messageErros)
       }else{  
           var medico = {
             nome:(nomeref.current.value),

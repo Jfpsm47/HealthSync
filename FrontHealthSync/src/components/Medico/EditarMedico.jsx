@@ -36,33 +36,30 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
       
     if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)){
       if(nome === ''){
-        errors[0] = ("Por favor preencha o campo nome!")
+        errors.push("- Por favor preencha o campo nome!")
 
       }else{
-        errors[0] = ("Digite um nome válido!")
+        errors.push("- Digite um nome válido!")
       }
     }
     if(!/^\d{8}-[1-9]$/.test(crm)){
       if(crm === ''){
-        errors[1] = ("Por favor preencha o campo CRM!")
+        errors.push("- Por favor preencha o campo CRM!")
       }else{
-        errors[1] = ("Digite um CRM válido (XXXXXXXX-X)!")
+        errors.push("- Digite um CRM válido (XXXXXXXX-X)!")
       }
     }
     if(!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(especialidade)){
       if(especialidade === ''){
-        errors[2] = ('Por favor preencha o campo especialidade!')
+        errors.push('- Por favor preencha o campo especialidade!')
       }else{
-        errors[2] = ("Digite uma especialidade válida!")
+        errors.push("- Digite uma especialidade válida!")
       }
     }
 
     if(errors.length > 0){
-      setErroNome(errors[0])
-      setErroCRM(errors[1])
-      setErroEspec(errors[2])
       const messageErros =  errors.join("\n")
-      console.log(messageErros)
+      alert(messageErros)
     }else{
       var novoMedico = {
         nome:(nomeRef.current.value),
@@ -81,9 +78,6 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
     
   }
   const closeEditarMedico = () => {
-    setErroNome('')
-    setErroCRM('')
-    setErroEspec('')
     onClose()
   }
   return (
@@ -97,7 +91,6 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
             <br />
             <input  type='text' value={nome} onChange={(e) => setNome(e.target.value)} className='input-editar' ref={nomeRef}></input>
             <br />
-            <span className='span-error'>{erroNome}</span>
             </div>
             
             <div className='input-container-editar-medico'>
@@ -105,7 +98,6 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
               <br />
               <input type="text" value={crm} onChange={(e) => setCrm(e.target.value)} className='input-editar' ref={crmRef} />
               <br />
-              <span className='span-error'>{erroCRM}</span>
             </div>
             
             <div className='input-container-editar-medico'>
@@ -113,7 +105,6 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
               <br />
               <input type="text" value={especialidade} onChange={(e) => setEspecialidade(e.target.value)} className='input-editar' ref={especialidadeRef}/>
               <br />
-              <span className='span-error'>{erroEspec}</span>
             </div>
             
             <button onClick={() => handleEditarMedico()} className='botao-editar-medico'>Salvar</button>

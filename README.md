@@ -11,3 +11,4 @@ TODO
 - validar atendimento por mes, por ano
 - colocar os @Unique
 - sistema de permisões
+- validação login

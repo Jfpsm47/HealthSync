@@ -116,7 +116,6 @@ const Paciente = () => {
             {pacientes.map(paciente => (
                 <li key={paciente.id} className='card'>
                     {paciente.nome}
-                    
                     <br></br>
                     {paciente.cpf}
                     <br></br>

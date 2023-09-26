@@ -2,6 +2,7 @@ import axios from "axios";
 import { set } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
+
 export const data = [
   ["Element", "Density", { role: "style" }],
   ["Janeiro", 8.94, "color: #32236C"],
@@ -99,7 +100,7 @@ const Dashboard = () => {
         <div className="cards-dashboard">
           <Chart chartType="PieChart" data={data2} width={"70%"} height={"210px"}/>
           <div className="card-dashboard">
-            <span>Atendimentos marcados para hoje</span> 
+            <span>Atendimentos hoje</span> 
             <span className="indice">{agendados}</span>
           </div>
         </div>

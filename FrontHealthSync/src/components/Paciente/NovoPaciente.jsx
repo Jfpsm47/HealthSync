@@ -117,9 +117,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
             placeholder='Nome...'
           />
           <br />
-          <span>{erroNome}</span>
         </div>
-        
 
         <div className="input-container">
           <label className="label-cadastrar">CPF</label>
