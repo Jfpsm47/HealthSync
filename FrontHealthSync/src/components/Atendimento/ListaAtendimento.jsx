@@ -10,11 +10,18 @@ const ListaAtendimento = () => {
     const [isOpenFichaAt,setIsOpenFichaAt] = useState(false)
     const [selectedAtendimento, setSelectedAtendimento] = useState([])
     const [isOpenNovoAtendimento, setIsOpenNovoAtendimeno] = useState(false)
+    const [labelBotao, setLabelBotao] = useState()
+    
 
     useEffect(() => {
+      if(sessionStorage.getItem("listarTodos") === 'true'){
+        setLabelBotao("Ver hoje")
+      }else{
+        setLabelBotao("Ver todos")
+      }
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:8081/api/atendimento/listar');
+            const response = await axios.get(`http://localhost:8081/api/atendimento/listar/${sessionStorage.getItem("listarTodos")}`);
             setAtendimentos(response.data)
             console.log(response.data)
           } catch (error) {
@@ -32,7 +39,7 @@ const ListaAtendimento = () => {
       const handleCloseFicha = async () =>{
         setIsOpenFichaAt(false)
           try {
-            const response  = await axios.get(`http://localhost:8081/api/atendimento/listar`)
+            const response  = await axios.get(`http://localhost:8081/api/atendimento/listar/${sessionStorage.getItem("listarTodos")}`)
             setAtendimentos(response.data)
           } catch (error) {
             console.log('erro na requisão',error) 
@@ -45,7 +52,7 @@ const ListaAtendimento = () => {
         setIsOpenNovoAtendimeno(false)
         
         try {
-          const response = await axios.get('http://localhost:8081/api/atendimento/listar');
+          const response = await axios.get(`http://localhost:8081/api/atendimento/listar/${sessionStorage.getItem("listarTodos")}`);
           setAtendimentos(response.data)
           console.log(response.data)
         } catch (error) {
@@ -57,7 +64,7 @@ const ListaAtendimento = () => {
         console.log(data)
         if(data == ''){
           try {
-            const response = await axios.get('http://localhost:8081/api/atendimento/listar');
+            const response = await axios.get(`http://localhost:8081/api/atendimento/listar/${sessionStorage.getItem("listarTodos")}`);
             setAtendimentos(response.data)
           } catch (error) {
             console.log("Erro na requiusição,",error)
@@ -73,7 +80,24 @@ const ListaAtendimento = () => {
     }
 
       
-    
+    const handleMudarListagem = async() => {
+      var listarTodos = JSON.parse(sessionStorage.getItem("listarTodos").valueOf());
+      sessionStorage.setItem("listarTodos",!listarTodos)
+
+      if(sessionStorage.getItem("listarTodos") === 'true'){
+        setLabelBotao("Ver hoje")
+      }else{
+        setLabelBotao("Ver todos")
+      }
+      
+      try {
+        const response = await axios.get(`http://localhost:8081/api/atendimento/listar/${sessionStorage.getItem("listarTodos")}`);
+        setAtendimentos(response.data)
+        console.log(response.data)
+      } catch (error) {
+        console.log('Erro na requisição:', error);
+      }
+    }
   return (
     <div>
       <input type='text' className='busca' placeholder='Digite a data da consulta (dd-mm-yyy)' onChange={handleBuscarAtendimento}></input>
@@ -97,8 +121,9 @@ const ListaAtendimento = () => {
             ))}
         </ul>
         </div>
+        <button onClick={() => handleMudarListagem()}>{labelBotao}</button>
     </div>
-  )
+  ) 
 }
 
 export default ListaAtendimento

@@ -18,9 +18,14 @@ import java.util.Map;
 public class AtendimentoController {
     @Autowired
     AtendimentoService service;
-    @GetMapping("/listar")
-    public List<AtendimentoModel> listarAtendimentos(){
-        return service.listarAtendimento();
+    @GetMapping("/listar/{listarTodos}")
+    public List<AtendimentoModel> listarAtendimentos(@PathVariable boolean listarTodos){
+        if(listarTodos){
+            return service.listarAtendimento();
+        }else{
+            return service.listaDeHoje();
+        }
+
     }
     @GetMapping("listarHoje")
     public List<AtendimentoModel> listaAtendimentoHoje(){

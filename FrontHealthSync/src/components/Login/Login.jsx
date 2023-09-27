@@ -10,6 +10,8 @@ function Login() {
   
   const navigate = useNavigate()
 
+  sessionStorage.setItem("listarTodos",true)
+
   const usernameRef = useRef(null)
   const emailRef = useRef(null)
   const senha1Ref = useRef(null)

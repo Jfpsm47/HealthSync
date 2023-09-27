@@ -12,13 +12,12 @@ const Sobre = () => {
         <div className='sobre'>
             <h2 className='subtitulo-sobre'>Autor</h2>
             <span>Nome: João Flávio</span>
-            <span>Idade: 19 anos</span>
             <span>Curso Fic_dev programador de sistemas</span>
             <br />
 
             <h2 className='subtitulo-sobre'>Sobre o sistema</h2>
             <span>Sistema de gestão de atendimento médico</span>
-            <span>Versão: 1.24.1</span>
+            <span>Versão: 1.24.13</span>
 
             <h2 className='subtitulo-sobre'>Tecnologias</h2>
             <span>Back-end: Java Spring boot</span>
@@ -26,7 +25,7 @@ const Sobre = () => {
             <span>Front-end: React + Vite</span>
             <span>Gráficos: React Google Charts v: 4.0.1</span>
             <span>IDE: VS Code</span>
-            <a href="https://github.com/Jfpsm47/HealthSync">https://github.com/Jfpsm47/HealthSync</a>
+            <a href="https://github.com/Jfpsm47/HealthSync">GitHub</a>
             <br />
             <button onClick={() => navigate("/")} className='botao-voltar' >Voltar</button>
         </div>
