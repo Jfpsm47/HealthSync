@@ -9,13 +9,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
   const rgref = useRef(null);
   const telefoneref = useRef(null);
   const emailref = useRef(null);
-
-  const [erroNome, setErroNome] = useState('');
-  const [erroCpf, setErroCpf] = useState('');
-  const [erroRg, setErroRg] = useState('');
-  const [erroEmail, setErroEmail] = useState('');
-  const [erroTelefone, setErroTelefone] = useState('');
-
+  
   const handleCadastrarPaciente = async () => {
     var nome = nomeref.current.value;
     var cpf = cpfref.current.value;
@@ -28,50 +22,40 @@ const NovoPaciente = ({ isOpen, onClose }) => {
     if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)) {
       if (nome === '') {
         errors[0] = 'Por favor preencha o campo nome';
-        setErroNome('Por favor preencha o campo nome');
       } else {
         errors[0] = 'Digite um nome válido';
-        setErroNome('Digite um nome válido');
       }
     }
     
     if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
       if (cpf === '') {
         errors[1] = 'Por favor preencha o campo CPF';
-        setErroCpf('Por favor preencha o campo CPF');
       } else {
         errors[1] = 'Digite um CPF válido (xxx.xxx.xxx-xx)';
-        setErroCpf('Digite um CPF válido (xxx.xxx.xxx-xx)');
       }
     }
     
     if (!/^\d{7}-\d{1}$/.test(rg)) {
       if (rg === '') {
         errors[2] = 'Por favor preencha o campo RG';
-        setErroRg('Por favor preencha o campo RG');
       } else {
         errors[2] = 'Digite um RG válido (xxxxxxx-x)';
-        setErroRg('Digite um RG válido (xxxxxxx-x)');
       }
     }
     
     if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
       if (email === '') {
         errors[3] = 'Por favor preencha o campo email';
-        setErroEmail('Por favor preencha o campo email');
       } else {
-        errors[3] = 'Digite um email válido';
-        setErroEmail('Digite um email válido');
+        errors[3] = 'Digite um email válido';;
       }
     }
     
     if (!/^(\d{2})9\d{8}$/.test(telefone)) {
       if (telefone === '') {
         errors[4] = 'Por favor preencha o campo telefone';
-        setErroEmail('Digite um email válido');
       } else {
-        errors[4] = 'Digite um telefone válido (xx9xxxxxxxx)';
-        setErroTelefone('Digite um telefone válido (xx9xxxxxxxx)');
+        errors.push('Digite um telefone válido (xx9xxxxxxxx)');
       }
     }
 

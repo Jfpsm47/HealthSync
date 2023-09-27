@@ -18,7 +18,7 @@ function Login() {
   const emailLoginRef = useRef(null)
   const senhaLoginRef  =useRef(null)
 
-  const errors = [];
+ 
 
   const handleCadastrar = async () => {
     var username = usernameRef.current.value
@@ -26,7 +26,31 @@ function Login() {
     var senha1 = senha1Ref.current.value
     var senha2 = senha2Ref.current.value
 
-    if (senha1Ref.current.value === senha2Ref.current.value) {
+    const errors = [];
+
+    if(senha1 !== senha2){
+      errors.push("- As senhas não coincidem")
+    }
+
+    if(senha1 === '' | senha2 === ''){
+      errors.push("- Por favor preencha o campo senha")
+    }
+
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
+      if (email === '') {
+        errors.push('- Por favor preencha o campo email');
+      } else {
+        errors.push('- Digite um email válido');
+      }
+    }
+    if(username ===  ''){
+      errors.push("- Por favor preencha o campo usuário")
+    }
+
+    if(errors.length > 0 ){
+      const messageErros =  errors.join("\n")
+        alert(messageErros)
+    }else{
       const usuario = {
         login:(usernameRef.current.value),
         email:(emailRef.current.value),
@@ -40,16 +64,29 @@ function Login() {
         toggle(true)
       } catch (error) {
         console.log('erro na requisão',error)
-        alert(error.response.data)
+        alert("Email já cadastrado")
       }
-    } else {
-      alert("As senhas não são as mesmas")
-      senha1Ref.current.value = null
-      senha2Ref.current.value = null
     }
+
+
   };
   const handleEntrar = async () => {
-    const usuario = {
+    var email = emailLoginRef.current.value
+    var senha=senhaLoginRef.current.value
+    
+    const errors = [];
+
+    if(email === ''){
+      errors.push("- Por favor preencha o campo email")
+    }
+    if(senha === ''){
+      errors.push("- Por favor preencha o campo senha")
+    }
+    if(errors.length > 0){
+      const messageErros =  errors.join("\n")
+      alert(messageErros)
+    }else{
+      const usuario = {
       email:(emailLoginRef.current.value),
       senha:(senhaLoginRef.current.value)
     }
@@ -65,10 +102,10 @@ function Login() {
       }
     } catch (error) {
       console.log('erro na requisão',error)
-      alert(error.response.data)
+      alert("Email ou senha inválidos.")
     }
-
-  }
+  }  
+}
 
   return (
     <div className="LoginBody">
@@ -114,7 +151,11 @@ function Login() {
           </Components.Overlay>
         </Components.OverlayContainer>
       </Components.Container>
+      <button className="botao-sobre">
+        <img src="src/assets/sobre.svg" alt="" className="logo-sobre"/>
+      </button>
     </div>
+    
   );
 }
 export default Login;

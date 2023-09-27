@@ -242,11 +242,10 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
                   </>
                   ):(null)}
                   {botaoCadastrarOpen? (
-                    <button onClick={handleEditarAtendimento}className='botao-salvar-atendimento'>Agendar</button>
+                    <button onClick={handleEditarAtendimento}className='botao-salvar-atendimento'>Marcar</button>
                   ):(null)}
                 
             </div>
-            <button onClick={onClose}>X</button>
             <img src="src/assets/Close-white.svg" alt="" className='close-paciente' onClick={onClose}/>
         </div>
     ):(null)

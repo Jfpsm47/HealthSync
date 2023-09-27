@@ -1,0 +1,33 @@
+.body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.titulo-sobre{
+    color: #32236C;
+    margin-left: 330px;
+}
+.subtitulo-sobre{
+    color: #32236C;
+    position: relative;
+    align-self: center;
+}
+p{
+    margin-left: 10px;
+}
+.sobre {
+    max-width: 930px;
+    max-height: 600px;
+    width: 930px;
+    height: 600px;
+    background-color: white;
+    overflow-y: auto;
+    display: flex; /* Adicione display: flex para transformar 'sobre' em um container flexível */
+    flex-direction: column; /* Empilhe os elementos verticalmente */
+    align-items: center; /* Centralize horizontalmente os elementos filhos */
+    margin-left: 320px;
+    border-radius: 20px;
+}

@@ -707,10 +707,11 @@ flex-shrink: 0;
   bottom: 615px;
 }
 .botao-salvar-atendimento{
-  background-color: #000000;
-  color: #fff;
+  background-color: #ffffff;
+  color: #32236C;
   left: 770px;
   bottom: 615px;
+  margin-bottom: 30px;
 }
 .botao-cancelar-atendimento{
   margin: 15px;
