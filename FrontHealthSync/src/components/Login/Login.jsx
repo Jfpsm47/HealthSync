@@ -106,7 +106,9 @@ function Login() {
     }
   }  
 }
-
+const handleNavigateSobre = () => { 
+  navigate("/sobre")
+}
   return (
     <div className="LoginBody">
     <Components.Container>
@@ -151,7 +153,7 @@ function Login() {
           </Components.Overlay>
         </Components.OverlayContainer>
       </Components.Container>
-      <button className="botao-sobre">
+      <button className="botao-sobre" onClick={() => handleNavigateSobre()}>
         <img src="src/assets/sobre.svg" alt="" className="logo-sobre"/>
       </button>
     </div>

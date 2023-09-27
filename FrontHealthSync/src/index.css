@@ -776,3 +776,13 @@ flex-shrink: 0;
   margin-left: -15px;
   margin-top: -10px;
 }
+.logo-sobre{
+  width: 30px;
+  height: 30px;
+  margin-left: -12px;
+  margin-top: -3px;
+}
+.botao-voltar{
+  background-color: #32236C;
+  color: white;
+}

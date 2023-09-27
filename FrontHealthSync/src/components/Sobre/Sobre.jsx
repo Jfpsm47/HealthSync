@@ -1,8 +1,10 @@
 import React from 'react'
 import "./Sobre.css"
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const Sobre = () => {
+  const navigate = useNavigate()
 
   return (
     <div className='body'>
@@ -16,7 +18,7 @@ const Sobre = () => {
 
             <h2 className='subtitulo-sobre'>Sobre o sistema</h2>
             <span>Sistema de gestão de atendimento médico</span>
-            <span>Versão: 1.23.11</span>
+            <span>Versão: 1.24.11</span>
 
             <h2 className='subtitulo-sobre'>Tecnologias</h2>
             <span>Back-end: Java Spring boot</span>
@@ -25,6 +27,8 @@ const Sobre = () => {
             <span>Gráficos: React Google Charts v: 4.0.1</span>
             <span>IDE: VS Code</span>
             <a href="https://github.com/Jfpsm47/HealthSync">https://github.com/Jfpsm47/HealthSync</a>
+            <br />
+            <button onClick={() => navigate("/")} className='botao-voltar' >Voltar</button>
         </div>
     </div>
   )
