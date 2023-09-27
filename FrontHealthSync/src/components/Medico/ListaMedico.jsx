@@ -10,6 +10,7 @@ const ListaMedico = () => {
   const [isOpenNovoMedico, setIsOpenNovoMedico] = useState(false)
   const [isOpenEditarMedico, setIsOpenEditarMedico] = useState(false)
   const [selectedMedico, setSelectedMedico] = useState({})
+  const [tipoCard, setTipoCard] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +21,7 @@ const ListaMedico = () => {
             'Authorization' : `Bearer ${token}`
           }
         });
-
+        console.log(response.data)
         setMedicos(response.data)
       } catch (error) {
         console.log('Erro na requisição:', error);
@@ -30,6 +31,7 @@ const ListaMedico = () => {
   
     fetchData();
   }, []);
+
 
   const handleBuscarMedico = async (e) => {
     var nome = e.target.value
@@ -60,10 +62,10 @@ const ListaMedico = () => {
     }
   }
   const handleExcluirMedico = async (id) => {
-    var excluir = confirm("Deseja realmente excluir o médico?")
+    var excluir = confirm("Deseja realmente desativar o médico?")
     if(excluir){
       try {
-        const response = await axios.post(`http://localhost:8081/api/medico/deletar/${id}`);
+        const response = await axios.post(`http://localhost:8081/api/medico/desativar/${id}`);
         console.log(response)
       } catch (error) {
         console.log('Erro na requisição:', error);
@@ -99,26 +101,29 @@ const ListaMedico = () => {
       <h1 className='titulo-modal'>Médicos</h1>
       {medicos.length === 0 && <h3>Sem médicos para exibir.</h3>}
       <div className='lista-medico'>
-        <ul className='lista'>
-          {medicos.map(medico =>(
-            <li key={medico.id} className='card'>
-              <span className='nome-medico'>Dr(a) {medico.nome}</span>
-              <br></br>
-              {medico.crm}
-              <br></br>
-              {medico.especialidade}
-              <br />
-              <button onClick={() => handleExcluirMedico(medico.id)} className='botao-excluir-medico'>
-                <img src="src/assets/Trash.svg" alt="" className='logo-excluir'/>
-              </button>
-              <button onClick={() => handleOpenEditar(medico)} className='button-editar-medico'>
-                <img src="src/assets/Editar.svg" alt="" className='logo-editar'/>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+  <ul className='lista'>
+    {medicos.map(medico => {
+      const tipoCard = medico.status === "Ativo" ? 'card' : 'card-desativado';
+      return (
+        <li key={medico.id} className={tipoCard}>
+          <span className='nome-medico'>Dr(a) {medico.nome}</span>
+          <br></br>
+          {medico.crm}
+          <br></br>
+          {medico.especialidade}
+          <br />
+          <button onClick={() => handleExcluirMedico(medico.id)} className={`botao-excluir-medico`}>
+            <img src="src/assets/Desativado.svg" alt="" className={`logo-desativado`}/>
+          </button>
+          <button onClick={() => handleOpenEditar(medico)} className='button-editar-medico'>
+            <img src="src/assets/Editar.svg" alt="" className='logo-editar'/>
+          </button>
+        </li>
+      );
+    })}
+  </ul>
+</div>
+</div>
   )
 }
 

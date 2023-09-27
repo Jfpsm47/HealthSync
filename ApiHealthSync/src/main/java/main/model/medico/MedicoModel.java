@@ -3,12 +3,7 @@ package main.model.medico;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import main.model.atendimento.AtendimentoModel;
 
 @Entity
@@ -19,8 +14,10 @@ public class MedicoModel {
 	private Long id;
 	
 	private String nome;
+	@Column(unique = true)
 	private String crm;
 	private String especialidade;
+	private String status;
 	
 	@OneToMany(mappedBy = "medico")
 	@JsonIgnore
@@ -30,11 +27,11 @@ public class MedicoModel {
 		super();
 	}
 
-	public MedicoModel(String nome, String crm, String especialidade) {
-		super();
+	public MedicoModel(String nome, String crm, String especialidade, String status) {
 		this.nome = nome;
 		this.crm = crm;
 		this.especialidade = especialidade;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -67,5 +64,13 @@ public class MedicoModel {
 
 	public void setCrm(String crm) {
 		this.crm = crm;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

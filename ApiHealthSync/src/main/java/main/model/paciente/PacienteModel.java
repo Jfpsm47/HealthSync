@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import main.model.atendimento.AtendimentoModel;
 
 @Entity
@@ -20,12 +15,16 @@ public class PacienteModel implements Serializable {
 	private Long id;
 	
 	private String nome;
+	@Column(unique = true)
 	private String cpf;
+	@Column(unique = true)
 	private String rg;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String telefone;
 	
-	@OneToMany(mappedBy = "paciente")
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<AtendimentoModel> atendimentos;
 	

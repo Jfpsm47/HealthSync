@@ -117,6 +117,19 @@ button:focus-visible {
   padding: 10px;
   min-height: 70px;
 }
+.card-desativado{
+  width: 260px;
+  background-color: #808080;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  min-height: 70px;
+}
 
 .ver-mais {
   cursor: pointer;
@@ -238,6 +251,7 @@ ul li ul li {
 }
 .hidden{
   visibility: hidden;
+  display: none;
 }
 .titulo-editar{
   color: #fff;
@@ -606,7 +620,7 @@ flex-shrink: 0;
 .botao-excluir-medico{
   width: 35px;
   height: 35px;
-  background-color: #32236C;
+  background-color: transparent;
   border-radius: 100px;
   border: 3px solid white;
 }
@@ -621,7 +635,7 @@ flex-shrink: 0;
   margin: 10px;
   width: 35px;
   height: 35px;
-  background-color: #32236C;
+  background-color: transparent;
   border-radius: 100px;
   border: 3px solid white;
 }
@@ -754,4 +768,10 @@ flex-shrink: 0;
 }
 .span-error-paciente{
   margin-top: -100px;
+}
+.logo-desativado{
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -10px;
 }

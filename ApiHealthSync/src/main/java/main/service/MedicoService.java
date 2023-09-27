@@ -13,7 +13,7 @@ public class MedicoService {
     @Autowired
     MedicoRepository repository;
     public List<MedicoModel> listarMedicos(){
-        return repository.findAll();
+        return repository.findAllByOrderByStatusAsc();
     }
 
     public List<MedicoModel> listarPorNome(String nome){
@@ -21,7 +21,7 @@ public class MedicoService {
     }
 
     public List<String> listaNomesMedico(){
-        List<MedicoModel> listaMedico = repository.findAll();
+        List<MedicoModel> listaMedico = repository.listaNome();
         List<String> listaNome = new ArrayList<>();
         for (MedicoModel medico: listaMedico) {
             listaNome.add(medico.getNome());
@@ -32,7 +32,10 @@ public class MedicoService {
         repository.save(medico);
     }
     public void deletarMedico(Long id){
-        repository.deleteById(id);
+       MedicoModel medico =  repository.findById(id).get();
+       medico.setStatus("Desativado");
+
+       repository.save(medico);
     }
     public void editarMedico(Long id, MedicoModel data){
         MedicoModel medico = repository.findById(id).get();
@@ -42,5 +45,8 @@ public class MedicoService {
         medico.setNome(data.getNome());
 
         repository.save(medico);
+    }
+    public List<MedicoModel> teste(){
+        return repository.listaNome();
     }
 }

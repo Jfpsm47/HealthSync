@@ -36,6 +36,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         const fetchData = async () => {
           try {
             const response = await axios.get('http://localhost:8081/api/medico/listaNome');
+            console.log(response.data)
             setMedicosNome(response.data);
           } catch (error) {
             console.log('Erro na requisição:', error);

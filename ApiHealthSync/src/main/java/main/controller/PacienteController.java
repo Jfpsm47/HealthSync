@@ -21,7 +21,12 @@ public class PacienteController {
     }
     @PostMapping("/cadastrar")
     public void cadastrarPaciente(@RequestBody PacienteModel paciente){
-        service.cadastrarPaciente(paciente);
+        try {
+            service.cadastrarPaciente(paciente);
+        }catch (Exception e){
+            System.out.println("MENSAGEM DO ERRO"+e.getMessage());
+        }
+
     }
     @PostMapping("/editar/{id}")
     public void  editarPaciente(@PathVariable Long id, @RequestBody PacienteModel data){

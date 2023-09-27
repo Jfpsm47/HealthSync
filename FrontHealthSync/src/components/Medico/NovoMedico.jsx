@@ -8,10 +8,6 @@ const NovoMedico = ({isOpen,onClose}) => {
     const nomeref = useRef(null)
     const crmref = useRef(null)
     const especref = useRef(null)
-
-    const [erroNome,setErroNome] = useState()
-    const [erroCRM,setErroCRM] = useState()
-    const [erroEspec,setErroEspec] = useState()
     
     
 
@@ -52,7 +48,8 @@ const NovoMedico = ({isOpen,onClose}) => {
           var medico = {
             nome:(nomeref.current.value),
             crm:(crmref.current.value),
-            especialidade:(especref.current.value)
+            especialidade:(especref.current.value),
+            status:"Ativo"
         }
         console.log(medico)
         try {
@@ -60,14 +57,11 @@ const NovoMedico = ({isOpen,onClose}) => {
             console.log(response)
             onClose()
           } catch (error) {
-            console.log('erro na requisão',error)
+            alert("- CRM já cadastrado")
           }
       }
     }
     const closeNovoMedico = () => {
-      setErroNome('')
-      setErroCRM('')
-      setErroEspec('')
       onClose()
     }
   return (  
@@ -79,15 +73,12 @@ const NovoMedico = ({isOpen,onClose}) => {
             <div className='inputs'>
                 <label>Nome</label>
                 <input type='text' ref={nomeref} className='input-cadastrar' placeholder='Nome...'></input>
-                <span className='span-error'>{erroNome}</span>
                 <br />
                 <label>CRM</label>
                 <input type='text' ref={crmref} className='input-cadastrar' maxLength={10} placeholder='CRM...'></input>
-                <span className='span-error'>{erroCRM}</span>
                 <br />
                 <label>Especialidade</label>
                 <input type='text' ref={especref} className='input-cadastrar' placeholder='Especialidade...'></input>
-                <span className='span-error'>{erroEspec}</span>
                 <br />
                 <button className='botao-cadastrar' onClick={() => handleCadastrarMedico()}>Cadastrar</button>
             </div>

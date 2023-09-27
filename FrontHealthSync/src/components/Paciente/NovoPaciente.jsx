@@ -95,7 +95,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
         console.log(response);
         onClose();
       } catch (error) {
-        console.log('erro na requisição', error);
+        alert('- Valores já cadastrados');
       }
     }
   };

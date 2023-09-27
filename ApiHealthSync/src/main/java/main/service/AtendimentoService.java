@@ -26,7 +26,7 @@ public class AtendimentoService {
     MedicoRepository medicoRepository;
 
     public List<AtendimentoModel> listarAtendimento(){
-        return repository.findAll();
+        return repository.findAtendimentosWithMedicoAtivo();
     }
     public List<AtendimentoModel> listaDeHoje(){
         Date dataAtual = new Date();
@@ -228,5 +228,8 @@ public class AtendimentoService {
         String dataAtual = dataFormat.format(data);
 
         return repository.countAtendimentosByData(dataAtual);
+    }
+    public List<AtendimentoModel> teste(){
+        return repository.findAtendimentosWithMedicoAtivo();
     }
 }

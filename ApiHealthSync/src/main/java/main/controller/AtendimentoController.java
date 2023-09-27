@@ -71,4 +71,9 @@ public class AtendimentoController {
     public Long atendimentosMarcadosHoje(){
         return service.atendimentosAgendadosHoje();
     }
+
+    @GetMapping("/teste")
+    public List<AtendimentoModel> teste(){
+        return service.teste();
+    }
 }
