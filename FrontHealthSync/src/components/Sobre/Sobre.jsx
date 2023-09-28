@@ -17,7 +17,7 @@ const Sobre = () => {
 
             <h2 className='subtitulo-sobre'>Sobre o sistema</h2>
             <span>Sistema de gestão de atendimento médico</span>
-            <span>Versão: 1.25.13</span>
+            <span>Versão: 1.26.14</span>
 
             <h2 className='subtitulo-sobre'>Tecnologias</h2>
             <span>Back-end: Java Spring boot</span>
@@ -25,6 +25,7 @@ const Sobre = () => {
             <span>Front-end: React + Vite</span>
             <span>Gráficos: React Google Charts v: 4.0.1</span>
             <span>IDE: VS Code</span>
+            <span>Banco de dados: PostgresSQL</span>
             <a href="https://github.com/Jfpsm47/HealthSync">GitHub</a>
             <br />
             <button onClick={() => navigate("/")} className='botao-voltar' >Voltar</button>

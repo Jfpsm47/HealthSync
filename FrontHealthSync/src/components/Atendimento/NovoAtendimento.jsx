@@ -139,6 +139,7 @@ const NovoAtendimento = ({isOpen,onClose}) => {
         try {
           const response = await axios.post('http://localhost:8081/api/atendimento/cadastrar',atendimento);
           console.log(response.data)
+          alert("Atendimento cadastrado com sucesso!")
         } catch (error) {
           console.log('Erro na requisição:', error);
         }

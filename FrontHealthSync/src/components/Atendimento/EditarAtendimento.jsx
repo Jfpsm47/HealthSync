@@ -189,6 +189,7 @@ const EditarAtendimento = ({isOpen, onClose, atendimento}) => {
       try {
         const response = await axios.post(`http://localhost:8081/api/atendimento/editar/${atendimentoID}`,atendimento);
         console.log(response.data)
+        alert("Atendimeno editado com sucesso!")
       } catch (error) {
         console.log('Erro na requisição:', error);
       }

@@ -69,6 +69,7 @@ const EditarMedico = ({ isOpen, medico , onClose}) => {
       try {
         const response  = await axios.post(`http://localhost:8081/api/medico/editar/${medico.id}`,novoMedico)
         console.log(response)
+        alert("Médico editado com sucesso!")
       } catch (error) {
         console.log('erro na requisão',error) 
       }

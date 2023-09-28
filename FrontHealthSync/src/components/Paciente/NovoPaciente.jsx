@@ -78,6 +78,7 @@ const NovoPaciente = ({ isOpen, onClose }) => {
         );
         console.log(response);
         onClose();
+        alert("Paciente cadastrado com sucesso!")
       } catch (error) {
         alert('- Valores já cadastrados');
       }

@@ -96,7 +96,7 @@ const ListaMedico = () => {
     <div>
       <input type='text' className='busca' onChange={handleBuscarMedico} placeholder='Digite o nome do médico...'></input>
       <NovoMedico isOpen={isOpenNovoMedico} onClose={() => handleCloseNovoMedico()}></NovoMedico>
-
+      <EditarMedico isOpen={isOpenEditarMedico} medico={selectedMedico} onClose={() => handleCloseEditar()}></EditarMedico>
       <button onClick={() => setIsOpenNovoMedico(true)} className={`botao-cadastro ${isOpenNovoMedico || isOpenEditarMedico ? 'hidden' : ''}`} >+ Novo Médico</button>
       <h1 className='titulo-modal'>Médicos</h1>
       {medicos.length === 0 && <h3>Sem médicos para exibir.</h3>}

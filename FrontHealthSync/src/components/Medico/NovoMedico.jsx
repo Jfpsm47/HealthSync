@@ -56,6 +56,7 @@ const NovoMedico = ({isOpen,onClose}) => {
             const response  = await axios.post('http://localhost:8081/api/medico/cadastrar',medico)
             console.log(response)
             onClose()
+            alert("Médico cadastrado com sucesso!")
           } catch (error) {
             alert("- CRM já cadastrado")
           }
