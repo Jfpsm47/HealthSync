@@ -113,6 +113,11 @@ public class AtendimentoService {
         List<AtendimentoModel> atendimentos = repository.findAll();
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat mesFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat anoFormat = new SimpleDateFormat("yyyy");
+
+        Date dataAtual = new Date();
+        String anoAtual = anoFormat.format(dataAtual);
+
         List<String> meses = new ArrayList<>();
 
         Map<String, Integer> atendimentosPorMes = new HashMap<>();
@@ -132,63 +137,72 @@ public class AtendimentoService {
         for (AtendimentoModel atendimento:atendimentos) {
             if(!"Cancelado".equals(atendimento.getStatus())){
                 try {
-                    Date dataAtendimento = dataFormat.parse(atendimento.getData());
-                    String mes = mesFormat.format(dataAtendimento);
-                    switch (mes) {
-                        case "01":
-                            Integer valorJan = atendimentosPorMes.get("Janeiro");
-                            atendimentosPorMes.put("Janeiro", valorJan + 1);
-                            break;
-                        case "02":
-                            Integer valorFev = atendimentosPorMes.get("Fevereiro");
-                            atendimentosPorMes.put("Fevereiro", valorFev + 1);
-                            break;
-                        case "03":
-                            Integer valorMar = atendimentosPorMes.get("Março");
-                            atendimentosPorMes.put("Março", valorMar + 1);
-                            break;
-                        case "04":
-                            Integer valorAbr = atendimentosPorMes.get("Abril");
-                            atendimentosPorMes.put("Abril", valorAbr + 1);
-                            break;
-                        case "05":
-                            Integer valorMai = atendimentosPorMes.get("Maio");
-                            atendimentosPorMes.put("Maio", valorMai + 1);
-                            break;
-                        case "06":
-                            Integer valorJun = atendimentosPorMes.get("Junho");
-                            atendimentosPorMes.put("Junho", valorJun + 1);
-                            break;
-                        case "07":
-                            Integer valorJul = atendimentosPorMes.get("Julho");
-                            atendimentosPorMes.put("Julho", valorJul + 1);
-                            break;
-                        case "08":
-                            Integer valorAgo = atendimentosPorMes.get("Agosto");
-                            atendimentosPorMes.put("Agosto", valorAgo + 1);
-                            break;
-                        case "09":
-                            Integer valorSet = atendimentosPorMes.get("Setembro");
-                            atendimentosPorMes.put("Setembro", valorSet + 1);
-                            break;
-                        case "10":
-                            Integer valorOut = atendimentosPorMes.get("Outubro");
-                            atendimentosPorMes.put("Outubro", valorOut + 1);
-                            break;
-                        case "11":
-                            Integer valorNov = atendimentosPorMes.get("Novembro");
-                            atendimentosPorMes.put("Novembro", valorNov + 1);
-                            break;
-                        case "12":
-                            Integer valorDez = atendimentosPorMes.get("Dezembro");
-                            atendimentosPorMes.put("Dezembro", valorDez + 1);
-                            break;
-                        default:
-                            // Caso o mês não seja reconhecido
+                    Date dataAtendimento1 = dataFormat.parse(atendimento.getData());
+                    String anoAtendimento = anoFormat.format(dataAtendimento1);
+                    if(anoAtendimento.equals(anoAtual)){
+                        try {
+                            Date dataAtendimento = dataFormat.parse(atendimento.getData());
+                            String mes = mesFormat.format(dataAtendimento);
+                            switch (mes) {
+                                case "01":
+                                    Integer valorJan = atendimentosPorMes.get("Janeiro");
+                                    atendimentosPorMes.put("Janeiro", valorJan + 1);
+                                    break;
+                                case "02":
+                                    Integer valorFev = atendimentosPorMes.get("Fevereiro");
+                                    atendimentosPorMes.put("Fevereiro", valorFev + 1);
+                                    break;
+                                case "03":
+                                    Integer valorMar = atendimentosPorMes.get("Março");
+                                    atendimentosPorMes.put("Março", valorMar + 1);
+                                    break;
+                                case "04":
+                                    Integer valorAbr = atendimentosPorMes.get("Abril");
+                                    atendimentosPorMes.put("Abril", valorAbr + 1);
+                                    break;
+                                case "05":
+                                    Integer valorMai = atendimentosPorMes.get("Maio");
+                                    atendimentosPorMes.put("Maio", valorMai + 1);
+                                    break;
+                                case "06":
+                                    Integer valorJun = atendimentosPorMes.get("Junho");
+                                    atendimentosPorMes.put("Junho", valorJun + 1);
+                                    break;
+                                case "07":
+                                    Integer valorJul = atendimentosPorMes.get("Julho");
+                                    atendimentosPorMes.put("Julho", valorJul + 1);
+                                    break;
+                                case "08":
+                                    Integer valorAgo = atendimentosPorMes.get("Agosto");
+                                    atendimentosPorMes.put("Agosto", valorAgo + 1);
+                                    break;
+                                case "09":
+                                    Integer valorSet = atendimentosPorMes.get("Setembro");
+                                    atendimentosPorMes.put("Setembro", valorSet + 1);
+                                    break;
+                                case "10":
+                                    Integer valorOut = atendimentosPorMes.get("Outubro");
+                                    atendimentosPorMes.put("Outubro", valorOut + 1);
+                                    break;
+                                case "11":
+                                    Integer valorNov = atendimentosPorMes.get("Novembro");
+                                    atendimentosPorMes.put("Novembro", valorNov + 1);
+                                    break;
+                                case "12":
+                                    Integer valorDez = atendimentosPorMes.get("Dezembro");
+                                    atendimentosPorMes.put("Dezembro", valorDez + 1);
+                                    break;
+                                default:
+                                    // Caso o mês não seja reconhecido
+                            }
+                        }catch (ParseException e){
+                            e.printStackTrace();
+                        }
                     }
-                }catch (ParseException e){
+                }catch (Exception e){
                     e.printStackTrace();
                 }
+
             }
         }
         return atendimentosPorMes;
@@ -227,7 +241,7 @@ public class AtendimentoService {
         SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
         String dataAtual = dataFormat.format(data);
 
-        return repository.countAtendimentosByData(dataAtual);
+        return repository.countAtendimentosAgendadosByData(dataAtual);
     }
     public List<AtendimentoModel> teste(){
         return repository.findAtendimentosWithMedicoAtivo();

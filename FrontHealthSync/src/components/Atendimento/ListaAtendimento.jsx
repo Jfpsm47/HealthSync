@@ -101,15 +101,17 @@ const ListaAtendimento = () => {
   return (
     <div>
       <input type='text' className='busca' placeholder='Digite a data da consulta (dd-mm-yyy)' onChange={handleBuscarAtendimento}></input>
-        <h1 className='titulo-modal'>Atendimentos</h1>
+        <h1 className='titulo-modal'>Atendimentos</h1> <button onClick={() => handleMudarListagem()} className='botao-mudar-listagem'>{labelBotao}</button>
         <button onClick={() => handleOpenNovoAtendimento()} className='botao-cadastro-2'>+Novo Atendimento</button>
         <NovoAtendimento isOpen={isOpenNovoAtendimento} onClose={()=> handleCloseNovoAtendimento()}></NovoAtendimento>
         {atendimentos.length === 0 && <h3>Sem atendimentos para exibir.</h3>}
         <div className='lista-atendimento'>
         <ul className='lista'>
-            {atendimentos.map(atendimento =>(
-                <li key={atendimento.id} className='card'>
-                    <span>Dr(a) {atendimento.medico.nome}</span>
+            {atendimentos.map(atendimento =>{
+              const tipoCard = atendimento.status === 'Agendado'? 'card': atendimento.status === 'Cancelado'? 'card-cancelado' : 'card-concluido'
+            return(
+                <li key={atendimento.id} className={tipoCard}>
+                    <span className='dado-atendimento'>Dr(a) {atendimento.medico.nome}</span>
                     <br></br>
                     <span>Paciente: {atendimento.paciente.nome}</span>
                     <br></br>
@@ -118,10 +120,10 @@ const ListaAtendimento = () => {
                     <span onClick={() => handleOpenFicha(atendimento)} className='ver-mais' >Ver mais</span>
                     <FichaAtendimento isOpen={isOpenFichaAt} onClose={() => handleCloseFicha()} atendimento={selectedAtendimento}></FichaAtendimento>
                 </li>
-            ))}
+            )})}
         </ul>
         </div>
-        <button onClick={() => handleMudarListagem()}>{labelBotao}</button>
+       
     </div>
   ) 
 }

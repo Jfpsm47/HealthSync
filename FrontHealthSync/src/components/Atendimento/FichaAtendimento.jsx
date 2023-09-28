@@ -30,31 +30,43 @@ const FichaAtendimento = ({isOpen,onClose,atendimento}) => {
         onClose()
     }
     const handleConcluirAtendimento = async () => {
-        try {
+        var concluir = confirm("Deseja realmente marcar o atendimento como concluido?")
+        if(concluir){
+           try {
             const response = await axios.post(`http://localhost:8081/api/atendimento/concluir/${atendimento.id}`)
             console.log(response)
             onClose()
         } catch (error) {
             console.log('erro na requisição',error)
+        } 
         }
+        
     }
     const handleCancelarAtendimento = async () => {
-        try {
+        var cancelar = confirm("Deseja realmente cancelar o atendimento?")
+        if(cancelar){
+           try {
             const response = await axios.post(`http://localhost:8081/api/atendimento/cancelar/${atendimento.id}`)
             console.log(response)
             onClose()
         } catch (error) {
             console.log(error)
+        } 
         }
+        
     }
     const handleAgendarAtendimento = async () => {
-        try {
+        var agendar = confirm("Deseja realmente marcar o atendimento como agendado?")
+        if(agendar){
+          try {
             const response = await axios.post(`http://localhost:8081/api/atendimento/agendar/${atendimento.id}`)
             console.log(response)
             onClose()
         } catch (error) {
             console.log(error)
+        }  
         }
+        
     }
   return (
         isOpen &&(

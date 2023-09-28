@@ -130,6 +130,32 @@ button:focus-visible {
   padding: 10px;
   min-height: 70px;
 }
+.card-cancelado{
+  width: 260px;
+  background-color: #6c2323;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  min-height: 70px;
+}
+.card-concluido{
+  width: 260px;
+  background-color: #236c25;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  min-height: 70px;
+}
 
 .ver-mais {
   cursor: pointer;
@@ -783,6 +809,24 @@ flex-shrink: 0;
   margin-top: -3px;
 }
 .botao-voltar{
+  background-color: #32236C;
+  color: white;
+}
+.tipo-busca{
+  background-color: #32236C;
+  color: white;
+  position: absolute;
+  margin-left: 650px;
+  margin-top: -25px;
+
+}
+.label-tipo-busca{
+  position: absolute;
+  bottom: 660px;
+  left: 670px;
+
+}
+.botao-mudar-listagem{
   background-color: #32236C;
   color: white;
 }

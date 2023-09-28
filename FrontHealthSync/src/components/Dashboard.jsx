@@ -40,6 +40,13 @@ const Dashboard = () => {
         fontSize: 20
       } 
   }
+  const pieChartOption = {
+    title: 'Índice de cancelamento mensal',
+    titleTextStyle: {
+      color: '#32236C',
+      fontSize: 16
+    } 
+}
 
   useEffect(() => {
     const getMap = async () => {
@@ -98,7 +105,7 @@ const Dashboard = () => {
         </div>
          
         <div className="cards-dashboard">
-          <Chart chartType="PieChart" data={data2} width={"70%"} height={"210px"}/>
+          <Chart chartType="PieChart" data={data2} width={"70%"} height={"210px"} options={pieChartOption}/>
           <div className="card-dashboard">
             <span>Atendimentos hoje</span> 
             <span className="indice">{agendados}</span>

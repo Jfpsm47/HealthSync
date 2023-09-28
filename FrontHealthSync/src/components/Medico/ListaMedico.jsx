@@ -96,7 +96,7 @@ const ListaMedico = () => {
     <div>
       <input type='text' className='busca' onChange={handleBuscarMedico} placeholder='Digite o nome do médico...'></input>
       <NovoMedico isOpen={isOpenNovoMedico} onClose={() => handleCloseNovoMedico()}></NovoMedico>
-      <EditarMedico isOpen={isOpenEditarMedico} medico={selectedMedico} onClose={() => handleCloseEditar()}></EditarMedico>
+
       <button onClick={() => setIsOpenNovoMedico(true)} className={`botao-cadastro ${isOpenNovoMedico || isOpenEditarMedico ? 'hidden' : ''}`} >+ Novo Médico</button>
       <h1 className='titulo-modal'>Médicos</h1>
       {medicos.length === 0 && <h3>Sem médicos para exibir.</h3>}
@@ -112,7 +112,7 @@ const ListaMedico = () => {
           <br></br>
           {medico.especialidade}
           <br />
-          <button onClick={() => handleExcluirMedico(medico.id)} className={`botao-excluir-medico`}>
+          <button onClick={() => handleExcluirMedico(medico.id)} className={`botao-excluir-medico ${medico.status === 'Desativado'? 'hidden':'' }`}>
             <img src="src/assets/Desativado.svg" alt="" className={`logo-desativado`}/>
           </button>
           <button onClick={() => handleOpenEditar(medico)} className='button-editar-medico'>

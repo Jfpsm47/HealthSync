@@ -17,7 +17,7 @@ const Sobre = () => {
 
             <h2 className='subtitulo-sobre'>Sobre o sistema</h2>
             <span>Sistema de gestão de atendimento médico</span>
-            <span>Versão: 1.24.13</span>
+            <span>Versão: 1.25.13</span>
 
             <h2 className='subtitulo-sobre'>Tecnologias</h2>
             <span>Back-end: Java Spring boot</span>
