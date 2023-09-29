@@ -13,7 +13,7 @@ public interface AtendimentoRepository extends JpaRepository<AtendimentoModel, L
 
     List<AtendimentoModel> findByMedico(MedicoModel medico);
 
-    @Query("SELECT atend FROM AtendimentoModel atend WHERE atend.data = :data AND medico.id = :id AND atend.status = 'Agendado'")
+    @Query("SELECT atend FROM AtendimentoModel atend WHERE atend.data = :data AND medico.id = :id AND (atend.status = 'Agendado' OR atend.status = 'Concluido')")
     List<AtendimentoModel> encontrarAtendimento(@Param("data")String data,@Param("id")Long id);
 
     List<AtendimentoModel> findByDataContaining(String data);
