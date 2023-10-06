@@ -17,7 +17,7 @@ public class MedicoService {
     }
 
     public List<MedicoModel> listarPorNome(String nome){
-        return repository.findByNomeContaining(nome);
+        return repository.findByNomeContainingIgnoreCase(nome);
     }
 
     public List<String> listaNomesMedico(){

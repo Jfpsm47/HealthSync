@@ -38,7 +38,7 @@ public class PacienteService {
     }
 
     public List<PacienteModel> ListarPorNom(String nome) {
-        return repository.findByNomeContaining(nome);
+        return repository.findByNomeContainingIgnoreCase(nome);
     }
 
     public PacienteModel buscarPorCpf(String cpf) {

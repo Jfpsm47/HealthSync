@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface MedicoRepository extends JpaRepository <MedicoModel,Long> {
-    List<MedicoModel> findByNomeContaining(String nome);
+    List<MedicoModel> findByNomeContainingIgnoreCase(String nome);
     Optional<MedicoModel> findByNome(String nome);
     List<MedicoModel> findAllByOrderByStatusAsc();
     @Query("SELECT med FROM MedicoModel med WHERE med.status = 'Ativo'")
